@@ -912,6 +912,7 @@ GameObject:
   - component: {fileID: 950602275}
   - component: {fileID: 950602274}
   - component: {fileID: 950602278}
+  - component: {fileID: 950602279}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1016,6 +1017,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee3e013a7a3d240cab2b0d630fac7eb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &950602279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 950602273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b67d27b9e373d44c99500ce4808f5bd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &971407046
@@ -2237,7 +2249,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 38.400024, y: -58.30005}
+  m_AnchoredPosition: {x: 38.399902, y: -58.30005}
   m_SizeDelta: {x: 10, y: 16}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1379556170
@@ -2278,7 +2290,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1379556171}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 950602279}
+        m_MethodName: Back
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1379556171
@@ -2483,7 +2506,7 @@ GameObject:
   - component: {fileID: 1476776801}
   - component: {fileID: 1476776800}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Sign Up Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2546,7 +2569,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1476776801}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 950602279}
+        m_MethodName: SignUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1476776801
@@ -2594,7 +2628,7 @@ GameObject:
   - component: {fileID: 1491411728}
   - component: {fileID: 1491411727}
   m_Layer: 5
-  m_Name: Sign Up Button
+  m_Name: Sign Up Prompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3474,9 +3508,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 950602278}
-        m_MethodName: Navigate
-        m_Mode: 5
+      - m_Target: {fileID: 950602279}
+        m_MethodName: SignIn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
