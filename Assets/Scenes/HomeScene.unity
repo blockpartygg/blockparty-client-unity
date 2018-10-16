@@ -406,7 +406,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 224441756}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1153090856}
+        m_MethodName: SignOut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &224441756
@@ -557,6 +568,7 @@ GameObject:
   - component: {fileID: 365098329}
   - component: {fileID: 365098331}
   - component: {fileID: 365098330}
+  - component: {fileID: 365098332}
   m_Layer: 5
   m_Name: Countdown Text
   m_TagString: Untagged
@@ -580,7 +592,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 8, y: -184}
-  m_SizeDelta: {x: 215, y: 92}
+  m_SizeDelta: {x: 250, y: 92}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &365098330
 MonoBehaviour:
@@ -703,6 +715,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 365098328}
   m_CullTransparentMesh: 0
+--- !u!114 &365098332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 365098328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca555208bb444a3283bb4266a668ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &495322890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,7 +1165,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1784281575}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999976
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1449,7 +1472,7 @@ MonoBehaviour:
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
-  m_ignoreRectMaskCulling: 0
+  m_ignoreRectMaskCulling: 1
   m_ignoreCulling: 1
   m_horizontalMapping: 0
   m_verticalMapping: 0
@@ -1474,7 +1497,7 @@ MonoBehaviour:
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
-  m_inputSource: 3
+  m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -1708,6 +1731,7 @@ GameObject:
   - component: {fileID: 1153090854}
   - component: {fileID: 1153090853}
   - component: {fileID: 1153090852}
+  - component: {fileID: 1153090856}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1801,6 +1825,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1153090856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1153090851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 127fb8d090aef4d71b7b5505949e4805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1159470307
 GameObject:
   m_ObjectHideFlags: 0
@@ -1831,7 +1866,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00000039533128}
+  m_AnchoredPosition: {x: 0, y: -0.000014931966}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1177063141
@@ -2241,6 +2276,7 @@ GameObject:
   - component: {fileID: 1253537537}
   - component: {fileID: 1253537539}
   - component: {fileID: 1253537538}
+  - component: {fileID: 1253537540}
   m_Layer: 5
   m_Name: Game State Text
   m_TagString: Untagged
@@ -2387,6 +2423,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1253537536}
   m_CullTransparentMesh: 0
+--- !u!114 &1253537540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1253537536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 579bda09921ab4058b2e3f7ad14c31c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1307742422
 GameObject:
   m_ObjectHideFlags: 0
@@ -3191,7 +3238,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1746832753}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1153090856}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1746832753

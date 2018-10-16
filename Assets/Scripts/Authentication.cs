@@ -59,4 +59,9 @@ public class Authentication : Singleton<Authentication> {
             callback();
         });
     }
+
+    public void SignOut(Action callback) {
+        auth.SignOut();
+        callback();
+    }
 }

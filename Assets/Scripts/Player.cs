@@ -1,8 +1,8 @@
 public class Player {
-    public string Name;
-    public long Currency;
+    public string name;
+    public long currency;
 
     public Player(string name) {
-        Name = name;
+        this.name = name;
     }
 }
