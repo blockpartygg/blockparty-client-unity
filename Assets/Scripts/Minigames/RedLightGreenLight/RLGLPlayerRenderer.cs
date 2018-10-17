@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class RLGLPlayerRenderer : MonoBehaviour {
 	RLGLPlayer player;
 	Vector3 position;
+	bool isMoving;
 
 	void Awake() {
 		position = new Vector3();
@@ -15,8 +17,11 @@ public class RLGLPlayerRenderer : MonoBehaviour {
 	}
 
 	void Update() {
-		position.x = player.positionX;
-		position.z = player.positionZ;
-		transform.position = position;
+		if(position.z != player.positionZ && !isMoving) {
+			isMoving = true;
+			position.x = player.positionX;
+			position.z = player.positionZ;
+			transform.DOJump(position, 1f, 1, 0.1f).OnComplete(() => isMoving = false);
+		}
 	}
 }
