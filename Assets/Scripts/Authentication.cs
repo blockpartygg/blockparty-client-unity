@@ -15,7 +15,7 @@ public class Authentication : Singleton<Authentication> {
         #endif
         
         auth.StateChanged += AuthStateChanged;
-        AuthStateChanged(null, null);
+        AuthStateChanged(this, null);
     }
 
     void AuthStateChanged(object sender, EventArgs args) {
@@ -53,7 +53,7 @@ public class Authentication : Singleton<Authentication> {
                 return;
             }
             FirebaseUser user = task.Result;
-            Player player = new Player(name);
+            Player player = new Player(name, 0, 0, false);
             Database.Instance.SetPlayerValue(user.UserId, player);
             Debug.LogFormat("Sign up was successful: {0}", user.UserId);
             callback();

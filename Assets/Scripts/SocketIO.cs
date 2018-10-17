@@ -10,6 +10,8 @@ public class SocketIO : Singleton<SocketIO> {
             return manager.Socket;
         }
     }
+    
+    public bool IsConnected;
 
     public void Connect() {
         string uri = "";
@@ -26,5 +28,6 @@ public class SocketIO : Singleton<SocketIO> {
 
     void OnConnected(Socket socket, Packet packet, object[] args) {
         Debug.LogWarning("Socket connected: " + socket.Id);
+        IsConnected = true;
     }
 }

@@ -21,6 +21,10 @@ public class Database : Singleton<Database> {
 		database.GetReference("game").ValueChanged += handler;
 	}
 
+	public void SetPlayersChangedHandler(EventHandler<ValueChangedEventArgs> handler) {
+		database.GetReference("players").ValueChanged += handler;
+	}
+	
 	public void SetPlayerValue(string playerId, Player player) {
 		string json = JsonUtility.ToJson(player);
 		database.GetReference("players/" + playerId).SetRawJsonValueAsync(json);

@@ -1,12 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Firebase;
 
 public class TitleController : MonoBehaviour {
+	Button playButton;
+
 	void Awake() {
+		playButton = GameObject.Find("Play Button").GetComponent<Button>();
+
 		Analytics.Instance.LogAppOpenEvent();
-		SocketIO.Instance.Connect();
+		if(!SocketIO.Instance.IsConnected) {
+			SocketIO.Instance.Connect();
+		}
 	}
 
 	public void Play() {
@@ -20,5 +27,9 @@ public class TitleController : MonoBehaviour {
 
 	public void SignUp() {
 		SceneNavigator.Instance.Navigate("SignUpScene");
+	}
+
+	void Update() {
+		playButton.interactable = SocketIO.Instance.Socket.IsOpen;
 	}
 }

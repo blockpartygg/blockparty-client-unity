@@ -4,6 +4,7 @@ using TMPro;
 public class HomeController : MonoBehaviour {
 	void Awake() {
 		Game.Instance.Initialize();
+		PlayerManager.Instance.Initialize();
 	}
 
 	public void SignOut() {

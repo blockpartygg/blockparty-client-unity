@@ -17,13 +17,16 @@ public class RLGLPlayerManager : MonoBehaviour {
 			Players.Add(playerId, new RLGLPlayer(positionX, positionZ, moving));
 		}
 		else {
-			Players[playerId].positionX = positionX;
-			Players[playerId].positionZ = positionZ;
-			Players[playerId].moving = moving;
+			if(playerId != Authentication.Instance.CurrentUser.UserId) {
+				Players[playerId].positionX = positionX;
+				Players[playerId].positionZ = positionZ;
+				Players[playerId].moving = moving;
+			}
 		}
+
 		if(!PlayerRenderers.ContainsKey(playerId)) {
 			PlayerRenderers.Add(playerId, Instantiate(PlayerRendererPrefab, new Vector3(positionX, 0, positionZ), Quaternion.identity));
-			PlayerRenderers[playerId].SetPlayer(Players[playerId]);
+			PlayerRenderers[playerId].SetPlayer(playerId, Players[playerId]);
 		}
 	}
 }

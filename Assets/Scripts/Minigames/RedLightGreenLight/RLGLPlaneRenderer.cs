@@ -11,7 +11,7 @@ public class RLGLPlaneRenderer : MonoBehaviour {
 	Material redMaterial;
 
 	void Awake() {
-		greenLightManager = GameObject.Find("Red Light Green Light").GetComponent<RLGLGreenLightManager>();
+		greenLightManager = GameObject.Find("Minigame Manager").GetComponent<RLGLGreenLightManager>();
 		planeMeshRenderer = GetComponent<MeshRenderer>();
 	}
 
