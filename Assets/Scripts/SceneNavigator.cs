@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneNavigator : Singleton<SceneNavigator> {
 	bool isPlaying;
+	bool isLoadingScene;
 
 	public void Navigate(string sceneName) {
 		StartCoroutine(LoadSceneAsync(sceneName));
@@ -16,6 +17,8 @@ public class SceneNavigator : Singleton<SceneNavigator> {
 		while(!asyncLoad.isDone) {
 			yield return null;
 		}
+
+		isLoadingScene = false;
 	}
 
 	public void StartPlaying() {
@@ -69,7 +72,8 @@ public class SceneNavigator : Singleton<SceneNavigator> {
 					sceneToLoad = "PostgameRewardsScene";
 					break;
 			}
-			if(SceneManager.GetActiveScene().name != sceneToLoad) {
+			if(SceneManager.GetActiveScene().name != sceneToLoad && !isLoadingScene) {
+				isLoadingScene = true;
 				Navigate(sceneToLoad);
 			}
 		}

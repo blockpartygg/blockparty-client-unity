@@ -17,4 +17,34 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HomeScene.unity
     guid: 8cf08f27757f54e19bf49ecbe0ab34b7
+  - enabled: 1
+    path: Assets/Scenes/PregameCountdownScene.unity
+    guid: d78dfdb99ab324c2a83bb2e089f7133b
+  - enabled: 1
+    path: Assets/Scenes/PregameTitleScene.unity
+    guid: c1caf11e4c0c54556b7a15e0e4431d3c
+  - enabled: 1
+    path: Assets/Scenes/PregameIntroductionScene.unity
+    guid: 37a929f6ca8274dcc9e6878dee1f743d
+  - enabled: 1
+    path: Assets/Scenes/RoundIntroductionScene.unity
+    guid: 8598521622c494b47a747ecf8b2445d2
+  - enabled: 1
+    path: Assets/Scenes/RoundInstructionsScene.unity
+    guid: 3b23b0179fe1a4564bcc4cf8e0a8c732
+  - enabled: 1
+    path: Assets/Scenes/RedLightGreenLightScene.unity
+    guid: e8b778a4512804b6eb90ac5ad3dc6a7e
+  - enabled: 1
+    path: Assets/Scenes/RoundResultsScoreboardScene.unity
+    guid: ee00e7ecd5fd04dcda2aa3a1772bc56a
+  - enabled: 1
+    path: Assets/Scenes/RoundResultsLeaderboardScene.unity
+    guid: 3f69362c61e4b45abb0aa2ead2293853
+  - enabled: 1
+    path: Assets/Scenes/PostgameCelebrationScene.unity
+    guid: 17d5bd873ebbd4961a9703485fc142aa
+  - enabled: 1
+    path: Assets/Scenes/PostgameRewardsScene.unity
+    guid: d3e1a7ef1a2e04678aebbab691f905d6
   m_configObjects: {}
