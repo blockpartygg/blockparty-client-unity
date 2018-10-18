@@ -11,8 +11,6 @@ public class RLGLPlayerRenderer : MonoBehaviour {
 	bool isMoving;
 	Tweener positionTweener;
 	Tweener scaleTweener;
-	Vector3 jumpBeginScale = new Vector3(1.2f, 0.75f, 1f);
-	Vector3 jumpEndScale = new Vector3(0.9f, 0.9f, 0.9f);
 
 	void Awake() {
 		nameText = transform.Find("Name").GetComponent<TMP_Text>();
