@@ -10,16 +10,16 @@ public class SocketIO : Singleton<SocketIO> {
             return manager.Socket;
         }
     }
-    
+
     public bool IsConnected;
 
     public void Connect() {
         string uri = "";
-        #if UNITY_EDITOR
-            uri = "http://localhost:1337/socket.io/";
-        #else
-            uri = "http://blockparty-server.herokuapp.com/socket.io/";
-        #endif
+        //#if UNITY_EDITOR
+            uri = "http://192.168.86.51:1337/socket.io/";
+        // #else
+        //     uri = "http://blockparty-server.herokuapp.com/socket.io/";
+        // #endif
         SocketOptions options = new SocketOptions();
         options.ConnectWith = BestHTTP.SocketIO.Transports.TransportTypes.WebSocket;
         manager = new SocketManager(new Uri(uri), options);

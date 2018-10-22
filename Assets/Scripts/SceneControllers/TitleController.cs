@@ -29,6 +29,10 @@ public class TitleController : MonoBehaviour {
 		SceneNavigator.Instance.Navigate("SignUpScene");
 	}
 
+	public void ViewLegalStatements() {
+		Application.OpenURL("https://blockparty.gg/privacy-policy");
+	}
+
 	void Update() {
 		playButton.interactable = SocketIO.Instance.Socket.IsOpen;
 	}
