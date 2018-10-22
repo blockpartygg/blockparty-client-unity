@@ -11,7 +11,7 @@ public class SignInController : MonoBehaviour {
 		emailInputField = GameObject.Find("Email Input Field").GetComponent<TMP_InputField>();
 		passwordInputField = GameObject.Find("Password Input Field").GetComponent<TMP_InputField>();
 	}
-	public void Back() {
+	public void GoBack() {
 		SceneNavigator.Instance.Navigate("TitleScene");
 	}
 

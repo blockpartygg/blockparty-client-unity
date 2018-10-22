@@ -16,7 +16,7 @@ public class SignUpController : MonoBehaviour {
 		passwordConfirmationInputField = GameObject.Find("Password Confirmation Input Field").GetComponent<TMP_InputField>();
 	}
 
-	public void Back() {
+	public void GoBack() {
 		SceneNavigator.Instance.Navigate("TitleScene");
 	}
 

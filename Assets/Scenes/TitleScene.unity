@@ -436,6 +436,7 @@ GameObject:
   - component: {fileID: 213892747}
   - component: {fileID: 213892746}
   - component: {fileID: 213892745}
+  - component: {fileID: 213892748}
   m_Layer: 5
   m_Name: Legalese Button
   m_TagString: Untagged
@@ -501,15 +502,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 628511905}
-        m_MethodName: ViewLegalStatements
-        m_Mode: 1
+      - m_Target: {fileID: 213892748}
+        m_MethodName: Open
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: https://blockparty.gg/privacy-policy
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -548,6 +549,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 213892743}
   m_CullTransparentMesh: 0
+--- !u!114 &213892748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 213892743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be2ff4da65d84c9f8769c4d065a3087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &597138663
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,46 +1149,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1268948090}
   m_CullTransparentMesh: 0
---- !u!1 &1274169409
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1274169411}
-  - component: {fileID: 1274169410}
-  m_Layer: 0
-  m_Name: Authentication
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1274169410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1274169409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b14d99979183c48c6ba2a5acef9bf911, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1274169411
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1274169409}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1683259584
 GameObject:
   m_ObjectHideFlags: 0
