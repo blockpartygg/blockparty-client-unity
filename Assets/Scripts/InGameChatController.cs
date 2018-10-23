@@ -26,9 +26,10 @@ public class InGameChatController : MonoBehaviour {
 			ChatManager.Instance.AddMessage(Authentication.Instance.CurrentUser.UserId, chatInputField.text);
 			chatInputField.text = "";
 		}
-		else {
-			chatObject.SetActive(!chatObject.activeSelf);
-		}
+	}
+
+	public void ToggleChat() {
+		chatObject.SetActive(!chatObject.activeSelf);
 	}
 
 	void Update() {
