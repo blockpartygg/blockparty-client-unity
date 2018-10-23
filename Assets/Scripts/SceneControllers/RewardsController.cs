@@ -14,7 +14,7 @@ public class RewardsController : MonoBehaviour {
 	void HandleShowResult(ShowResult result) {
 		switch(result) {
 			case ShowResult.Finished:
-				Debug.Log("Dispense reward");
+				PlayerManager.Instance.TransactPlayerCurrency(Authentication.Instance.CurrentUser.UserId, 100);
 				break;
 			case ShowResult.Skipped:
 				Debug.Log("Ad was skipped");
@@ -26,7 +26,7 @@ public class RewardsController : MonoBehaviour {
 	}
 
 	public void PurchaseSkin() {
-		Debug.Log("Purchase skin");
+		PlayerManager.Instance.TransactPlayerCurrency(Authentication.Instance.CurrentUser.UserId, -100);
 	}
 
 	public void GoHome() {
