@@ -11,6 +11,8 @@ public class CurrencyRenderer : MonoBehaviour {
 	}
 
 	void Update() {
-		currencyText.text = PlayerManager.Instance.Players[Authentication.Instance.CurrentUser.UserId].currency + " BITS";
+		if(Authentication.Instance.CurrentUser != null) {
+			currencyText.text = PlayerManager.Instance.Players[Authentication.Instance.CurrentUser.UserId].currency + " BITS";
+		}
 	}
 }

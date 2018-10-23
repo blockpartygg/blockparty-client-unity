@@ -4,17 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class HomeChatController : MonoBehaviour {
+public class InGameChatController : MonoBehaviour {
 	GameObject chatContent;
 	ScrollRect chatScrollRect;
 	Scrollbar chatScrollbar;
+	GameObject chatObject;
 	TMP_InputField chatInputField;
+
 	public GameObject ChatMessagePrefab;
 
 	void Awake() {
 		chatContent = GameObject.Find("Chat Content");
 		chatScrollRect = GameObject.Find("Chat Scroll View").GetComponent<ScrollRect>();
 		chatScrollbar = GameObject.Find("Chat Scrollbar").GetComponent<Scrollbar>();
+		chatObject = GameObject.Find("Chat Background");
 		chatInputField = GameObject.Find("Chat Input Field").GetComponent<TMP_InputField>();
 	}
 
@@ -23,6 +26,9 @@ public class HomeChatController : MonoBehaviour {
 			ChatManager.Instance.AddMessage(Authentication.Instance.CurrentUser.UserId, chatInputField.text);
 			chatInputField.text = "";
 		}
+		else {
+			chatObject.SetActive(!chatObject.activeSelf);
+		}
 	}
 
 	void Update() {
@@ -30,8 +36,7 @@ public class HomeChatController : MonoBehaviour {
 			if(chatContent.transform.Find(message.Key) == null) {
 				GameObject messageObject = Instantiate(ChatMessagePrefab, Vector3.zero, Quaternion.identity);
 				messageObject.name = message.Key;
-				messageObject.transform.Find("Name Text").GetComponent<TMP_Text>().text = PlayerManager.Instance.Players[message.Value.playerId].name;
-				messageObject.transform.Find("Message Text").GetComponent<TMP_Text>().text = message.Value.text;
+				messageObject.transform.Find("Message Text").GetComponent<TMP_Text>().text = PlayerManager.Instance.Players[message.Value.playerId].name + " <color=\"white\"><font=\"IBM Plex Sans Condensed - Medium SDF\">" + message.Value.text + "</font></color>";
 				messageObject.transform.SetParent(chatContent.transform);
 
 				Canvas.ForceUpdateCanvases();

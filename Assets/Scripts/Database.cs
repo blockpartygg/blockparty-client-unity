@@ -31,7 +31,7 @@ public class Database : Singleton<Database> {
 	}
 
 	public void SetMessagesChangedHandler(EventHandler<ChildChangedEventArgs> handler) {
-		database.GetReference("chatMessages").LimitToLast(50).ChildAdded += handler;
+		database.GetReference("chatMessages").OrderByChild("timestamp").LimitToLast(50).ChildAdded += handler;
 	}
 
 	public void AddChatMessage(string playerId, string text) {
