@@ -18,7 +18,6 @@ public class PregameCountdownController : MonoBehaviour {
 
 	void Update() {
 		TimeSpan timeRemaining = GameManager.Instance.EndTime > DateTime.Now ? GameManager.Instance.EndTime - DateTime.Now : TimeSpan.Zero;
-		Debug.Log(timeRemaining.TotalSeconds > 30);
 		precountdown.SetActive(timeRemaining.TotalSeconds > 30);
 		countdown.SetActive(timeRemaining.TotalSeconds <= 30);
 	}

@@ -12,11 +12,9 @@ public class GameStateRenderer : MonoBehaviour {
 		switch(GameManager.Instance.State) {
 			case GameManager.GameState.PregameCountdown:
 			case GameManager.GameState.PregameTitle:
-			case GameManager.GameState.PregameIntroduction:
 				gameStateText.text = "The party starts soon";
 				break;
 			case GameManager.GameState.RoundIntroduction:
-			case GameManager.GameState.RoundInstructions:
 				gameStateText.text = "Round " + GameManager.Instance.Round + " starts soon";
 				break;
 			case GameManager.GameState.MinigameStart:

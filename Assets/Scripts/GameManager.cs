@@ -8,9 +8,7 @@ public class GameManager : Singleton<GameManager> {
 	public enum GameState {
 		PregameCountdown,
 		PregameTitle,
-		PregameIntroduction,
 		RoundIntroduction,
-		RoundInstructions,
 		MinigameStart,
 		MinigamePlay,
 		MinigameEnd,

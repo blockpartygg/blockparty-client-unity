@@ -39,14 +39,8 @@ public class SceneNavigator : Singleton<SceneNavigator> {
 				case GameManager.GameState.PregameTitle:
 					sceneToLoad = "PregameTitleScene";
 					break;
-				case GameManager.GameState.PregameIntroduction:
-					sceneToLoad = "PregameIntroductionScene";
-					break;
 				case GameManager.GameState.RoundIntroduction:
 					sceneToLoad = "RoundIntroductionScene";
-					break;
-				case GameManager.GameState.RoundInstructions:
-					sceneToLoad = "RoundInstructionsScene";
 					break;
 				case GameManager.GameState.MinigameStart:
 				case GameManager.GameState.MinigamePlay:

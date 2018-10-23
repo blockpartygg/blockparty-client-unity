@@ -5,9 +5,8 @@ using UnityEngine;
 public class RLGLPlayerFollower : MonoBehaviour {
 	RLGLPlayerManager playerManager;
 	RLGLEliminationManager eliminationManager;
-	GameObject player;
+	GameObject target;
 	Vector3 positionOffset = new Vector3(6, 10, -10);
-	Vector3 position = new Vector3();
 
 	void Awake() {
 		playerManager = GameObject.Find("Minigame Manager").GetComponent<RLGLPlayerManager>();
@@ -15,23 +14,25 @@ public class RLGLPlayerFollower : MonoBehaviour {
 	}
 
 	void Update() {
-		if(player == null) {
-			if(Authentication.Instance.CurrentUser != null && playerManager.PlayerRenderers.ContainsKey(Authentication.Instance.CurrentUser.UserId)) {
-				player = playerManager.PlayerRenderers[Authentication.Instance.CurrentUser.UserId].gameObject;
-			}
-			else {
-				if(playerManager.PlayerRenderers.ContainsKey(eliminationManager.PlayerToEliminate)) {
-					player = playerManager.PlayerRenderers[eliminationManager.PlayerToEliminate].gameObject;
+		target = null;
+		if(Authentication.Instance.CurrentUser != null) {
+			if(playerManager.Players.ContainsKey(Authentication.Instance.CurrentUser.UserId)) {
+				if(playerManager.Players[Authentication.Instance.CurrentUser.UserId].active) {
+					target = playerManager.PlayerRenderers[Authentication.Instance.CurrentUser.UserId].gameObject;
 				}
 			}
 		}
-		else {
-			if((Authentication.Instance.CurrentUser == null || player != playerManager.PlayerRenderers[Authentication.Instance.CurrentUser.UserId].gameObject) && (playerManager.PlayerRenderers.ContainsKey(eliminationManager.PlayerToEliminate) && player != playerManager.PlayerRenderers[eliminationManager.PlayerToEliminate].gameObject)) {
-				player = playerManager.PlayerRenderers[eliminationManager.PlayerToEliminate].gameObject;
+		if(target == null) {
+			if(eliminationManager.PlayerToEliminate != null) {
+				if(playerManager.Players.ContainsKey(eliminationManager.PlayerToEliminate)) {
+					target = playerManager.PlayerRenderers[eliminationManager.PlayerToEliminate].gameObject;
+				}
 			}
+		}
 
-			Vector3 target = new Vector3(player.transform.position.x + positionOffset.x, positionOffset.y, player.transform.position.z + positionOffset.z);
-			transform.position = Vector3.MoveTowards(transform.position, target, 0.2f);
+		if(target != null) {
+			Vector3 targetPosition = new Vector3(target.transform.position.x + positionOffset.x, positionOffset.y, target.transform.position.z + positionOffset.z);
+			transform.position = Vector3.MoveTowards(transform.position, targetPosition, 0.2f);
 		}
 	}
 }
