@@ -5,6 +5,7 @@ public class HomeController : MonoBehaviour {
 	void Awake() {
 		GameManager.Instance.Initialize();
 		PlayerManager.Instance.Initialize();
+		ChatManager.Instance.Initialize();
 	}
 
 	public void SignOut() {

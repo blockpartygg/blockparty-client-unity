@@ -29,4 +29,16 @@ public class Database : Singleton<Database> {
 		string json = JsonUtility.ToJson(player);
 		database.GetReference("players/" + playerId).SetRawJsonValueAsync(json);
 	}
+
+	public void SetMessagesChangedHandler(EventHandler<ChildChangedEventArgs> handler) {
+		database.GetReference("chatMessages").LimitToLast(50).ChildAdded += handler;
+	}
+
+	public void AddChatMessage(string playerId, string text) {
+		ChatMessage message = new ChatMessage(playerId, text, 0);
+		string json = JsonUtility.ToJson(message);
+		DatabaseReference reference = database.GetReference("chatMessages").Push();
+		reference.SetRawJsonValueAsync(json);
+		reference.Child("timestamp").SetValueAsync(ServerValue.Timestamp);
+	}
 }
