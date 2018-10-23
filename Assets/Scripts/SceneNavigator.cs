@@ -32,26 +32,26 @@ public class SceneNavigator : Singleton<SceneNavigator> {
 	void Update() {
 		if(isPlaying) {
 			string sceneToLoad = "";
-			switch(Game.Instance.State) {
-				case Game.GameState.PregameCountdown:
+			switch(GameManager.Instance.State) {
+				case GameManager.GameState.PregameCountdown:
 					sceneToLoad = "PregameCountdownScene";
 					break;
-				case Game.GameState.PregameTitle:
+				case GameManager.GameState.PregameTitle:
 					sceneToLoad = "PregameTitleScene";
 					break;
-				case Game.GameState.PregameIntroduction:
+				case GameManager.GameState.PregameIntroduction:
 					sceneToLoad = "PregameIntroductionScene";
 					break;
-				case Game.GameState.RoundIntroduction:
+				case GameManager.GameState.RoundIntroduction:
 					sceneToLoad = "RoundIntroductionScene";
 					break;
-				case Game.GameState.RoundInstructions:
+				case GameManager.GameState.RoundInstructions:
 					sceneToLoad = "RoundInstructionsScene";
 					break;
-				case Game.GameState.MinigameStart:
-				case Game.GameState.MinigamePlay:
-				case Game.GameState.MinigameEnd:
-					switch(Game.Instance.Minigame.Id) {
+				case GameManager.GameState.MinigameStart:
+				case GameManager.GameState.MinigamePlay:
+				case GameManager.GameState.MinigameEnd:
+					switch(GameManager.Instance.Minigame.Id) {
 						case "redLightGreenLight":
 						case "blockBlaster":
 						case "blockio":
@@ -59,16 +59,16 @@ public class SceneNavigator : Singleton<SceneNavigator> {
 							break;
 					}
 					break;
-				case Game.GameState.RoundResultsScoreboard:
+				case GameManager.GameState.RoundResultsScoreboard:
 					sceneToLoad = "RoundResultsScoreboardScene";
 					break;
-				case Game.GameState.RoundResultsLeaderboard:
+				case GameManager.GameState.RoundResultsLeaderboard:
 					sceneToLoad = "RoundResultsLeaderboardScene";
 					break;
-				case Game.GameState.PostgameCelebration:
+				case GameManager.GameState.PostgameCelebration:
 					sceneToLoad = "PostgameCelebrationScene";
 					break;
-				case Game.GameState.PostgameRewards:
+				case GameManager.GameState.PostgameRewards:
 					sceneToLoad = "PostgameRewardsScene";
 					break;
 			}
@@ -77,6 +77,5 @@ public class SceneNavigator : Singleton<SceneNavigator> {
 				Navigate(sceneToLoad);
 			}
 		}
-		
 	}
 }

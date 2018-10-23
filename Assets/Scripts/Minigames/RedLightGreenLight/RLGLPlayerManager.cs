@@ -12,12 +12,13 @@ public class RLGLPlayerManager : MonoBehaviour {
 		PlayerRenderers = new Dictionary<string, RLGLPlayerRenderer>();
 	}
 
-	public void SetPlayer(string playerId, int positionX, int positionZ, bool moving) {
+	public void SetPlayer(string playerId, bool active, int positionX, int positionZ, bool moving) {
 		if(!Players.ContainsKey(playerId)) {
-			Players.Add(playerId, new RLGLPlayer(positionX, positionZ, moving));
+			Players.Add(playerId, new RLGLPlayer(active, positionX, positionZ, moving));
 		}
 		else {
-			if(playerId != Authentication.Instance.CurrentUser.UserId) {
+			if(Authentication.Instance.CurrentUser == null || playerId != Authentication.Instance.CurrentUser.UserId) {
+				Players[playerId].active = active;
 				Players[playerId].positionX = positionX;
 				Players[playerId].positionZ = positionZ;
 				Players[playerId].moving = moving;

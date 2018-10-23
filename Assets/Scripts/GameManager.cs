@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Firebase.Database;
 
-public class Game : Singleton<Game> {
+public class GameManager : Singleton<GameManager> {
 	public enum GameState {
 		PregameCountdown,
 		PregameTitle,
@@ -24,11 +24,15 @@ public class Game : Singleton<Game> {
 	public long Round;
 	public Minigame Minigame;
 	public Mode Mode;
+	public Dictionary<string, long> Scoreboard;
+	public Dictionary<string, long> Leaderboard;
 
 	void Awake() {
 		Database.Instance.SetGameChangedHandler(HandleGameChanged);
 		Minigame = new Minigame("", "", "");
 		Mode = new Mode("", "", "");
+		Scoreboard = new Dictionary<string, long>();
+		Leaderboard = new Dictionary<string, long>();
 	}
 
 	void HandleGameChanged(object sender, ValueChangedEventArgs args) {
@@ -61,6 +65,24 @@ public class Game : Singleton<Game> {
 				Mode.Id = mode["id"] as string;
 				Mode.Name = mode["name"] as string;
 				Mode.Instructions = mode["instructions"] as string;
+			}
+
+			// TODO: Get Teams state
+
+			if(value.ContainsKey("scoreboard")) {
+				Scoreboard.Clear();
+				Dictionary<string, object> scoreboard = (Dictionary<string, object>)value["scoreboard"];
+				foreach(KeyValuePair<string, object> score in scoreboard) {
+					Scoreboard.Add(score.Key, (long)score.Value);
+				}
+			}
+
+			if(value.ContainsKey("leaderboard")) {
+				Leaderboard.Clear();
+				Dictionary<string, object> leaderboard = (Dictionary<string, object>)value["leaderboard"];
+				foreach(KeyValuePair<string, object> score in leaderboard) {
+					Leaderboard.Add(score.Key, (long)score.Value);
+				}
 			}
 		}
 	}

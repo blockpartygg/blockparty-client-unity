@@ -15,12 +15,12 @@ public class RLGLPlayerController : MonoBehaviour {
 
 	void Update() {
 		if(player == null) {
-			if(playerManager.Players.ContainsKey(Authentication.Instance.CurrentUser.UserId)) {
+			if(Authentication.Instance.CurrentUser != null && playerManager.Players.ContainsKey(Authentication.Instance.CurrentUser.UserId)) {
 				player = playerManager.Players[Authentication.Instance.CurrentUser.UserId];
 			}
 		}
 		else {
-			if(Input.GetMouseButtonUp(0)) {	
+			if(player.active && Input.GetMouseButtonUp(0)) {	
 				player.positionZ += greenLightManager.GreenLight ? 1 : -2;
 			}
 		}

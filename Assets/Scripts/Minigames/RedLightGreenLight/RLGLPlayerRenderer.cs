@@ -9,6 +9,7 @@ public class RLGLPlayerRenderer : MonoBehaviour {
 	TMP_Text nameText;
 	Vector3 position;
 	bool isMoving;
+	bool isEliminated;
 	Tweener positionTweener;
 	Tweener scaleTweener;
 
@@ -25,6 +26,12 @@ public class RLGLPlayerRenderer : MonoBehaviour {
 	}
 
 	void Update() {
+		if(!isEliminated && !player.active) {
+			isEliminated = true;
+			transform.DOScale(Vector3.zero, 3.0f);
+			transform.DORotate(new Vector3(0.0f, 1080.0f, 0.0f), 3.0f, RotateMode.FastBeyond360);
+		}
+
 		if(position.z != player.positionZ && !isMoving) {
 			isMoving = true;
 			position.x = player.positionX;

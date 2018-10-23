@@ -10,7 +10,7 @@ public class CountdownRenderer : MonoBehaviour {
 	}
 
 	void Update() {
-		TimeSpan countdown = Game.Instance.EndTime > DateTime.Now ? Game.Instance.EndTime - DateTime.Now : TimeSpan.Zero;
+		TimeSpan countdown = GameManager.Instance.EndTime > DateTime.Now ? GameManager.Instance.EndTime - DateTime.Now : TimeSpan.Zero;
 		countdownText.text = string.Format("{0:D2}:{1:D2}", countdown.Minutes, countdown.Seconds);
 	}
 }

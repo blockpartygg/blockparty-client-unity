@@ -7,7 +7,7 @@ public class Player {
     public Player(string name, long currency, long currentSkin, bool playing) {
         this.name = name;
         this.currency = currency;
-        this.currency = currentSkin;
+        this.currentSkin = currentSkin;
         // this.playing = playing;
     }
 }
