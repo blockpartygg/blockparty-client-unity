@@ -43,6 +43,12 @@ public class PlayerManager : Singleton<PlayerManager> {
 		}
 	}
 
+	public void SetPlayerPlaying(string playerId, bool playing) {
+		Player player = PlayerManager.Instance.Players[playerId];
+
+		Database.Instance.SetPlayerValue(playerId, new Player(player.name, player.currency, player.currentSkin, playing));
+	}
+
 	public void TransactPlayerCurrency(string playerId, long amount) {
 		Player player = PlayerManager.Instance.Players[playerId];
 

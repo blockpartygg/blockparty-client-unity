@@ -15,6 +15,10 @@ public class HomeController : MonoBehaviour {
 	}
 
 	public void Play() {
+		if(Authentication.Instance.CurrentUser != null) {
+			PlayerManager.Instance.SetPlayerPlaying(Authentication.Instance.CurrentUser.UserId, true);
+		}
+		
 		SceneNavigator.Instance.StartPlaying();
 	}
 }

@@ -27,6 +27,7 @@ public class SceneNavigator : Singleton<SceneNavigator> {
 
 	public void StopPlaying() {
 		isPlaying = false;
+		Navigate("HomeScene");
 	}
 
 	void Update() {
@@ -66,14 +67,11 @@ public class SceneNavigator : Singleton<SceneNavigator> {
 					sceneToLoad = "PostgameRewardsScene";
 					break;
 			}
-		}
-		else {
-			sceneToLoad = "HomeScene";
-		}
 
-		if(SceneManager.GetActiveScene().name != sceneToLoad && !isLoadingScene) {
-			isLoadingScene = true;
-			Navigate(sceneToLoad);
+			if(SceneManager.GetActiveScene().name != sceneToLoad && !isLoadingScene) {
+				isLoadingScene = true;
+				Navigate(sceneToLoad);
+			}
 		}
 	}
 }

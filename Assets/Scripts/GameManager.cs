@@ -22,6 +22,7 @@ public class GameManager : Singleton<GameManager> {
 	public long Round;
 	public Minigame Minigame;
 	public Mode Mode;
+	public Dictionary<string, List<string>> Teams;
 	public Dictionary<string, long> Scoreboard;
 	public Dictionary<string, long> Leaderboard;
 
@@ -29,6 +30,7 @@ public class GameManager : Singleton<GameManager> {
 		Database.Instance.SetGameChangedHandler(HandleGameChanged);
 		Minigame = new Minigame("", "", "");
 		Mode = new Mode("", "", "");
+		Teams = new Dictionary<string, List<string>>();
 		Scoreboard = new Dictionary<string, long>();
 		Leaderboard = new Dictionary<string, long>();
 	}
@@ -65,7 +67,17 @@ public class GameManager : Singleton<GameManager> {
 				Mode.Instructions = mode["instructions"] as string;
 			}
 
-			// TODO: Get Teams state
+			if(value.ContainsKey("teams")) {
+				Teams.Clear();
+				Dictionary<string, object> teams = (Dictionary<string, object>)value["teams"];
+				foreach(KeyValuePair<string, object> team in teams) {
+					Teams.Add(team.Key, new List<string>());
+					Dictionary<string, object> members = (Dictionary<string, object>)team.Value;
+					foreach(KeyValuePair<string, object> member in members) {
+						Teams[team.Key].Add(member.Key);
+					}
+				}
+			}
 
 			if(value.ContainsKey("scoreboard")) {
 				Scoreboard.Clear();
