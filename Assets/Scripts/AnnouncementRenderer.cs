@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,12 +32,14 @@ public class AnnouncementRenderer : MonoBehaviour {
 			case GameManager.GameState.MinigameEnd:
 				announcementImage.sprite = EndImage;
 				break;
+			default:
+				return;
 			}
 			announcementImage.SetNativeSize();
-			transform.localScale = Vector3.zero;
-			transform.DOScale(Vector3.one, 1.0f);
+			transform.localScale = new Vector3(3f, 3f, 3f);
+			transform.DOScale(Vector3.one, 0.25f);
 			announcementImage.color = Color.white;
-			announcementImage.DOColor(Color.clear, 1.0f).SetDelay(1.0f);
+			announcementImage.DOColor(Color.clear, 1.0f).SetDelay(1f);
 		}
 	}
 }
