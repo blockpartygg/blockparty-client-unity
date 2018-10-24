@@ -5,10 +5,12 @@ using Firebase.Database;
 
 public class ChatManager : Singleton<ChatManager> {
 	public Dictionary<string, ChatMessage> Messages;
+	public bool IsShowing;
 
 	void Awake() {
 		Messages = new Dictionary<string, ChatMessage>();
-
+		IsShowing = true;
+		
 		Database.Instance.SetMessagesChangedHandler(HandleMessagesChanged);
 	}
 

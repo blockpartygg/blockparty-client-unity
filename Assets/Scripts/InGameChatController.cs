@@ -29,7 +29,7 @@ public class InGameChatController : MonoBehaviour {
 	}
 
 	public void ToggleChat() {
-		chatObject.SetActive(!chatObject.activeSelf);
+		ChatManager.Instance.IsShowing = !ChatManager.Instance.IsShowing;
 	}
 
 	void Update() {
@@ -38,12 +38,14 @@ public class InGameChatController : MonoBehaviour {
 				GameObject messageObject = Instantiate(ChatMessagePrefab, Vector3.zero, Quaternion.identity);
 				messageObject.name = message.Key;
 				messageObject.transform.Find("Message Text").GetComponent<TMP_Text>().text = PlayerManager.Instance.Players[message.Value.playerId].name + " <color=\"white\"><font=\"IBM Plex Sans Condensed - Medium SDF\">" + message.Value.text + "</font></color>";
-				messageObject.transform.SetParent(chatContent.transform);
+				messageObject.transform.SetParent(chatContent.transform, false);
 
 				Canvas.ForceUpdateCanvases();
 				chatScrollRect.verticalNormalizedPosition = 0f;
 				chatScrollbar.value = 0f;
 			}
 		}
+
+		chatObject.SetActive(ChatManager.Instance.IsShowing);
 	}
 }
