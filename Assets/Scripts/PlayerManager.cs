@@ -29,9 +29,9 @@ public class PlayerManager : Singleton<PlayerManager> {
 				currency = (long)playerDictionary["currency"];
 			}
 
-			long currentSkin = 0;
+			long skin = 0;
 			if(playerDictionary.ContainsKey("currentSkin")) {
-				currentSkin = (long)playerDictionary["currentSkin"];
+				skin = (long)playerDictionary["currentSkin"];
 			}
 
 			bool playing = false;
@@ -39,8 +39,26 @@ public class PlayerManager : Singleton<PlayerManager> {
 				playing = (bool)playerDictionary["playing"];
 			}
 
-			Players[playerId] = new Player(name, currency, currentSkin, playing);
+			Players[playerId] = new Player(name, currency, skin, playing);
 		}
+	}
+
+	public bool PurchaseAndSetSkin(string playerId, long skin, long amount) {
+		Player player = PlayerManager.Instance.Players[playerId];
+
+		if(player.currency < amount) {
+			return false;
+		}
+
+		Database.Instance.SetPlayerValue(playerId, new Player(player.name, player.currency - amount, skin, player.playing));
+
+		return true;
+	}
+
+	public void SetPlayerSkin(string playerId, long skin) {
+		Player player = PlayerManager.Instance.Players[playerId];
+
+		Database.Instance.SetPlayerValue(playerId, new Player(player.name, player.currency, skin, player.playing));
 	}
 
 	public void SetPlayerPlaying(string playerId, bool playing) {

@@ -26,7 +26,8 @@ public class RewardsController : MonoBehaviour {
 	}
 
 	public void PurchaseSkin() {
-		PlayerManager.Instance.TransactPlayerCurrency(Authentication.Instance.CurrentUser.UserId, -100);
+		long skin = PlayerManager.Instance.Players[Authentication.Instance.CurrentUser.UserId].currentSkin == 0 ? 1 : 0;
+		PlayerManager.Instance.PurchaseAndSetSkin(Authentication.Instance.CurrentUser.UserId, skin, 100);
 	}
 
 	public void GoHome() {

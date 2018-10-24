@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 4698682614694696}
   - component: {fileID: 114351013565635606}
   m_Layer: 0
-  m_Name: Player
+  m_Name: RLGLPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
