@@ -20,7 +20,7 @@ public class RLGLPlayerController : MonoBehaviour {
 			}
 		}
 		else {
-			if(player.active && Input.GetMouseButtonUp(0)) {	
+			if(GameManager.Instance.State == GameManager.GameState.MinigamePlay && player.active && Input.GetMouseButtonUp(0)) {	
 				player.positionZ += greenLightManager.GreenLight ? 1 : -2;
 			}
 		}
