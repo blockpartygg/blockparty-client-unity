@@ -22,7 +22,7 @@ public class Authentication : Singleton<Authentication> {
         CurrentUser = auth.CurrentUser;
     }
 
-    public void SignIn(string email, string password, Action callback) {
+    public void SignIn(string email, string password, Action callback, Action<string> error) {
         auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWith(task => {
             if(task.IsCanceled) {
                 Debug.LogError("Sign in was canceled.");
@@ -31,6 +31,7 @@ public class Authentication : Singleton<Authentication> {
             if(task.IsFaulted) {
                 foreach(Exception e in (task.Exception as AggregateException).InnerExceptions) {
                     Debug.LogError("Sign in encountered an error: " + (e as FirebaseException).Message);
+                    error((e as FirebaseException).Message);
                 }
                 return;
             }
@@ -40,7 +41,7 @@ public class Authentication : Singleton<Authentication> {
         });
     }
 
-    public void SignUp(string email, string password, string name, Action callback) {
+    public void SignUp(string email, string password, string name, Action callback, Action<string> error) {
         auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task => {
             if(task.IsCanceled) {
                 Debug.LogError("Sign up was canceled.");
@@ -49,6 +50,7 @@ public class Authentication : Singleton<Authentication> {
             if(task.IsFaulted) {
                 foreach(Exception e in (task.Exception as AggregateException).InnerExceptions) {
                     Debug.LogError("Sign up encountered an error: " + (e as FirebaseException).Message);
+                    error((e as FirebaseException).Message);
                 }
                 return;
             }

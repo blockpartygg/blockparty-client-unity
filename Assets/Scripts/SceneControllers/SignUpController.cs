@@ -8,6 +8,7 @@ public class SignUpController : MonoBehaviour {
 	TMP_InputField emailInputField;
 	TMP_InputField passwordInputField;
 	TMP_InputField passwordConfirmationInputField;
+	public TMP_Text ErrorText;
 
 	void Awake() {
 		nameInputField = GameObject.Find("Name Input Field").GetComponent<TMP_InputField>();
@@ -24,7 +25,12 @@ public class SignUpController : MonoBehaviour {
 		if(passwordInputField.text == passwordConfirmationInputField.text) {
 			Authentication.Instance.SignUp(emailInputField.text, passwordInputField.text, nameInputField.text, () => {
 				SceneNavigator.Instance.Navigate("HomeScene");
+			}, errorMessage => {
+				ErrorText.text = errorMessage;
 			});
+		}
+		else {
+			ErrorText.text = "Passwords don't match.";
 		}
 	}
 

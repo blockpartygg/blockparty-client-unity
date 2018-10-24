@@ -6,6 +6,7 @@ using TMPro;
 public class SignInController : MonoBehaviour {
 	TMP_InputField emailInputField;
 	TMP_InputField passwordInputField;
+	public TMP_Text ErrorText;
 
 	void Awake() {
 		emailInputField = GameObject.Find("Email Input Field").GetComponent<TMP_InputField>();
@@ -18,6 +19,8 @@ public class SignInController : MonoBehaviour {
 	public void SignIn() {
 		Authentication.Instance.SignIn(emailInputField.text, passwordInputField.text, () => {
 			SceneNavigator.Instance.Navigate("HomeScene");
+		}, errorMessage => {
+			ErrorText.text = errorMessage;
 		});
 	}
 
