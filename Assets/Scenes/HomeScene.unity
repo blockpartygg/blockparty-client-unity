@@ -146,7 +146,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 19, y: -15}
-  m_SizeDelta: {x: 100, y: 32}
+  m_SizeDelta: {x: 90, y: 32}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &27576997
 MonoBehaviour:
@@ -195,10 +195,10 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 48
-  m_fontSizeBase: 48
+  m_fontSize: 48.75
+  m_fontSizeBase: 32
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -2997,6 +2997,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1649961126}
   - component: {fileID: 1649961128}
+  - component: {fileID: 1649961127}
   m_Layer: 5
   m_Name: Player Badge
   m_TagString: Untagged
@@ -3029,6 +3030,19 @@ RectTransform:
   m_AnchoredPosition: {x: -15, y: -73}
   m_SizeDelta: {x: 130, y: 96}
   m_Pivot: {x: 1, y: 1}
+--- !u!114 &1649961127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1649961125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0175d2edbfe54fdba2cca79571f9cb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NameText: {fileID: 27576997}
+  CurrencyText: {fileID: 1885271811}
 --- !u!222 &1649961128
 CanvasRenderer:
   m_ObjectHideFlags: 0

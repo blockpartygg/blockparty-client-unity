@@ -7,5 +7,14 @@ public class Analytics : Singleton<Analytics> {
         #if !UNITY_EDITOR
             FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventAppOpen);
         #endif
+
+        // Events to add:
+        // FirebaseAnalytics.EventEarnVirtualCurrency
+        // FirebaseAnalytics.EventEcommercePurchase
+        // FirebaseAnalytics.EventLevelStart
+        // FirebaseAnalytics.EventLevelEnd
+        // FirebaseAnalytics.EventLogin
+        // FirebaseAnalytics.EventSignUp
+        // FirebaseAnalytics.EventSpendVirtualCurrency
     }
 }
