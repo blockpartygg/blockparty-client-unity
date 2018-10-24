@@ -12,10 +12,6 @@ public class PregameCountdownController : MonoBehaviour {
 		countdown = GameObject.Find("Countdown Scroll View");
 	}
 
-	public void Back() {
-		SceneNavigator.Instance.Navigate("HomeScene");
-	}
-
 	void Update() {
 		TimeSpan timeRemaining = GameManager.Instance.EndTime > DateTime.Now ? GameManager.Instance.EndTime - DateTime.Now : TimeSpan.Zero;
 		precountdown.SetActive(timeRemaining.TotalSeconds > 30);

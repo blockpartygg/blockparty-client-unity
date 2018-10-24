@@ -316,6 +316,7 @@ GameObject:
   - component: {fileID: 201723696}
   - component: {fileID: 201723695}
   - component: {fileID: 201723694}
+  - component: {fileID: 201723697}
   m_Layer: 5
   m_Name: Back Button
   m_TagString: Untagged
@@ -380,8 +381,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1324878119}
-        m_MethodName: Back
+      - m_Target: {fileID: 201723697}
+        m_MethodName: LeaveGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -427,6 +428,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 201723692}
   m_CullTransparentMesh: 0
+--- !u!114 &201723697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 201723692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 927ab5dd48e784ce5989f45b7d17fd4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &272397940
 GameObject:
   m_ObjectHideFlags: 0

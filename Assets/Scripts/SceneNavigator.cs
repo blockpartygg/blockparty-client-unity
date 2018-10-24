@@ -30,8 +30,8 @@ public class SceneNavigator : Singleton<SceneNavigator> {
 	}
 
 	void Update() {
+		string sceneToLoad = "";
 		if(isPlaying) {
-			string sceneToLoad = "";
 			switch(GameManager.Instance.State) {
 				case GameManager.GameState.PregameCountdown:
 					sceneToLoad = "PregameCountdownScene";
@@ -66,10 +66,14 @@ public class SceneNavigator : Singleton<SceneNavigator> {
 					sceneToLoad = "PostgameRewardsScene";
 					break;
 			}
-			if(SceneManager.GetActiveScene().name != sceneToLoad && !isLoadingScene) {
-				isLoadingScene = true;
-				Navigate(sceneToLoad);
-			}
+		}
+		else {
+			sceneToLoad = "HomeScene";
+		}
+
+		if(SceneManager.GetActiveScene().name != sceneToLoad && !isLoadingScene) {
+			isLoadingScene = true;
+			Navigate(sceneToLoad);
 		}
 	}
 }
