@@ -15,11 +15,11 @@ public class SocketIO : Singleton<SocketIO> {
 
     public void Connect() {
         string uri = "";
-        //#if UNITY_EDITOR
+        #if UNITY_EDITOR
             uri = "http://192.168.86.51:1337/socket.io/";
-        // #else
-        //     uri = "http://blockparty-server.herokuapp.com/socket.io/";
-        // #endif
+        #else
+            uri = "http://blockparty-server.herokuapp.com/socket.io/";
+        #endif
         SocketOptions options = new SocketOptions();
         options.ConnectWith = BestHTTP.SocketIO.Transports.TransportTypes.WebSocket;
         manager = new SocketManager(new Uri(uri), options);

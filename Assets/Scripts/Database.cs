@@ -13,7 +13,7 @@ public class Database : Singleton<Database> {
 			FirebaseManager.Instance.App.SetEditorDatabaseUrl("https://blockparty-development.firebaseio.com/");
 			database = FirebaseDatabase.GetInstance(FirebaseManager.Instance.App);
 		#else
-			FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://blockparty-development.firebaseio.com/");
+			FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://blockparty-production.firebaseio.com/");
 			database = FirebaseDatabase.DefaultInstance;
 		#endif
 	}
