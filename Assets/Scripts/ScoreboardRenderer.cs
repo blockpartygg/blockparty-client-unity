@@ -34,6 +34,7 @@ public class ScoreboardRenderer : MonoBehaviour {
 			entryObject.transform.Find("Name Text").GetComponent<TMP_Text>().text = PlayerManager.Instance.Players[entry.Key].name;
 			entryObject.transform.Find("Score Text").GetComponent<TMP_Text>().text = entry.Value.ToString() + " <size=24>POINTS</size>";
 			entryObject.transform.SetParent(scoreboardContent.transform);
+			entryObject.transform.localScale = Vector3.one;
 		}
 	}
 }
