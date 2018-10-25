@@ -22,7 +22,7 @@ public class ScoreboardRenderer : MonoBehaviour {
 
 		KeyValuePair<string, long> firstPlaceEntry = sortedScoreboard[0];
 		firstPlaceName.text = PlayerManager.Instance.Players[firstPlaceEntry.Key].name;
-		firstPlaceScore.text = firstPlaceEntry.Value.ToString() + " <size=24>POINTS</size>";
+		firstPlaceScore.text = firstPlaceEntry.Value + " <size=24>POINTS</size>";
 
 		sortedScoreboard.RemoveAt(0);
 
@@ -32,7 +32,7 @@ public class ScoreboardRenderer : MonoBehaviour {
 			GameObject entryObject = Instantiate(ScoreboardEntryPrefab, Vector3.zero, Quaternion.identity);
 			entryObject.transform.Find("Rank Text").GetComponent<TMP_Text>().text = (rank++).ToString();
 			entryObject.transform.Find("Name Text").GetComponent<TMP_Text>().text = PlayerManager.Instance.Players[entry.Key].name;
-			entryObject.transform.Find("Score Text").GetComponent<TMP_Text>().text = entry.Value.ToString() + " <size=24>POINTS</size>";
+			entryObject.transform.Find("Score Text").GetComponent<TMP_Text>().text = entry.Value + " <size=24>POINTS</size>";
 			entryObject.transform.SetParent(scoreboardContent.transform);
 			entryObject.transform.localScale = Vector3.one;
 		}

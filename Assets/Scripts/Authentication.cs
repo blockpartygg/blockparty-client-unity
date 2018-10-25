@@ -36,7 +36,6 @@ public class Authentication : Singleton<Authentication> {
                 return;
             }
             FirebaseUser user = task.Result;
-            Debug.LogFormat("Sign in was successful: {0}", user.UserId);
             callback();
         });
     }
@@ -57,7 +56,6 @@ public class Authentication : Singleton<Authentication> {
             FirebaseUser user = task.Result;
             Player player = new Player(name, 0, 0, false);
             Database.Instance.SetPlayerValue(user.UserId, player);
-            Debug.LogFormat("Sign up was successful: {0}", user.UserId);
             callback();
         });
     }
