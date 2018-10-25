@@ -963,7 +963,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: The player in last place is eliminated every ten seconds. Stay ahead of
+  m_text: The player in last place is eliminated every few seconds. Stay ahead of
     them.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5722337c0daba41d38107746394207c7, type: 2}
