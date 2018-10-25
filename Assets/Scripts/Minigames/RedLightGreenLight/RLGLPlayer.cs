@@ -23,11 +23,11 @@ public class RLGLPlayer : MonoBehaviour {
     }
 
     public void Initialize(string playerId, bool active, int positionX, int positionZ, bool moving) {
-        playerRenderer.SetPlayer(playerId);
         this.active = active;
         this.positionX = positionX;
         this.positionZ = positionZ;
         this.moving = moving;
+        playerRenderer.SetPlayer(playerId);
     }
 
     public string ToJSON() {
