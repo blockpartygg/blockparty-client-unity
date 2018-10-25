@@ -4,6 +4,13 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 
 public class RewardsController : MonoBehaviour {
+	public PlayerRenderer PlayerRenderer;
+
+	void Start() {
+		if(Authentication.Instance.CurrentUser != null) {
+			PlayerRenderer.SetPlayer(Authentication.Instance.CurrentUser.UserId);
+		}
+	}
 	public void WatchAd() {
 		if(Advertisement.IsReady("rewardedVideo")) {
 			ShowOptions options = new ShowOptions { resultCallback = HandleShowResult };

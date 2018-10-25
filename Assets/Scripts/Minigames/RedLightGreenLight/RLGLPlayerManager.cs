@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class RLGLPlayerManager : MonoBehaviour {
 	public Dictionary<string, RLGLPlayer> Players;
-	public Dictionary<string, RLGLPlayerRenderer> PlayerRenderers;
-	public RLGLPlayerRenderer PlayerRendererPrefab;
+	public RLGLPlayer RLGLPlayerPrefab;
 
 	void Awake() {
 		Players = new Dictionary<string, RLGLPlayer>();
-		PlayerRenderers = new Dictionary<string, RLGLPlayerRenderer>();
 	}
 
 	public void SetPlayer(string playerId, bool active, int positionX, int positionZ, bool moving) {
 		if(!Players.ContainsKey(playerId)) {
-			Players.Add(playerId, new RLGLPlayer(active, positionX, positionZ, moving));
+			RLGLPlayer player = Instantiate(RLGLPlayerPrefab, Vector3.zero, Quaternion.identity);
+			player.transform.SetParent(transform);
+
+			Players.Add(playerId, player);
+			Players[playerId].Initialize(playerId, active, positionX, positionZ, moving);
 		}
 		else {
 			if(Authentication.Instance.CurrentUser == null || playerId != Authentication.Instance.CurrentUser.UserId) {
@@ -23,11 +25,6 @@ public class RLGLPlayerManager : MonoBehaviour {
 				Players[playerId].positionZ = positionZ;
 				Players[playerId].moving = moving;
 			}
-		}
-
-		if(!PlayerRenderers.ContainsKey(playerId)) {
-			PlayerRenderers.Add(playerId, Instantiate(PlayerRendererPrefab, new Vector3(positionX, 0, positionZ), Quaternion.identity));
-			PlayerRenderers[playerId].SetPlayer(playerId, Players[playerId]);
 		}
 	}
 }

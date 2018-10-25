@@ -1,19 +1,33 @@
 using System.Collections.Generic;
+using UnityEngine;
 using BestHTTP.JSON;
 
-public class RLGLPlayer {
+public class RLGLPlayer : MonoBehaviour {
     public bool active;
     public int positionX;
     public int positionZ;
     public bool moving;
     Dictionary<string, object> dictionary;
+    PlayerRenderer playerRenderer;
+    public PlayerRenderer PlayerRendererPrefab;
 
-    public RLGLPlayer(bool active, int positionX, int positionZ, bool moving) {
+    void Awake() {
+        dictionary = new Dictionary<string, object>();
+
+        playerRenderer = Instantiate(PlayerRendererPrefab, Vector3.zero, Quaternion.identity);
+        playerRenderer.transform.SetParent(transform);
+    }
+
+    void Start() {
+        // playerRenderer.AvatarMesh.transform.Rotate(0f, 180f, 0f);
+    }
+
+    public void Initialize(string playerId, bool active, int positionX, int positionZ, bool moving) {
+        playerRenderer.SetPlayer(playerId);
         this.active = active;
         this.positionX = positionX;
         this.positionZ = positionZ;
         this.moving = moving;
-        dictionary = new Dictionary<string, object>();
     }
 
     public string ToJSON() {

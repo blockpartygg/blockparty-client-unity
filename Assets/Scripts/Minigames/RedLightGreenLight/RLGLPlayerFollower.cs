@@ -18,14 +18,14 @@ public class RLGLPlayerFollower : MonoBehaviour {
 		if(Authentication.Instance.CurrentUser != null) {
 			if(playerManager.Players.ContainsKey(Authentication.Instance.CurrentUser.UserId)) {
 				if(playerManager.Players[Authentication.Instance.CurrentUser.UserId].active) {
-					target = playerManager.PlayerRenderers[Authentication.Instance.CurrentUser.UserId].gameObject;
+					target = playerManager.Players[Authentication.Instance.CurrentUser.UserId].gameObject;
 				}
 			}
 		}
 		if(target == null) {
 			if(eliminationManager.PlayerToEliminate != null) {
 				if(playerManager.Players.ContainsKey(eliminationManager.PlayerToEliminate)) {
-					target = playerManager.PlayerRenderers[eliminationManager.PlayerToEliminate].gameObject;
+					target = playerManager.Players[eliminationManager.PlayerToEliminate].gameObject;
 				}
 			}
 		}
