@@ -7,6 +7,8 @@ public class RewardsController : MonoBehaviour {
 	public PlayerRenderer PlayerRenderer;
 
 	void Start() {
+		Analytics.Instance.LogGameEnded();
+		Analytics.Instance.LogAdOffered();
 		if(Authentication.Instance.CurrentUser != null) {
 			PlayerRenderer.SetPlayer(Authentication.Instance.CurrentUser.UserId);
 		}
@@ -15,6 +17,7 @@ public class RewardsController : MonoBehaviour {
 		if(Advertisement.IsReady("rewardedVideo")) {
 			ShowOptions options = new ShowOptions { resultCallback = HandleShowResult };
 			Advertisement.Show("rewardedVideo", options);
+			Analytics.Instance.LogAdStarted();
 		}
 	}
 
@@ -30,6 +33,7 @@ public class RewardsController : MonoBehaviour {
 				Debug.Log("Ad failed to show");
 				break;
 		}
+		Analytics.Instance.LogAdCompleted();
 	}
 
 	public void PurchaseSkin() {

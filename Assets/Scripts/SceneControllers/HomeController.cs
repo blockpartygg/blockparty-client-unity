@@ -19,6 +19,8 @@ public class HomeController : MonoBehaviour {
 			PlayerManager.Instance.SetPlayerPlaying(Authentication.Instance.CurrentUser.UserId, true);
 		}
 		
+		Analytics.Instance.LogGameStarted();
+
 		SceneNavigator.Instance.StartPlaying();
 	}
 }
