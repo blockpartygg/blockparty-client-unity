@@ -35,14 +35,16 @@ public class InGameChatController : MonoBehaviour {
 	void Update() {
 		foreach(KeyValuePair<string, ChatMessage> message in ChatManager.Instance.Messages) {
 			if(chatContent.transform.Find(message.Key) == null) {
-				GameObject messageObject = Instantiate(ChatMessagePrefab, Vector3.zero, Quaternion.identity);
-				messageObject.name = message.Key;
-				messageObject.transform.Find("Message Text").GetComponent<TMP_Text>().text = PlayerManager.Instance.Players[message.Value.playerId].name + " <color=\"white\"><font=\"IBM Plex Sans Condensed - Medium SDF\">" + message.Value.text + "</font></color>";
-				messageObject.transform.SetParent(chatContent.transform, false);
+				if(PlayerManager.Instance.Players.ContainsKey(message.Value.playerId)) {
+					GameObject messageObject = Instantiate(ChatMessagePrefab, Vector3.zero, Quaternion.identity);
+					messageObject.name = message.Key;
+					messageObject.transform.Find("Message Text").GetComponent<TMP_Text>().text = PlayerManager.Instance.Players[message.Value.playerId].name + " <color=\"white\"><font=\"IBM Plex Sans Condensed - Medium SDF\">" + message.Value.text + "</font></color>";
+					messageObject.transform.SetParent(chatContent.transform, false);
 
-				Canvas.ForceUpdateCanvases();
-				chatScrollRect.verticalNormalizedPosition = 0f;
-				chatScrollbar.value = 0f;
+					Canvas.ForceUpdateCanvases();
+					chatScrollRect.verticalNormalizedPosition = 0f;
+					chatScrollbar.value = 0f;
+				}
 			}
 		}
 

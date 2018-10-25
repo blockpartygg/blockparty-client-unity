@@ -7,7 +7,7 @@ public class LeaveGameNavigator : MonoBehaviour {
 		if(Authentication.Instance.CurrentUser != null) {
 			PlayerManager.Instance.SetPlayerPlaying(Authentication.Instance.CurrentUser.UserId, false);
 		}
-		
+
 		SceneNavigator.Instance.StopPlaying();
 	}
 }
