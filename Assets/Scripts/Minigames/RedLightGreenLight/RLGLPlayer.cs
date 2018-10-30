@@ -19,7 +19,7 @@ public class RLGLPlayer : MonoBehaviour {
     }
 
     void Start() {
-        // playerRenderer.AvatarMesh.transform.Rotate(0f, 180f, 0f);
+
     }
 
     public void Initialize(string playerId, bool active, int positionX, int positionZ, bool moving) {

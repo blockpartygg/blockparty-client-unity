@@ -10,6 +10,7 @@ public class Authentication : Singleton<Authentication> {
     void Awake() {
         #if UNITY_EDITOR
             auth = FirebaseAuth.GetAuth(FirebaseManager.Instance.App);
+            SignIn("test@blockparty.gg", "testingtesting123", () => {}, error => {});
         #else
             auth = FirebaseAuth.DefaultInstance;
         #endif

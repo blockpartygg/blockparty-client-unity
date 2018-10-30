@@ -18,81 +18,143 @@ public class GameManager : Singleton<GameManager> {
 		PostgameRewards
 	}
 	public GameState State;
+	public event EventHandler StateChanged;
 	public DateTime EndTime;
+	public event EventHandler EndTimeChanged;
 	public long Round;
+	public event EventHandler RoundChanged;
 	public Minigame Minigame;
+	public event EventHandler MinigameChanged;
 	public Mode Mode;
+	public event EventHandler ModeChanged;
 	public Dictionary<string, List<string>> Teams;
+	public event EventHandler TeamsChanged;
 	public Dictionary<string, long> Scoreboard;
+	public event EventHandler ScoreboardChanged;
 	public Dictionary<string, long> Leaderboard;
+	public event EventHandler LeaderboardChanged;
 
 	void Awake() {
-		Database.Instance.SetGameChangedHandler(HandleGameChanged);
 		Minigame = new Minigame("", "", "");
 		Mode = new Mode("", "", "");
 		Teams = new Dictionary<string, List<string>>();
 		Scoreboard = new Dictionary<string, long>();
 		Leaderboard = new Dictionary<string, long>();
+
+		Database.Instance.SetGameStateChangedHandler(HandleStateChanged);
+		Database.Instance.SetGameEndTimeChangedHandler(HandleEndTimeChanged);
+		Database.Instance.SetGameRoundChangedHandler(HandleRoundChanged);
+		Database.Instance.SetGameMinigameChangedHandler(HandleMinigameChanged);
+		Database.Instance.SetGameModeChangedHandler(HandleModeChanged);
+		Database.Instance.SetGameTeamsChangedHandler(HandleTeamsChanged);
+		Database.Instance.SetGameScoreboardChangedHandler(HandleScoreboardChanged);
+		Database.Instance.SetGameLeaderboardChangedHandler(HandleLeaderboardChanged);
 	}
 
-	void HandleGameChanged(object sender, ValueChangedEventArgs args) {
-		Dictionary<string, object> value = args.Snapshot.Value as Dictionary<string, object>;
-		
-		if(value != null) {
-			if(value.ContainsKey("state")) {
-				string state = value["state"] as string;
-				State = (GameState)Enum.Parse(typeof(GameState), state, true);
+	void HandleStateChanged(object sender, ValueChangedEventArgs args) {
+		if(args.Snapshot.Value != null) {
+			string state = args.Snapshot.Value as string;
+			State = (GameState)Enum.Parse(typeof(GameState), state, true);
+			if(StateChanged != null) {
+				StateChanged(this, null);
 			}
+		}
+	}
 
-			if(value.ContainsKey("endTime")) {
-				string endTimeString = value["endTime"] as string;
-				EndTime = DateTime.Parse(endTimeString);
+	void HandleEndTimeChanged(object sender, ValueChangedEventArgs args) {
+		if(args.Snapshot.Value != null) {
+			string endTimeString = args.Snapshot.Value as string;
+			EndTime = DateTime.Parse(endTimeString);
+			if(EndTimeChanged != null) {
+				EndTimeChanged(this, null);
 			}
+		}
+	}
 
-			if(value.ContainsKey("round")) {
-				Round = (long)value["round"];
+	void HandleRoundChanged(object sender, ValueChangedEventArgs args) {
+		if(args.Snapshot.Value != null) {
+			Round = (long)args.Snapshot.Value;
+			if(RoundChanged != null) {
+				RoundChanged(this, null);
 			}
+		}
+	}
 
-			if(value.ContainsKey("minigame")) {
-				Dictionary<string, object> minigame = value["minigame"] as Dictionary<string, object>;
+	void HandleMinigameChanged(object sender, ValueChangedEventArgs args) {
+		if(args.Snapshot.Value != null) {
+			Dictionary<string, object> minigame = args.Snapshot.Value as Dictionary<string, object>;
+			if(minigame.ContainsKey("id")) {
 				Minigame.Id = minigame["id"] as string;
+			}
+			if(minigame.ContainsKey("name")) {
 				Minigame.Name = minigame["name"] as string;
+			}
+			if(minigame.ContainsKey("instructions")) {
 				Minigame.Instructions = minigame["instructions"] as string;
 			}
-			
-			if(value.ContainsKey("mode")) {
-				Dictionary<string, object> mode = value["mode"] as Dictionary<string, object>;
+			if(MinigameChanged != null) {
+				MinigameChanged(this, null);
+			}
+		}
+	}
+
+	void HandleModeChanged(object sender, ValueChangedEventArgs args) {
+		if(args.Snapshot.Value != null) {
+			Dictionary<string, object> mode = args.Snapshot.Value as Dictionary<string, object>;
+			if(mode.ContainsKey("id")) {
 				Mode.Id = mode["id"] as string;
+			}
+			if(mode.ContainsKey("name")) {
 				Mode.Name = mode["name"] as string;
+			}
+			if(mode.ContainsKey("instructions")) {
 				Mode.Instructions = mode["instructions"] as string;
 			}
+			if(ModeChanged != null) {
+				ModeChanged(this, null);
+			}
+		}
+	}
 
-			if(value.ContainsKey("teams")) {
-				Teams.Clear();
-				Dictionary<string, object> teams = (Dictionary<string, object>)value["teams"];
-				foreach(KeyValuePair<string, object> team in teams) {
-					Teams.Add(team.Key, new List<string>());
-					Dictionary<string, object> members = (Dictionary<string, object>)team.Value;
-					foreach(KeyValuePair<string, object> member in members) {
-						Teams[team.Key].Add(member.Key);
-					}
+	void HandleTeamsChanged(object sender, ValueChangedEventArgs args) {
+		if(args.Snapshot.Value != null) {
+			Teams.Clear();
+			Dictionary<string, object> teams = (Dictionary<string, object>)args.Snapshot.Value;
+			foreach(KeyValuePair<string, object> team in teams) {
+				Teams.Add(team.Key, new List<string>());
+				Dictionary<string, object> members = (Dictionary<string, object>)team.Value;
+				foreach(KeyValuePair<string, object> member in members) {
+					Teams[team.Key].Add(member.Key);
 				}
 			}
-
-			if(value.ContainsKey("scoreboard")) {
-				Scoreboard.Clear();
-				Dictionary<string, object> scoreboard = (Dictionary<string, object>)value["scoreboard"];
-				foreach(KeyValuePair<string, object> score in scoreboard) {
-					Scoreboard.Add(score.Key, (long)score.Value);
-				}
+			if(TeamsChanged != null) {
+				TeamsChanged(this, null);	
 			}
+		}
+	}
 
-			if(value.ContainsKey("leaderboard")) {
-				Leaderboard.Clear();
-				Dictionary<string, object> leaderboard = (Dictionary<string, object>)value["leaderboard"];
-				foreach(KeyValuePair<string, object> score in leaderboard) {
-					Leaderboard.Add(score.Key, (long)score.Value);
-				}
+	void HandleScoreboardChanged(object sender, ValueChangedEventArgs args) {
+		if(args.Snapshot.Value != null) {
+			Scoreboard.Clear();
+			Dictionary<string, object> scoreboard = (Dictionary<string, object>)args.Snapshot.Value;
+			foreach(KeyValuePair<string, object> score in scoreboard) {
+				Scoreboard.Add(score.Key, (long)score.Value);
+			}
+			if(ScoreboardChanged != null) {
+				ScoreboardChanged(this, null);
+			}
+		}
+	}
+
+	void HandleLeaderboardChanged(object sender, ValueChangedEventArgs args) {
+		if(args.Snapshot.Value != null) {
+			Leaderboard.Clear();
+			Dictionary<string, object> leaderboard = (Dictionary<string, object>)args.Snapshot.Value;
+			foreach(KeyValuePair<string, object> score in leaderboard) {
+				Leaderboard.Add(score.Key, (long)score.Value);
+			}
+			if(LeaderboardChanged != null) {
+				LeaderboardChanged(this, null);
 			}
 		}
 	}

@@ -5,26 +5,18 @@ using UnityEngine.UI;
 using TMPro;
 
 public class InGameChatController : MonoBehaviour {
-	GameObject chatContent;
-	ScrollRect chatScrollRect;
-	Scrollbar chatScrollbar;
-	GameObject chatObject;
-	TMP_InputField chatInputField;
+	public GameObject Content;
+	public ScrollRect ScrollRect;
+	public Scrollbar Scrollbar;
+	public GameObject Object;
+	public TMP_InputField InputField;
 
 	public GameObject ChatMessagePrefab;
 
-	void Awake() {
-		chatContent = GameObject.Find("Chat Content");
-		chatScrollRect = GameObject.Find("Chat Scroll View").GetComponent<ScrollRect>();
-		chatScrollbar = GameObject.Find("Chat Scrollbar").GetComponent<Scrollbar>();
-		chatObject = GameObject.Find("Chat Background");
-		chatInputField = GameObject.Find("Chat Input Field").GetComponent<TMP_InputField>();
-	}
-
 	public void SendChatMessage() {
-		if(chatInputField.text != "") {
-			ChatManager.Instance.AddMessage(Authentication.Instance.CurrentUser.UserId, chatInputField.text);
-			chatInputField.text = "";
+		if(InputField.text != "") {
+			ChatManager.Instance.AddMessage(Authentication.Instance.CurrentUser.UserId, InputField.text);
+			InputField.text = "";
 			Analytics.Instance.LogChatMessageSent();
 		}
 	}
@@ -35,22 +27,22 @@ public class InGameChatController : MonoBehaviour {
 
 	void Update() {
 		foreach(KeyValuePair<string, ChatMessage> message in ChatManager.Instance.Messages) {
-			if(chatContent.transform.Find(message.Key) == null) {
+			if(Content.transform.Find(message.Key) == null) {
 				if(PlayerManager.Instance.Players.ContainsKey(message.Value.playerId)) {
 					GameObject messageObject = Instantiate(ChatMessagePrefab, Vector3.zero, Quaternion.identity);
 					messageObject.name = message.Key;
 					messageObject.transform.Find("Message Text").GetComponent<TMP_Text>().text = PlayerManager.Instance.Players[message.Value.playerId].name + " <color=\"white\"><font=\"IBM Plex Sans Condensed - Medium SDF\">" + message.Value.text + "</font></color>";
-					messageObject.transform.SetParent(chatContent.transform, false);
+					messageObject.transform.SetParent(Content.transform, false);
 
 					Canvas.ForceUpdateCanvases();
-					chatScrollRect.verticalNormalizedPosition = 0f;
-					chatScrollbar.value = 0f;
+					ScrollRect.verticalNormalizedPosition = 0f;
+					Scrollbar.value = 0f;
 				}
 			}
 		}
 
-		if(chatObject != null) {
-			chatObject.SetActive(ChatManager.Instance.IsShowing);
+		if(Object != null) {
+			Object.SetActive(ChatManager.Instance.IsShowing);
 		}
 	}
 }

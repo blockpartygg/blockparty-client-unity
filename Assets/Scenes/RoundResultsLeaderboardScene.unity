@@ -575,6 +575,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef0d461794844815a58089dd2500e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Content: {fileID: 41053960}
+  ScrollRect: {fileID: 1108751856}
+  Scrollbar: {fileID: 1382307078}
+  Object: {fileID: 850035935}
+  InputField: {fileID: 1257457336}
   ChatMessagePrefab: {fileID: 1105969821313138, guid: e6bb35c0dff55424dbca4fc946238f6b,
     type: 2}
 --- !u!114 &267847654

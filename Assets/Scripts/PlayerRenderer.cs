@@ -26,19 +26,21 @@ public class PlayerRenderer : MonoBehaviour {
 	}
 
 	void Update() {
-		player = PlayerManager.Instance.Players[playerId];
-		if(player.currentSkin != previousSkin) {
-			AvatarMesh.transform.DOScale(Vector3.zero, 1.0f).OnComplete(() => {
-				foreach(Transform child in AvatarMesh.transform) {
-					Destroy(child.gameObject);
-				}
-				GameObject avatar = Instantiate(AvatarSkinPrefabs[(int)player.currentSkin], Vector3.zero, Quaternion.identity);
-				avatar.transform.SetParent(AvatarMesh.transform);
-				avatar.transform.localScale = Vector3.one;
-				AvatarMesh.transform.DOScale(Vector3.one, 1.0f);
-			});
-		}
+		if(playerId != null && PlayerManager.Instance.Players.ContainsKey(playerId)) {
+			player = PlayerManager.Instance.Players[playerId];
+			if(player.currentSkin != previousSkin) {
+				AvatarMesh.transform.DOScale(Vector3.zero, 1.0f).OnComplete(() => {
+					foreach(Transform child in AvatarMesh.transform) {
+						Destroy(child.gameObject);
+					}
+					GameObject avatar = Instantiate(AvatarSkinPrefabs[(int)player.currentSkin], Vector3.zero, Quaternion.identity);
+					avatar.transform.SetParent(AvatarMesh.transform);
+					avatar.transform.localScale = Vector3.one;
+					AvatarMesh.transform.DOScale(Vector3.one, 1.0f);
+				});
+			}
 
-		previousSkin = player.currentSkin;
+			previousSkin = player.currentSkin;	
+		}
 	}
 }

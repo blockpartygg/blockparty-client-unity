@@ -894,7 +894,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 953915827}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1123,7 +1123,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000019565865}
+  m_AnchoredPosition: {x: 0, y: -0.00000954106}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &853344720
@@ -2687,6 +2687,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef0d461794844815a58089dd2500e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Content: {fileID: 853344718}
+  ScrollRect: {fileID: 1773009358}
+  Scrollbar: {fileID: 447701133}
+  Object: {fileID: 149382988}
+  InputField: {fileID: 1998317626}
   ChatMessagePrefab: {fileID: 1105969821313138, guid: e6bb35c0dff55424dbca4fc946238f6b,
     type: 2}
 --- !u!1 &1998317624

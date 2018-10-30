@@ -22,6 +22,38 @@ public class Database : Singleton<Database> {
 		database.GetReference("game").ValueChanged += handler;
 	}
 
+	public void SetGameStateChangedHandler(EventHandler<ValueChangedEventArgs> handler) {
+		database.GetReference("game/state").ValueChanged += handler;
+	}
+
+	public void SetGameEndTimeChangedHandler(EventHandler<ValueChangedEventArgs> handler) {
+		database.GetReference("game/endTime").ValueChanged += handler;
+	}
+
+	public void SetGameRoundChangedHandler(EventHandler<ValueChangedEventArgs> handler) {
+		database.GetReference("game/round").ValueChanged += handler;
+	}
+
+	public void SetGameMinigameChangedHandler(EventHandler<ValueChangedEventArgs> handler) {
+		database.GetReference("game/minigame").ValueChanged += handler;
+	}
+
+	public void SetGameModeChangedHandler(EventHandler<ValueChangedEventArgs> handler) {
+		database.GetReference("game/mode").ValueChanged += handler;
+	}
+
+	public void SetGameTeamsChangedHandler(EventHandler<ValueChangedEventArgs> handler) {
+		database.GetReference("game/teams").ValueChanged += handler;
+	}
+
+	public void SetGameScoreboardChangedHandler(EventHandler<ValueChangedEventArgs> handler) {
+		database.GetReference("game/scoreboard").ValueChanged += handler;
+	}
+
+	public void SetGameLeaderboardChangedHandler(EventHandler<ValueChangedEventArgs> handler) {
+		database.GetReference("game/leaderboard").ValueChanged += handler;
+	}
+
 	public void SetPlayersChangedHandler(EventHandler<ValueChangedEventArgs> handler) {
 		database.GetReference("players").ValueChanged += handler;
 	}
