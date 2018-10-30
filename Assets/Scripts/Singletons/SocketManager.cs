@@ -10,6 +10,7 @@ public class SocketManager : Singleton<SocketManager> {
     }
 
     public bool IsConnected;
+    public event EventHandler Connected;
 
     void Awake() {
         #if UNITY_EDITOR
@@ -34,5 +35,8 @@ public class SocketManager : Singleton<SocketManager> {
 
     void OnConnected(BestHTTP.SocketIO.Socket socket, BestHTTP.SocketIO.Packet packet, object[] args) {
         IsConnected = true;
+        if(Connected != null) {
+            Connected(this, null);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,7 @@ public class TitleController : MonoBehaviour {
 
 		AnalyticsManager.Instance.LogAppOpenEvent();
 		if(!SocketManager.Instance.IsConnected) {
+			SocketManager.Instance.Connected += HandleSocketConnected;
 			SocketManager.Instance.Connect();
 		}
 	}
@@ -33,7 +35,8 @@ public class TitleController : MonoBehaviour {
 		Application.OpenURL("https://blockparty.gg/privacy-policy");
 	}
 
-	void Update() {
+	void HandleSocketConnected(object sender, EventArgs args)
+	{
 		playButton.interactable = SocketManager.Instance.Socket.IsOpen;
 	}
 }
