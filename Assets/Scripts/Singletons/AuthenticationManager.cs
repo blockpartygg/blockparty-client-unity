@@ -19,6 +19,10 @@ public class AuthenticationManager : Singleton<AuthenticationManager> {
         AuthStateChanged(this, null);
     }
 
+    void OnDestroy() {
+        auth.StateChanged -= AuthStateChanged;
+    }
+
     void AuthStateChanged(object sender, EventArgs args) {
         CurrentUser = auth.CurrentUser;
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +14,10 @@ public class InGameChatController : MonoBehaviour {
 
 	public GameObject ChatMessagePrefab;
 
+	void Awake() {
+		ChatManager.Instance.MessagesChanged += HandleMessagesChanged;
+	}
+
 	public void SendChatMessage() {
 		if(InputField.text != "") {
 			ChatManager.Instance.AddMessage(AuthenticationManager.Instance.CurrentUser.UserId, InputField.text);
@@ -25,7 +30,7 @@ public class InGameChatController : MonoBehaviour {
 		ChatManager.Instance.IsShowing = !ChatManager.Instance.IsShowing;
 	}
 
-	void Update() {
+	void HandleMessagesChanged(object sender, EventArgs args) {
 		foreach(KeyValuePair<string, ChatMessage> message in ChatManager.Instance.Messages) {
 			if(Content.transform.Find(message.Key) == null) {
 				if(PlayerManager.Instance.Players.ContainsKey(message.Value.playerId)) {

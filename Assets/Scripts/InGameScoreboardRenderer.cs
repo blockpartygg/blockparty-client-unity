@@ -11,7 +11,7 @@ public class InGameScoreboardRenderer : MonoBehaviour {
 		GameManager.Instance.ScoreboardChanged += HandleScoreboardChanged;
 	}
 
-	void Destroy() {
+	void OnDestroy() {
 		GameManager.Instance.ScoreboardChanged -= HandleScoreboardChanged;
 	}
 

@@ -12,34 +12,43 @@ public class AnnouncementRenderer : MonoBehaviour {
 	public Sprite PlayImage;
 	public Sprite EndImage;
 
-	GameManager.GameState previousState;
-
 	void Awake() {
 		announcementImage = GetComponent<Image>();
+
+		GameManager.Instance.StateChanged += HandleStateChanged;
 	}
 
-	void Update() {
-		if(previousState != GameManager.Instance.State) {
-			previousState = GameManager.Instance.State;
+	void OnDestroy() {
+		GameManager.Instance.StateChanged -= HandleStateChanged;
+	}
 
-			switch(GameManager.Instance.State) {
-			case GameManager.GameState.MinigameStart:
-				announcementImage.sprite = StartImage;
-				break;
-			case GameManager.GameState.MinigamePlay:
-				announcementImage.sprite = PlayImage;
-				break;
-			case GameManager.GameState.MinigameEnd:
-				announcementImage.sprite = EndImage;
-				break;
-			default:
-				return;
-			}
-			announcementImage.SetNativeSize();
-			transform.localScale = new Vector3(3f, 3f, 3f);
-			transform.DOScale(Vector3.one, 0.25f);
-			announcementImage.color = Color.white;
-			announcementImage.DOColor(Color.clear, 1.0f).SetDelay(1f);
+	void Start() {
+		announcementImage.sprite = StartImage;
+		announcementImage.SetNativeSize();
+		transform.localScale = new Vector3(3f, 3f, 3f);
+		transform.DOScale(Vector3.one, 0.25f);
+		announcementImage.color = Color.white;
+		announcementImage.DOColor(Color.clear, 1.0f).SetDelay(1f);
+	}
+
+	void HandleStateChanged(object sender, EventArgs args) {
+		switch(GameManager.Instance.State) {
+		case GameManager.GameState.MinigameStart:
+			announcementImage.sprite = StartImage;
+			break;
+		case GameManager.GameState.MinigamePlay:
+			announcementImage.sprite = PlayImage;
+			break;
+		case GameManager.GameState.MinigameEnd:
+			announcementImage.sprite = EndImage;
+			break;
+		default:
+			return;
 		}
+		announcementImage.SetNativeSize();
+		transform.localScale = new Vector3(3f, 3f, 3f);
+		transform.DOScale(Vector3.one, 0.25f);
+		announcementImage.color = Color.white;
+		announcementImage.DOColor(Color.clear, 1.0f).SetDelay(1f);
 	}
 }

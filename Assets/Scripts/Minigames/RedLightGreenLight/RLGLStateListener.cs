@@ -22,6 +22,10 @@ public class RLGLStateListener : MonoBehaviour {
 		SocketManager.Instance.Socket.On("redLightGreenLight/eliminatePlayer", OnEliminatePlayerReceived);
 	}
 
+	void OnDestroy() {
+		SocketManager.Instance.Socket.Off();
+	}
+
 	void OnStateReceived(Socket socket, Packet packet, params object[] args) {
 		Dictionary<string, object> state = (Dictionary<string, object>)args[0];
 		Dictionary<string, object> players = (Dictionary<string, object>)state["players"];

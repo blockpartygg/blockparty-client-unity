@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Firebase.Database;
 
 public class ChatManager : Singleton<ChatManager> {
 	public Dictionary<string, ChatMessage> Messages;
+	public event EventHandler MessagesChanged;
 	public bool IsShowing;
 
 	void Awake() {
@@ -33,6 +35,9 @@ public class ChatManager : Singleton<ChatManager> {
 		}
 
 		Messages.Add(args.Snapshot.Key, new ChatMessage(playerId, text, timestamp));
+		if(MessagesChanged != null) {
+			MessagesChanged(this, null);
+		}
 	}
 
 	public void Initialize() {}

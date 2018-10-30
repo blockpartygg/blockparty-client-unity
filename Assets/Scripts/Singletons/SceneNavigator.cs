@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,32 +8,15 @@ public class SceneNavigator : Singleton<SceneNavigator> {
 	bool isPlaying;
 	bool isLoadingScene;
 
-	public void Navigate(string sceneName) {
-		StartCoroutine(LoadSceneAsync(sceneName));
+	void Awake() {
+		GameManager.Instance.StateChanged += HandleStateChanged;
 	}
 
-	IEnumerator LoadSceneAsync(string sceneName) {
-		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
-
-		while(!asyncLoad.isDone) {
-			yield return null;
-		}
-
-		isLoadingScene = false;
-
-		AnalyticsManager.Instance.LogScreenVisited(SceneManager.GetActiveScene().name);
+	void HandleStateChanged(object sender, EventArgs args) {
+		UpdateScene();
 	}
 
-	public void StartPlaying() {
-		isPlaying = true;
-	}
-
-	public void StopPlaying() {
-		isPlaying = false;
-		Navigate("HomeScene");
-	}
-
-	void Update() {
+	void UpdateScene() {
 		string sceneToLoad = "";
 		if(isPlaying) {
 			switch(GameManager.Instance.State) {
@@ -75,5 +59,31 @@ public class SceneNavigator : Singleton<SceneNavigator> {
 				Navigate(sceneToLoad);
 			}
 		}
+	}
+
+	public void Navigate(string sceneName) {
+		StartCoroutine(LoadSceneAsync(sceneName));
+	}
+
+	IEnumerator LoadSceneAsync(string sceneName) {
+		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+
+		while(!asyncLoad.isDone) {
+			yield return null;
+		}
+
+		isLoadingScene = false;
+
+		AnalyticsManager.Instance.LogScreenVisited(SceneManager.GetActiveScene().name);
+	}
+
+	public void StartPlaying() {
+		isPlaying = true;
+		UpdateScene();
+	}
+
+	public void StopPlaying() {
+		isPlaying = false;
+		Navigate("HomeScene");
 	}
 }

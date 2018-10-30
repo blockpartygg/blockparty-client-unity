@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using TMPro;
 
 public class GameStateRenderer : MonoBehaviour {
@@ -6,9 +7,10 @@ public class GameStateRenderer : MonoBehaviour {
 
 	void Awake() {
 		gameStateText = GetComponent<TMP_Text>();
+		GameManager.Instance.StateChanged += HandleStateChanged;
 	}
 
-	void Update() {
+	void HandleStateChanged(object sender, EventArgs args) {
 		switch(GameManager.Instance.State) {
 			case GameManager.GameState.PregameCountdown:
 			case GameManager.GameState.PregameTitle:

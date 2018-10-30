@@ -8,15 +8,6 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
         #if !UNITY_EDITOR
             FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventAppOpen);
         #endif
-
-        // Events to add:
-        // FirebaseAnalytics.EventEarnVirtualCurrency
-        // FirebaseAnalytics.EventEcommercePurchase
-        // FirebaseAnalytics.EventLevelStart
-        // FirebaseAnalytics.EventLevelEnd
-        // FirebaseAnalytics.EventLogin
-        // FirebaseAnalytics.EventSignUp
-        // FirebaseAnalytics.EventSpendVirtualCurrency
     }
 
     public void LogScreenVisited(string name) {

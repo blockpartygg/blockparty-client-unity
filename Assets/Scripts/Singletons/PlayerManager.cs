@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Firebase.Database;
 
 public class PlayerManager : Singleton<PlayerManager> {
 	public Dictionary<string, Player> Players;
+	public event EventHandler PlayersChanged;
 
 	void Awake() {
 		Players = new Dictionary<string, Player>();
@@ -40,6 +42,10 @@ public class PlayerManager : Singleton<PlayerManager> {
 			}
 
 			Players[playerId] = new Player(name, currency, skin, playing);
+		}
+
+		if(PlayersChanged != null) {
+			PlayersChanged(this, null);
 		}
 	}
 

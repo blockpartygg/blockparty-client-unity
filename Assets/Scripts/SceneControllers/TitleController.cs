@@ -18,6 +18,10 @@ public class TitleController : MonoBehaviour {
 		}
 	}
 
+	void OnDestroy() {
+		SocketManager.Instance.Connected -= HandleSocketConnected;
+	}
+
 	public void Play() {
 		if(AuthenticationManager.Instance.CurrentUser != null) {
 			SceneNavigator.Instance.Navigate("HomeScene");
