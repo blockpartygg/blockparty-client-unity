@@ -41,14 +41,14 @@ public class GameManager : Singleton<GameManager> {
 		Scoreboard = new Dictionary<string, long>();
 		Leaderboard = new Dictionary<string, long>();
 
-		Database.Instance.SetGameStateChangedHandler(HandleStateChanged);
-		Database.Instance.SetGameEndTimeChangedHandler(HandleEndTimeChanged);
-		Database.Instance.SetGameRoundChangedHandler(HandleRoundChanged);
-		Database.Instance.SetGameMinigameChangedHandler(HandleMinigameChanged);
-		Database.Instance.SetGameModeChangedHandler(HandleModeChanged);
-		Database.Instance.SetGameTeamsChangedHandler(HandleTeamsChanged);
-		Database.Instance.SetGameScoreboardChangedHandler(HandleScoreboardChanged);
-		Database.Instance.SetGameLeaderboardChangedHandler(HandleLeaderboardChanged);
+		DatabaseManager.Instance.SetGameStateChangedHandler(HandleStateChanged);
+		DatabaseManager.Instance.SetGameEndTimeChangedHandler(HandleEndTimeChanged);
+		DatabaseManager.Instance.SetGameRoundChangedHandler(HandleRoundChanged);
+		DatabaseManager.Instance.SetGameMinigameChangedHandler(HandleMinigameChanged);
+		DatabaseManager.Instance.SetGameModeChangedHandler(HandleModeChanged);
+		DatabaseManager.Instance.SetGameTeamsChangedHandler(HandleTeamsChanged);
+		DatabaseManager.Instance.SetGameScoreboardChangedHandler(HandleScoreboardChanged);
+		DatabaseManager.Instance.SetGameLeaderboardChangedHandler(HandleLeaderboardChanged);
 	}
 
 	void HandleStateChanged(object sender, ValueChangedEventArgs args) {

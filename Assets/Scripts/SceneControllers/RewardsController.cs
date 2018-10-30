@@ -7,24 +7,24 @@ public class RewardsController : MonoBehaviour {
 	public PlayerRenderer PlayerRenderer;
 
 	void Start() {
-		Analytics.Instance.LogGameEnded();
-		Analytics.Instance.LogAdOffered();
-		if(Authentication.Instance.CurrentUser != null) {
-			PlayerRenderer.SetPlayer(Authentication.Instance.CurrentUser.UserId);
+		AnalyticsManager.Instance.LogGameEnded();
+		AnalyticsManager.Instance.LogAdOffered();
+		if(AuthenticationManager.Instance.CurrentUser != null) {
+			PlayerRenderer.SetPlayer(AuthenticationManager.Instance.CurrentUser.UserId);
 		}
 	}
 	public void WatchAd() {
 		if(Advertisement.IsReady("rewardedVideo")) {
 			ShowOptions options = new ShowOptions { resultCallback = HandleShowResult };
 			Advertisement.Show("rewardedVideo", options);
-			Analytics.Instance.LogAdStarted();
+			AnalyticsManager.Instance.LogAdStarted();
 		}
 	}
 
 	void HandleShowResult(ShowResult result) {
 		switch(result) {
 			case ShowResult.Finished:
-				PlayerManager.Instance.TransactPlayerCurrency(Authentication.Instance.CurrentUser.UserId, 100);
+				PlayerManager.Instance.TransactPlayerCurrency(AuthenticationManager.Instance.CurrentUser.UserId, 100);
 				break;
 			case ShowResult.Skipped:
 				Debug.Log("Ad was skipped");
@@ -33,17 +33,17 @@ public class RewardsController : MonoBehaviour {
 				Debug.Log("Ad failed to show");
 				break;
 		}
-		Analytics.Instance.LogAdCompleted();
+		AnalyticsManager.Instance.LogAdCompleted();
 	}
 
 	public void PurchaseSkin() {
-		long skin = PlayerManager.Instance.Players[Authentication.Instance.CurrentUser.UserId].currentSkin == 0 ? 1 : 0;
-		PlayerManager.Instance.PurchaseAndSetSkin(Authentication.Instance.CurrentUser.UserId, skin, 100);
+		long skin = PlayerManager.Instance.Players[AuthenticationManager.Instance.CurrentUser.UserId].currentSkin == 0 ? 1 : 0;
+		PlayerManager.Instance.PurchaseAndSetSkin(AuthenticationManager.Instance.CurrentUser.UserId, skin, 100);
 	}
 
 	public void GoHome() {
-		if(Authentication.Instance.CurrentUser != null) {
-			PlayerManager.Instance.SetPlayerPlaying(Authentication.Instance.CurrentUser.UserId, false);
+		if(AuthenticationManager.Instance.CurrentUser != null) {
+			PlayerManager.Instance.SetPlayerPlaying(AuthenticationManager.Instance.CurrentUser.UserId, false);
 		}
 		
 		SceneNavigator.Instance.StopPlaying();

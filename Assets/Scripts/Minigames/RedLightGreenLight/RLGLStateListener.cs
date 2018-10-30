@@ -15,11 +15,11 @@ public class RLGLStateListener : MonoBehaviour {
 	}
 
 	void Start() {
-		if(!SocketIO.Instance.IsConnected) {
-			SocketIO.Instance.Connect();
+		if(!SocketManager.Instance.IsConnected) {
+			SocketManager.Instance.Connect();
 		}
-		SocketIO.Instance.Socket.On("redLightGreenLight/state", OnStateReceived);
-		SocketIO.Instance.Socket.On("redLightGreenLight/eliminatePlayer", OnEliminatePlayerReceived);
+		SocketManager.Instance.Socket.On("redLightGreenLight/state", OnStateReceived);
+		SocketManager.Instance.Socket.On("redLightGreenLight/eliminatePlayer", OnEliminatePlayerReceived);
 	}
 
 	void OnStateReceived(Socket socket, Packet packet, params object[] args) {

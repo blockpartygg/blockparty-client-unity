@@ -5,7 +5,7 @@ using Firebase.Database;
 using Firebase.Unity.Editor;
 using System;
 
-public class Database : Singleton<Database> {
+public class DatabaseManager : Singleton<DatabaseManager> {
 	FirebaseDatabase database;
 
 	void Awake() {

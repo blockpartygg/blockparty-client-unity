@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class RoundLeaderboard : MonoBehaviour {
 	void Start () {
-		Analytics.Instance.LogRoundEnded("Round " + GameManager.Instance.Round);
+		AnalyticsManager.Instance.LogRoundEnded("Round " + GameManager.Instance.Round);
 	}
 }

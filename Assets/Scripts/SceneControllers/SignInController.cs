@@ -17,7 +17,7 @@ public class SignInController : MonoBehaviour {
 	}
 
 	public void SignIn() {
-		Authentication.Instance.SignIn(emailInputField.text, passwordInputField.text, () => {
+		AuthenticationManager.Instance.SignIn(emailInputField.text, passwordInputField.text, () => {
 			SceneNavigator.Instance.Navigate("HomeScene");
 		}, errorMessage => {
 			ErrorText.text = errorMessage;

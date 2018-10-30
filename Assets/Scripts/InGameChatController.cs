@@ -15,9 +15,9 @@ public class InGameChatController : MonoBehaviour {
 
 	public void SendChatMessage() {
 		if(InputField.text != "") {
-			ChatManager.Instance.AddMessage(Authentication.Instance.CurrentUser.UserId, InputField.text);
+			ChatManager.Instance.AddMessage(AuthenticationManager.Instance.CurrentUser.UserId, InputField.text);
 			InputField.text = "";
-			Analytics.Instance.LogChatMessageSent();
+			AnalyticsManager.Instance.LogChatMessageSent();
 		}
 	}
 

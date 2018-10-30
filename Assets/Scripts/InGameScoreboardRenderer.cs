@@ -32,21 +32,21 @@ public class InGameScoreboardRenderer : MonoBehaviour {
 		int rank = 1;
 		foreach(KeyValuePair<string, long> score in sortedScoreboard) {
 			// Set the player score if we come across the authenticated player ID
-			if(Authentication.Instance.CurrentUser != null) {
+			if(AuthenticationManager.Instance.CurrentUser != null) {
 				if(GameManager.Instance.Mode.Id == "freeForAll") {
-					if(score.Key == Authentication.Instance.CurrentUser.UserId) {
+					if(score.Key == AuthenticationManager.Instance.CurrentUser.UserId) {
 						PlayerScore.RankText.text = rank.ToString();
 						PlayerScore.NameText.text = PlayerManager.Instance.Players.ContainsKey(score.Key) ? PlayerManager.Instance.Players[score.Key].name : "Loading...";
 						PlayerScore.ScoreText.text = score.Value.ToString();
 					}
 				}
 				else if(GameManager.Instance.Mode.Id == "redVsBlue") {
-					if(GameManager.Instance.Teams.ContainsKey("redTeamId") && GameManager.Instance.Teams["redTeamId"].Contains(Authentication.Instance.CurrentUser.UserId)) {
+					if(GameManager.Instance.Teams.ContainsKey("redTeamId") && GameManager.Instance.Teams["redTeamId"].Contains(AuthenticationManager.Instance.CurrentUser.UserId)) {
 						PlayerScore.RankText.text = rank.ToString();
 						PlayerScore.NameText.text = PlayerManager.Instance.Players["redTeamId"].name;
 						PlayerScore.ScoreText.text = score.Value.ToString();
 					}
-					else if(GameManager.Instance.Teams.ContainsKey("blueTeamId") && GameManager.Instance.Teams["blueTeamId"].Contains(Authentication.Instance.CurrentUser.UserId)) {
+					else if(GameManager.Instance.Teams.ContainsKey("blueTeamId") && GameManager.Instance.Teams["blueTeamId"].Contains(AuthenticationManager.Instance.CurrentUser.UserId)) {
 						PlayerScore.RankText.text = rank.ToString();
 						PlayerScore.NameText.text = PlayerManager.Instance.Players["redTeamId"].name;
 						PlayerScore.ScoreText.text = score.Value.ToString();

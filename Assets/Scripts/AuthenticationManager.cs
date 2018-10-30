@@ -3,7 +3,7 @@ using Firebase;
 using Firebase.Auth;
 using System;
 
-public class Authentication : Singleton<Authentication> {
+public class AuthenticationManager : Singleton<AuthenticationManager> {
     FirebaseAuth auth;
     public FirebaseUser CurrentUser;
 
@@ -56,7 +56,7 @@ public class Authentication : Singleton<Authentication> {
             }
             FirebaseUser user = task.Result;
             Player player = new Player(name, 0, 0, false);
-            Database.Instance.SetPlayerValue(user.UserId, player);
+            DatabaseManager.Instance.SetPlayerValue(user.UserId, player);
             callback();
         });
     }

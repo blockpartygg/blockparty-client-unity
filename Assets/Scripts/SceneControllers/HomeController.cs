@@ -9,17 +9,17 @@ public class HomeController : MonoBehaviour {
 	}
 
 	public void SignOut() {
-		Authentication.Instance.SignOut(() => {
+		AuthenticationManager.Instance.SignOut(() => {
 			SceneNavigator.Instance.Navigate("TitleScene");
 		});
 	}
 
 	public void Play() {
-		if(Authentication.Instance.CurrentUser != null) {
-			PlayerManager.Instance.SetPlayerPlaying(Authentication.Instance.CurrentUser.UserId, true);
+		if(AuthenticationManager.Instance.CurrentUser != null) {
+			PlayerManager.Instance.SetPlayerPlaying(AuthenticationManager.Instance.CurrentUser.UserId, true);
 		}
 		
-		Analytics.Instance.LogGameStarted();
+		AnalyticsManager.Instance.LogGameStarted();
 
 		SceneNavigator.Instance.StartPlaying();
 	}

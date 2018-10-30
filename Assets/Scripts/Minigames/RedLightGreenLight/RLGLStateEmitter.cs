@@ -10,17 +10,17 @@ public class RLGLStateEmitter : MonoBehaviour {
 	}
 
 	void Start() {
-		if(!SocketIO.Instance.IsConnected) {
-			SocketIO.Instance.Connect();
+		if(!SocketManager.Instance.IsConnected) {
+			SocketManager.Instance.Connect();
 		}
-		if(Authentication.Instance.CurrentUser != null) {
-			SocketIO.Instance.Socket.Emit("redLightGreenLight/joinGame", Authentication.Instance.CurrentUser.UserId);
+		if(AuthenticationManager.Instance.CurrentUser != null) {
+			SocketManager.Instance.Socket.Emit("redLightGreenLight/joinGame", AuthenticationManager.Instance.CurrentUser.UserId);
 		}
 	}
 
 	void Update() {
-		if(Authentication.Instance.CurrentUser != null && playerManager.Players.ContainsKey(Authentication.Instance.CurrentUser.UserId)) {
-			SocketIO.Instance.Socket.Emit("redLightGreenLight/playerState", Authentication.Instance.CurrentUser.UserId, playerManager.Players[Authentication.Instance.CurrentUser.UserId].ToJSON());
+		if(AuthenticationManager.Instance.CurrentUser != null && playerManager.Players.ContainsKey(AuthenticationManager.Instance.CurrentUser.UserId)) {
+			SocketManager.Instance.Socket.Emit("redLightGreenLight/playerState", AuthenticationManager.Instance.CurrentUser.UserId, playerManager.Players[AuthenticationManager.Instance.CurrentUser.UserId].ToJSON());
 		}
 	}
 }

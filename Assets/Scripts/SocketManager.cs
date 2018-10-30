@@ -1,11 +1,9 @@
 using UnityEngine;
 using System;
-using BestHTTP;
-using BestHTTP.SocketIO;
 
-public class SocketIO : Singleton<SocketIO> {
-    SocketManager manager;
-    public Socket Socket {
+public class SocketManager : Singleton<SocketManager> {
+    BestHTTP.SocketIO.SocketManager manager;
+    public BestHTTP.SocketIO.Socket Socket {
         get {
             return manager.Socket;
         }
@@ -27,14 +25,14 @@ public class SocketIO : Singleton<SocketIO> {
             #else
                 uri = "http://blockparty-server.herokuapp.com/socket.io/";
             #endif
-            SocketOptions options = new SocketOptions();
+            BestHTTP.SocketIO.SocketOptions options = new BestHTTP.SocketIO.SocketOptions();
             options.ConnectWith = BestHTTP.SocketIO.Transports.TransportTypes.WebSocket;
-            manager = new SocketManager(new Uri(uri), options);
-            manager.Socket.On(SocketIOEventTypes.Connect, OnConnected);
+            manager = new BestHTTP.SocketIO.SocketManager(new Uri(uri), options);
+            manager.Socket.On(BestHTTP.SocketIO.SocketIOEventTypes.Connect, OnConnected);
         }
     }
 
-    void OnConnected(Socket socket, Packet packet, object[] args) {
+    void OnConnected(BestHTTP.SocketIO.Socket socket, BestHTTP.SocketIO.Packet packet, object[] args) {
         IsConnected = true;
     }
 }

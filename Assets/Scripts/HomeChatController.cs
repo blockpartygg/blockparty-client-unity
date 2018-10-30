@@ -20,9 +20,9 @@ public class HomeChatController : MonoBehaviour {
 
 	public void SendChatMessage() {
 		if(chatInputField.text != "") {
-			ChatManager.Instance.AddMessage(Authentication.Instance.CurrentUser.UserId, chatInputField.text);
+			ChatManager.Instance.AddMessage(AuthenticationManager.Instance.CurrentUser.UserId, chatInputField.text);
 			chatInputField.text = "";
-			Analytics.Instance.LogChatMessageSent();
+			AnalyticsManager.Instance.LogChatMessageSent();
 		}
 	}
 

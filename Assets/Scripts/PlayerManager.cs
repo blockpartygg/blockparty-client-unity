@@ -9,7 +9,7 @@ public class PlayerManager : Singleton<PlayerManager> {
 	void Awake() {
 		Players = new Dictionary<string, Player>();
 
-		Database.Instance.SetPlayersChangedHandler(HandlePlayersChanged);
+		DatabaseManager.Instance.SetPlayersChangedHandler(HandlePlayersChanged);
 	}
 
 	void HandlePlayersChanged(object sender, ValueChangedEventArgs args) {
@@ -50,7 +50,7 @@ public class PlayerManager : Singleton<PlayerManager> {
 			return false;
 		}
 
-		Database.Instance.SetPlayerValue(playerId, new Player(player.name, player.currency - amount, skin, player.playing));
+		DatabaseManager.Instance.SetPlayerValue(playerId, new Player(player.name, player.currency - amount, skin, player.playing));
 
 		return true;
 	}
@@ -58,19 +58,19 @@ public class PlayerManager : Singleton<PlayerManager> {
 	public void SetPlayerSkin(string playerId, long skin) {
 		Player player = PlayerManager.Instance.Players[playerId];
 
-		Database.Instance.SetPlayerValue(playerId, new Player(player.name, player.currency, skin, player.playing));
+		DatabaseManager.Instance.SetPlayerValue(playerId, new Player(player.name, player.currency, skin, player.playing));
 	}
 
 	public void SetPlayerPlaying(string playerId, bool playing) {
 		Player player = PlayerManager.Instance.Players[playerId];
 
-		Database.Instance.SetPlayerValue(playerId, new Player(player.name, player.currency, player.currentSkin, playing));
+		DatabaseManager.Instance.SetPlayerValue(playerId, new Player(player.name, player.currency, player.currentSkin, playing));
 	}
 
 	public void TransactPlayerCurrency(string playerId, long amount) {
 		Player player = PlayerManager.Instance.Players[playerId];
 
-		Database.Instance.SetPlayerValue(playerId, new Player(player.name, player.currency + amount, player.currentSkin, true));
+		DatabaseManager.Instance.SetPlayerValue(playerId, new Player(player.name, player.currency + amount, player.currentSkin, true));
 	}
 
 	public void Initialize() {}

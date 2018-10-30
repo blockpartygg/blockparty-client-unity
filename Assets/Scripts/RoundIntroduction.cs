@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class RoundIntroduction : MonoBehaviour {
 	void Start () {
-		Analytics.Instance.LogRoundStarted("Round " + GameManager.Instance.Round);
+		AnalyticsManager.Instance.LogRoundStarted("Round " + GameManager.Instance.Round);
 	}
 }

@@ -19,7 +19,7 @@ public class RLGLPlayerManager : MonoBehaviour {
 			Players[playerId].Initialize(playerId, active, positionX, positionZ, moving);
 		}
 		else {
-			if(Authentication.Instance.CurrentUser == null || playerId != Authentication.Instance.CurrentUser.UserId) {
+			if(AuthenticationManager.Instance.CurrentUser == null || playerId != AuthenticationManager.Instance.CurrentUser.UserId) {
 				Players[playerId].active = active;
 				Players[playerId].positionX = positionX;
 				Players[playerId].positionZ = positionZ;

@@ -15,10 +15,10 @@ public class RLGLPlayerFollower : MonoBehaviour {
 
 	void Update() {
 		target = null;
-		if(Authentication.Instance.CurrentUser != null) {
-			if(playerManager.Players.ContainsKey(Authentication.Instance.CurrentUser.UserId)) {
-				if(playerManager.Players[Authentication.Instance.CurrentUser.UserId].active) {
-					target = playerManager.Players[Authentication.Instance.CurrentUser.UserId].gameObject;
+		if(AuthenticationManager.Instance.CurrentUser != null) {
+			if(playerManager.Players.ContainsKey(AuthenticationManager.Instance.CurrentUser.UserId)) {
+				if(playerManager.Players[AuthenticationManager.Instance.CurrentUser.UserId].active) {
+					target = playerManager.Players[AuthenticationManager.Instance.CurrentUser.UserId].gameObject;
 				}
 			}
 		}

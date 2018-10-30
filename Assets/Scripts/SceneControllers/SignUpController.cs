@@ -23,7 +23,7 @@ public class SignUpController : MonoBehaviour {
 
 	public void SignUp() {
 		if(passwordInputField.text == passwordConfirmationInputField.text) {
-			Authentication.Instance.SignUp(emailInputField.text, passwordInputField.text, nameInputField.text, () => {
+			AuthenticationManager.Instance.SignUp(emailInputField.text, passwordInputField.text, nameInputField.text, () => {
 				SceneNavigator.Instance.Navigate("HomeScene");
 			}, errorMessage => {
 				ErrorText.text = errorMessage;

@@ -3,7 +3,7 @@ using Firebase;
 using Firebase.Analytics;
 using UnityEngine.Analytics;
 
-public class Analytics : Singleton<Analytics> {
+public class AnalyticsManager : Singleton<AnalyticsManager> {
     public void LogAppOpenEvent() {
         #if !UNITY_EDITOR
             FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventAppOpen);

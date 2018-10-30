@@ -15,8 +15,8 @@ public class RLGLPlayerController : MonoBehaviour {
 
 	void Update() {
 		if(player == null) {
-			if(Authentication.Instance.CurrentUser != null && playerManager.Players.ContainsKey(Authentication.Instance.CurrentUser.UserId)) {
-				player = playerManager.Players[Authentication.Instance.CurrentUser.UserId];
+			if(AuthenticationManager.Instance.CurrentUser != null && playerManager.Players.ContainsKey(AuthenticationManager.Instance.CurrentUser.UserId)) {
+				player = playerManager.Players[AuthenticationManager.Instance.CurrentUser.UserId];
 			}
 		}
 		else {

@@ -11,7 +11,7 @@ public class ChatManager : Singleton<ChatManager> {
 		Messages = new Dictionary<string, ChatMessage>();
 		IsShowing = true;
 		
-		Database.Instance.SetMessagesChangedHandler(HandleMessagesChanged);
+		DatabaseManager.Instance.SetMessagesChangedHandler(HandleMessagesChanged);
 	}
 
 	void HandleMessagesChanged(object sender, ChildChangedEventArgs args) {
@@ -38,6 +38,6 @@ public class ChatManager : Singleton<ChatManager> {
 	public void Initialize() {}
 
 	public void AddMessage(string playerId, string text) {
-		Database.Instance.AddChatMessage(playerId, text);
+		DatabaseManager.Instance.AddChatMessage(playerId, text);
 	}
 }

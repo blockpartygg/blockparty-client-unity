@@ -20,7 +20,7 @@ public class SceneNavigator : Singleton<SceneNavigator> {
 
 		isLoadingScene = false;
 
-		Analytics.Instance.LogScreenVisited(SceneManager.GetActiveScene().name);
+		AnalyticsManager.Instance.LogScreenVisited(SceneManager.GetActiveScene().name);
 	}
 
 	public void StartPlaying() {

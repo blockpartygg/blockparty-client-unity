@@ -10,14 +10,14 @@ public class TitleController : MonoBehaviour {
 	void Awake() {
 		playButton = GameObject.Find("Play Button").GetComponent<Button>();
 
-		Analytics.Instance.LogAppOpenEvent();
-		if(!SocketIO.Instance.IsConnected) {
-			SocketIO.Instance.Connect();
+		AnalyticsManager.Instance.LogAppOpenEvent();
+		if(!SocketManager.Instance.IsConnected) {
+			SocketManager.Instance.Connect();
 		}
 	}
 
 	public void Play() {
-		if(Authentication.Instance.CurrentUser != null) {
+		if(AuthenticationManager.Instance.CurrentUser != null) {
 			SceneNavigator.Instance.Navigate("HomeScene");
 		}
 		else {
@@ -34,6 +34,6 @@ public class TitleController : MonoBehaviour {
 	}
 
 	void Update() {
-		playButton.interactable = SocketIO.Instance.Socket.IsOpen;
+		playButton.interactable = SocketManager.Instance.Socket.IsOpen;
 	}
 }
