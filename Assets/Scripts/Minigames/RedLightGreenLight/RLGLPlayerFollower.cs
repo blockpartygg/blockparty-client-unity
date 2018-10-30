@@ -7,6 +7,7 @@ public class RLGLPlayerFollower : MonoBehaviour {
 	RLGLEliminationManager eliminationManager;
 	GameObject target;
 	Vector3 positionOffset = new Vector3(6, 10, -10);
+	public float MoveSpeed;
 
 	void Awake() {
 		playerManager = GameObject.Find("Minigame Manager").GetComponent<RLGLPlayerManager>();
@@ -29,10 +30,12 @@ public class RLGLPlayerFollower : MonoBehaviour {
 				}
 			}
 		}
+	}
 
+	void FixedUpdate() {
 		if(target != null) {
 			Vector3 targetPosition = new Vector3(target.transform.position.x + positionOffset.x, positionOffset.y, target.transform.position.z + positionOffset.z);
-			transform.position = Vector3.MoveTowards(transform.position, targetPosition, 0.2f);
+			transform.position = Vector3.MoveTowards(transform.position, targetPosition, MoveSpeed * Time.deltaTime);
 		}
 	}
 }

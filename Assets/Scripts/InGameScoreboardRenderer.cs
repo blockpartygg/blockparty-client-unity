@@ -4,10 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InGameScoreboardRenderer : MonoBehaviour {
+	List<InGameScoreboardEntry> scoreboardEntries;
 	public GameObject ScoreboardContent;
 	public InGameScoreboardEntry PlayerScore;
 	public InGameScoreboardEntry InGameScoreboardEntryPrefab;
 	void Awake() {
+		// Instantiate a scoreboard entry for every playing player
+		scoreboardEntries = new List<InGameScoreboardEntry>();
+		int rank = 1;
+		foreach(KeyValuePair<string, Player> player in PlayerManager.Instance.Players) {
+			if(player.Value.playing) {
+				InGameScoreboardEntry scoreboardEntry = Instantiate(InGameScoreboardEntryPrefab, Vector3.zero, Quaternion.identity);
+				scoreboardEntry.RankText.text = (rank++).ToString();
+				scoreboardEntry.transform.SetParent(ScoreboardContent.transform);
+				scoreboardEntry.transform.localScale = Vector3.one;
+				scoreboardEntries.Add(scoreboardEntry);
+			}
+		}
+
 		GameManager.Instance.ScoreboardChanged += HandleScoreboardChanged;
 	}
 
@@ -23,13 +37,9 @@ public class InGameScoreboardRenderer : MonoBehaviour {
 		});
 		sortedScoreboard.Reverse();
 
-		// Clear out the existing scoreboard UI (this seems inefficient)
-		for(int childIndex = 0; childIndex < ScoreboardContent.transform.childCount; childIndex++) {
-			Destroy(ScoreboardContent.transform.GetChild(childIndex).gameObject);
-		}
-
 		// Populate the scoreboard UI
 		int rank = 1;
+		int index = 0;
 		foreach(KeyValuePair<string, long> score in sortedScoreboard) {
 			// Set the player score if we come across the authenticated player ID
 			if(AuthenticationManager.Instance.CurrentUser != null) {
@@ -59,12 +69,9 @@ public class InGameScoreboardRenderer : MonoBehaviour {
 				}
 			}
 
-			InGameScoreboardEntry scoreObject = Instantiate(InGameScoreboardEntryPrefab, Vector3.zero, Quaternion.identity);
-			scoreObject.RankText.text = (rank++).ToString();
-			scoreObject.NameText.text = PlayerManager.Instance.Players.ContainsKey(score.Key) ? PlayerManager.Instance.Players[score.Key].name : "Loading...";
-			scoreObject.ScoreText.text = score.Value.ToString();
-			scoreObject.transform.SetParent(ScoreboardContent.transform);
-			scoreObject.transform.localScale = Vector3.one;
+			scoreboardEntries[index].RankText.text = (rank++).ToString();
+			scoreboardEntries[index].NameText.text = PlayerManager.Instance.Players.ContainsKey(score.Key) ? PlayerManager.Instance.Players[score.Key].name : "Loading...";
+			scoreboardEntries[index++].ScoreText.text = score.Value.ToString();
 		}
 	}
 }
