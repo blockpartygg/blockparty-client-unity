@@ -3,6 +3,7 @@ using TMPro;
 
 public class HomeController : MonoBehaviour {
 	void Awake() {
+		AuthenticationManager.Instance.Initialize();
 		GameManager.Instance.Initialize();
 		PlayerManager.Instance.Initialize();
 		ChatManager.Instance.Initialize();

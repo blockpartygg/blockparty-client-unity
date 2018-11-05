@@ -38,6 +38,9 @@ public class SceneNavigator : Singleton<SceneNavigator> {
 						case "blockio":
 							sceneToLoad = "RedLightGreenLightScene";
 							break;
+						case "blockChase":
+							sceneToLoad = "BlockChaseScene";
+							break;
 					}
 					break;
 				case GameManager.GameState.RoundResultsScoreboard:

@@ -8,6 +8,7 @@ public class InGameScoreboardRenderer : MonoBehaviour {
 	public GameObject ScoreboardContent;
 	public InGameScoreboardEntry PlayerScore;
 	public InGameScoreboardEntry InGameScoreboardEntryPrefab;
+	
 	void Awake() {
 		// Instantiate a scoreboard entry for every playing player
 		scoreboardEntries = new List<InGameScoreboardEntry>();

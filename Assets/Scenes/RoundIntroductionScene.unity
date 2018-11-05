@@ -2633,7 +2633,7 @@ MonoBehaviour:
   Scrollbar: {fileID: 797079005}
   Object: {fileID: 698466104}
   InputField: {fileID: 1378032970}
-  ChatMessagePrefab: {fileID: 1105969821313138, guid: e6bb35c0dff55424dbca4fc946238f6b,
+  ChatMessagePrefab: {fileID: 1568717054430772, guid: e6bb35c0dff55424dbca4fc946238f6b,
     type: 2}
 --- !u!1 &1694622782
 GameObject:

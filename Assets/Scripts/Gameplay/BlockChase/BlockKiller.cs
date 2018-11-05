@@ -12,9 +12,7 @@ public class BlockKiller : MonoBehaviour {
 		});
 	}
 
-	void Update() {
-		if(Input.GetMouseButtonDown(0)) {
-			Kill();
-		}
+	void OnTriggerEnter(Collider other) {
+		Kill();
 	}
 }

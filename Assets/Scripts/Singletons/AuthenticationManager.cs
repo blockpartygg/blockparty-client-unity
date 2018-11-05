@@ -6,6 +6,9 @@ using System;
 public class AuthenticationManager : Singleton<AuthenticationManager> {
     FirebaseAuth auth;
     public FirebaseUser CurrentUser;
+    public string CurrentUserId;
+
+    public void Initialize() {} // Empty function to wake up the object
 
     void Awake() {
         #if UNITY_EDITOR
@@ -25,6 +28,9 @@ public class AuthenticationManager : Singleton<AuthenticationManager> {
 
     void AuthStateChanged(object sender, EventArgs args) {
         CurrentUser = auth.CurrentUser;
+        if(CurrentUser != null) {
+            CurrentUserId = CurrentUser.UserId;
+        }
     }
 
     public void SignIn(string email, string password, Action callback, Action<string> error) {

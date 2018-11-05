@@ -724,7 +724,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef0d461794844815a58089dd2500e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatMessagePrefab: {fileID: 1105969821313138, guid: e6bb35c0dff55424dbca4fc946238f6b,
+  Content: {fileID: 1556306330}
+  ScrollRect: {fileID: 339902625}
+  Scrollbar: {fileID: 1180377855}
+  Object: {fileID: 185668642}
+  InputField: {fileID: 1590200655}
+  ChatMessagePrefab: {fileID: 1568717054430772, guid: e6bb35c0dff55424dbca4fc946238f6b,
     type: 2}
 --- !u!1 &402605649
 GameObject:

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "547840170646",
+    "firebase_url": "https://blockparty-development.firebaseio.com",
+    "project_id": "blockparty-development",
+    "storage_bucket": "blockparty-development.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547840170646:android:150474aee52713ab",
+        "android_client_info": {
+          "package_name": "com.BlockPartyGG.BlockParty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "547840170646-t7v24rcfct8mer49lpb4eroi25k4rm6d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBL1gvW1xw4jO5DsTuix_CXBdJotXxHQs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

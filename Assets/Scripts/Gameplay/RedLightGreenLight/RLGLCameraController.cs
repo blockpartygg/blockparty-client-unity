@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RLGLPlayerFollower : MonoBehaviour {
+public class RLGLCameraController : MonoBehaviour {
 	RLGLPlayerManager playerManager;
 	RLGLEliminationManager eliminationManager;
 	GameObject target;
-	Vector3 positionOffset = new Vector3(6, 10, -10);
+	public Vector3 Offset;
 	public float MoveSpeed;
 
 	void Awake() {
@@ -34,7 +34,7 @@ public class RLGLPlayerFollower : MonoBehaviour {
 
 	void FixedUpdate() {
 		if(target != null) {
-			Vector3 targetPosition = new Vector3(target.transform.position.x + positionOffset.x, positionOffset.y, target.transform.position.z + positionOffset.z);
+			Vector3 targetPosition = new Vector3(target.transform.position.x + Offset.x, Offset.y, target.transform.position.z + Offset.z);
 			transform.position = Vector3.MoveTowards(transform.position, targetPosition, MoveSpeed * Time.deltaTime);
 		}
 	}

@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4505165270411438}
   - component: {fileID: 114042303025605372}
+  - component: {fileID: 114564264368044352}
+  - component: {fileID: 114214181846281394}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -143,10 +145,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AvatarSkinPrefabs:
-  - {fileID: 1594258838651028, guid: 74c040cbe0e1e42758590c0131041811, type: 2}
+  - {fileID: 1435767610717830, guid: 74c040cbe0e1e42758590c0131041811, type: 2}
   - {fileID: 1053445212730018, guid: 73e01fd8b36b64a18843f9014f01b520, type: 2}
   AvatarMesh: {fileID: 1412521321715252}
   NameText: {fileID: 114670282533416582}
+--- !u!114 &114214181846281394
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1002786279902104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ad97285daa0c486199766e70da3bf0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Controller: {fileID: 114564264368044352}
+  MovementSpeed: 5
+  RotationSpeed: 180
+--- !u!114 &114564264368044352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1002786279902104}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a627494901ab246ecb3ad72ccabac009, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Direction: {x: 0, y: 0}
 --- !u!114 &114670282533416582
 MonoBehaviour:
   m_ObjectHideFlags: 1

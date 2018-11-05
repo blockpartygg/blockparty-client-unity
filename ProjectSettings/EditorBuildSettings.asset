@@ -27,8 +27,11 @@ EditorBuildSettings:
     path: Assets/Scenes/RoundIntroductionScene.unity
     guid: 8598521622c494b47a747ecf8b2445d2
   - enabled: 1
-    path: Assets/Scenes/RedLightGreenLightScene.unity
+    path: Assets/Scenes/Gameplay/RedLightGreenLightScene.unity
     guid: e8b778a4512804b6eb90ac5ad3dc6a7e
+  - enabled: 1
+    path: Assets/Scenes/Gameplay/BlockChaseScene.unity
+    guid: aec6e6e2b1e19464fb29af5dd7ca55f5
   - enabled: 1
     path: Assets/Scenes/RoundResultsScoreboardScene.unity
     guid: ee00e7ecd5fd04dcda2aa3a1772bc56a

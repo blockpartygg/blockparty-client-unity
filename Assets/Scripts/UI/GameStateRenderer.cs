@@ -11,6 +11,14 @@ public class GameStateRenderer : MonoBehaviour {
 	}
 
 	void HandleStateChanged(object sender, EventArgs args) {
+		UpdateGameState();
+	}
+
+	void Start() {
+		UpdateGameState();
+	}
+
+	void UpdateGameState() {
 		switch(GameManager.Instance.State) {
 			case GameManager.GameState.PregameCountdown:
 			case GameManager.GameState.PregameTitle:

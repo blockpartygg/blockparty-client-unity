@@ -12,6 +12,8 @@ public class SocketManager : Singleton<SocketManager> {
     public bool IsConnected;
     public event EventHandler Connected;
 
+    public void Initialize() {} // Empty function to wake up the object
+
     void Awake() {
         #if UNITY_EDITOR
             Connect();
@@ -22,7 +24,8 @@ public class SocketManager : Singleton<SocketManager> {
         if(!IsConnected) {
             string uri = "";
             #if UNITY_EDITOR
-                uri = "http://192.168.86.51:1337/socket.io/";
+                // uri = "http://192.168.86.51:1337/socket.io/";
+                uri = "http://localhost:1337/socket.io/";
             #else
                 uri = "http://blockparty-server.herokuapp.com/socket.io/";
             #endif
