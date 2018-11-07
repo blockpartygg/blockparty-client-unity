@@ -4,31 +4,35 @@ public class BlockManager : MonoBehaviour {
 	public Block[,] Blocks;
 	public Block BlockPrefab;
 	public GameObject BlockParent;
-	public const int Columns = 8, Rows = 9;
+	public const int Columns = 6, Rows = 13;
 
 	void Awake() {
 		Blocks = new Block[Columns, Rows];
-	}
-
-	void Start() {
-		for(int x = 0; x < Columns; x++) {
-			for(int y = 0; y < Rows; y++) {
-				Blocks[x, y] = Instantiate(BlockPrefab, Vector3.zero, Quaternion.identity);
-				Blocks[x, y].name = "Block [" + x + ", " + y + "]";
-				Blocks[x, y].transform.SetParent(BlockParent.transform, false);
-				Blocks[x, y].State = BlockState.Idle;
-				Blocks[x, y].Position.x = x;
-				Blocks[x, y].Position.y = y;
-				Blocks[x, y].Type = GetRandomBlockType(x, y);
+		for(int row = 0; row < Rows; row++) {
+			for(int column = 0; column < Columns; column++) {
+				Blocks[column, row] = Instantiate(BlockPrefab, Vector3.zero, Quaternion.identity);
+				Blocks[column, row].name = "Block [" + column + ", " + row + "]";
+				Blocks[column, row].transform.SetParent(BlockParent.transform, false);
+				Blocks[column, row].Column = column;
+				Blocks[column, row].Row = row;
 			}
 		}
 	}
 
-	public int GetRandomBlockType(int x, int y) {
+	void Start() {
+		for(int row = 0; row < Rows; row++) {
+			for(int column = 0; column < Columns; column++) {
+				Blocks[column, row].State = BlockState.Idle;
+				Blocks[column, row].Type = GetRandomBlockType(column, row);
+			}
+		}
+	}
+
+	public int GetRandomBlockType(int column, int row) {
 		int type;
 		do {
 			type = Random.Range(0, Block.TypeCount);
-		} while((x != 0 && Blocks[x - 1, y].Type == type) || (y != 0 && Blocks[x, y - 1].Type == type));
+		} while((column != 0 && Blocks[column - 1, row].Type == type) || (row != 0 && Blocks[column, row - 1].Type == type));
 		return type;
 	}
 }

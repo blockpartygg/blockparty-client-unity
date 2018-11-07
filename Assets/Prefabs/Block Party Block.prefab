@@ -19,9 +19,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4659515581399960}
+  - component: {fileID: 61602448069386262}
   - component: {fileID: 212676418022825910}
   - component: {fileID: 114399192409936268}
   - component: {fileID: 114968351464237388}
+  - component: {fileID: 114131912973222522}
+  - component: {fileID: 114120161592381932}
+  - component: {fileID: 114852751436038464}
+  - component: {fileID: 114912819045152550}
+  - component: {fileID: 114594032841248618}
   m_Layer: 0
   m_Name: Block Party Block
   m_TagString: Untagged
@@ -42,6 +48,62 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &61602448069386262
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1303911780134700}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 1
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &114120161592381932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1303911780134700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45851844096494db58ecff1fa9cf932c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Block: {fileID: 114399192409936268}
+  Elapsed: 0
+  Target: {fileID: 0}
+  JustFell: 0
+--- !u!114 &114131912973222522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1303911780134700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5694dbf25972543489c2d87ebfa8b51b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Block: {fileID: 114399192409936268}
+  Direction: 0
+  TargetState: 0
+  TargetType: 0
+  Elapsed: 0
 --- !u!114 &114399192409936268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -53,9 +115,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37f444b2910a548d6b420916d1725418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  State: 0
-  Position: {x: 0, y: 0}
-  Type: 0
+  Column: 0
+  Row: 0
+  Slider: {fileID: 114131912973222522}
+  Faller: {fileID: 114120161592381932}
+  Matcher: {fileID: 114852751436038464}
+  Clearer: {fileID: 114912819045152550}
+  Emptier: {fileID: 114594032841248618}
+--- !u!114 &114594032841248618
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1303911780134700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47c592037eab04ccd8c4d3f452688280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Block: {fileID: 114399192409936268}
+  DelayDuration: 0
+--- !u!114 &114852751436038464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1303911780134700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1fb986410bc4ddfa63d865311ffabf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Block: {fileID: 114399192409936268}
+  Clearer: {fileID: 114912819045152550}
+  Emptier: {fileID: 114594032841248618}
+  Elapsed: 0
+--- !u!114 &114912819045152550
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1303911780134700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89ba0a87fbc054746b7aa83d7c6b7976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Block: {fileID: 114399192409936268}
+  Emptier: {fileID: 114594032841248618}
+  DelayDuration: 0
+  Elapsed: 0
 --- !u!114 &114968351464237388
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -68,6 +177,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Block: {fileID: 114399192409936268}
+  Slider: {fileID: 114131912973222522}
+  Faller: {fileID: 114120161592381932}
+  Matcher: {fileID: 114852751436038464}
+  Clearer: {fileID: 114912819045152550}
+  SpriteRenderer: {fileID: 212676418022825910}
+  Colors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 1, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0, b: 1, a: 1}
+  - {r: 0, g: 1, b: 1, a: 1}
 --- !u!212 &212676418022825910
 SpriteRenderer:
   m_ObjectHideFlags: 1
