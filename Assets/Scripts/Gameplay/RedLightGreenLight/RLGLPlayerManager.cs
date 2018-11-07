@@ -5,26 +5,30 @@ using UnityEngine;
 public class RLGLPlayerManager : MonoBehaviour {
 	public Dictionary<string, RLGLPlayer> Players;
 	public RLGLPlayer RLGLPlayerPrefab;
+	public string LocalPlayerId;
+	public RLGLCameraController CameraController;
 
 	void Awake() {
 		Players = new Dictionary<string, RLGLPlayer>();
 	}
 
-	public void SetPlayer(string playerId, bool active, int positionX, int positionZ, bool moving) {
-		if(!Players.ContainsKey(playerId)) {
-			RLGLPlayer player = Instantiate(RLGLPlayerPrefab, Vector3.zero, Quaternion.identity);
-			player.transform.SetParent(transform);
+	public void SpawnPlayer(string playerId, bool isLocalPlayer) {
+		RLGLPlayer player = Instantiate(RLGLPlayerPrefab, Vector3.zero, Quaternion.identity);
+		player.name = "Player " + playerId;
+		player.transform.SetParent(transform);
+		player.GetComponent<PlayerAvatarRenderer>().SetPlayer(playerId);
+		Players.Add(playerId, player);
+		if(isLocalPlayer) {
+			LocalPlayerId = playerId;
+			player.GetComponent<RLGLPlayerController>().enabled = true;
+			CameraController.SetTarget(player);
+		}
+	}
 
-			Players.Add(playerId, player);
-			Players[playerId].Initialize(playerId, active, positionX, positionZ, moving);
-		}
-		else {
-			if(AuthenticationManager.Instance.CurrentUser == null || playerId != AuthenticationManager.Instance.CurrentUser.UserId) {
-				Players[playerId].active = active;
-				Players[playerId].positionX = positionX;
-				Players[playerId].positionZ = positionZ;
-				Players[playerId].moving = moving;
-			}
-		}
+	public void UpdatePlayer(string playerId, bool active, int positionX, int positionZ, bool moving) {
+		Players[playerId].Active = active;
+		Players[playerId].Position.x = positionX;
+		Players[playerId].Position.z = positionZ;
+		Players[playerId].Moving = moving;
 	}
 }

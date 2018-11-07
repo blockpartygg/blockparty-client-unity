@@ -34,9 +34,14 @@ public class SceneNavigator : Singleton<SceneNavigator> {
 				case GameManager.GameState.MinigameEnd:
 					switch(GameManager.Instance.Minigame.Id) {
 						case "redLightGreenLight":
-						case "blockBlaster":
-						case "blockio":
 							sceneToLoad = "RedLightGreenLightScene";
+							break;
+						case "fastestFinger":
+							sceneToLoad = "FastestFingerScene";
+							break;
+						case "blockBlaster":
+							break;
+						case "blockio":
 							break;
 						case "blockChase":
 							sceneToLoad = "BlockChaseScene";

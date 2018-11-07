@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Gameplay/RedLightGreenLightScene.unity
     guid: e8b778a4512804b6eb90ac5ad3dc6a7e
   - enabled: 1
+    path: Assets/Scenes/Gameplay/FastestFingerScene.unity
+    guid: 6a76603480fb04593842f8c94ad9c51b
+  - enabled: 1
     path: Assets/Scenes/Gameplay/BlockChaseScene.unity
     guid: aec6e6e2b1e19464fb29af5dd7ca55f5
   - enabled: 1

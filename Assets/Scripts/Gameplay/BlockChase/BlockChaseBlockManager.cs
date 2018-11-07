@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockManager : MonoBehaviour {
+public class BlockChaseBlockManager : MonoBehaviour {
 	public Dictionary<string, GameObject> Blocks;
 	public GameObject BlockPrefab;
 

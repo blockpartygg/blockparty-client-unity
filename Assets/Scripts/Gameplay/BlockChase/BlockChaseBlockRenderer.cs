@@ -1,7 +1,7 @@
 using UnityEngine;
 
-public class BlockRenderer : MonoBehaviour {
-    public BlockState State;
+public class BlockChaseBlockRenderer : MonoBehaviour {
+    public BlockChaseBlockState State;
     bool wasActive;
 
     void Start() {

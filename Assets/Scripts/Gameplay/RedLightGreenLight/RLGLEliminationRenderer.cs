@@ -4,21 +4,15 @@ using UnityEngine;
 using TMPro;
 
 public class RLGLEliminationRenderer : MonoBehaviour {
-	RLGLEliminationManager eliminationManager;
-	TMP_Text eliminationText;
-
-	void Awake() {
-		eliminationManager = GameObject.Find("Minigame Manager").GetComponent<RLGLEliminationManager>();
-		eliminationText = GetComponent<TMP_Text>();
-	}
+	public RLGLEliminationManager EliminationManager;
+	public TMP_Text EliminationText;
 	
 	void Update() {
-		if(eliminationManager.PlayerToEliminate != null) {
-			PlayerManager playerManager = PlayerManager.Instance;
-			if(playerManager.Players.ContainsKey(eliminationManager.PlayerToEliminate)) {
-				string playerName = PlayerManager.Instance.Players[eliminationManager.PlayerToEliminate].name;
-				string eliminationCountdown = eliminationManager.EliminationCountdown.Seconds.ToString();
-				eliminationText.text = playerName + "\nwill be eliminated in " + eliminationCountdown + "...";
+		if(EliminationManager.PlayerToEliminate != null) {
+			if(PlayerManager.Instance.Players.ContainsKey(EliminationManager.PlayerToEliminate)) {
+				string playerName = PlayerManager.Instance.Players[EliminationManager.PlayerToEliminate].name;
+				string eliminationCountdown = EliminationManager.EliminationCountdown.Seconds.ToString();
+				EliminationText.text = playerName + "\nwill be eliminated in " + eliminationCountdown + "...";
 			}
 		}
 	}

@@ -52,7 +52,7 @@ public class GameManager : Singleton<GameManager> {
 	}
 
 	void HandleStateChanged(object sender, ValueChangedEventArgs args) {
-		if(args.Snapshot.Value != null) {
+		if(args.Snapshot != null && args.Snapshot.Value != null) {
 			string state = args.Snapshot.Value as string;
 			State = (GameState)Enum.Parse(typeof(GameState), state, true);
 			if(StateChanged != null) {

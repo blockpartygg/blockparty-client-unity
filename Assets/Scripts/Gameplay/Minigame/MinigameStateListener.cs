@@ -4,7 +4,7 @@ using BestHTTP.SocketIO;
 
 public class MinigameStateListener : MonoBehaviour {
 	public MinigamePlayerManager PlayerManager;
-	public BlockManager BlockManager;
+	public BlockChaseBlockManager BlockManager;
 
 	void Start() {
 		SocketManager.Instance.Socket.On("blockChase/state", OnStateReceived);
@@ -59,7 +59,7 @@ public class MinigameStateListener : MonoBehaviour {
 				BlockManager.SpawnBlock(id);
 			}
 
-			BlockState blockState = BlockManager.Blocks[id].GetComponent<BlockState>();
+			BlockChaseBlockState blockState = BlockManager.Blocks[id].GetComponent<BlockChaseBlockState>();
 			blockState.Active = active;
 			if(!blockState.Active) {
 				BlockManager.DestroyBlock(id);

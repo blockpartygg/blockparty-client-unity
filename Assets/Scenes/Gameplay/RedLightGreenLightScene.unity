@@ -176,7 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 407786752}
   - component: {fileID: 407786755}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -538,7 +538,7 @@ GameObject:
   - component: {fileID: 505707863}
   - component: {fileID: 505707867}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -624,8 +624,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a2df1f4219a436ebbc76d4797db4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  greenMaterial: {fileID: 2100000, guid: b1b4459faa14f48c8be624b68ece1af6, type: 2}
-  redMaterial: {fileID: 2100000, guid: e96d0591c592f47bc9c5781f8fae9ebc, type: 2}
+  GreenLightManager: {fileID: 1615317107}
+  PlaneMeshRenderer: {fileID: 505707864}
+  GreenMaterial: {fileID: 2100000, guid: b1b4459faa14f48c8be624b68ece1af6, type: 2}
+  RedMaterial: {fileID: 2100000, guid: e96d0591c592f47bc9c5781f8fae9ebc, type: 2}
 --- !u!1 &507727234
 GameObject:
   m_ObjectHideFlags: 0
@@ -1542,7 +1544,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 00
+  m_text: 00<sup>:00</sup>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1610,10 +1612,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 975168783}
-    characterCount: 2
+    characterCount: 5
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 2
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -2266,7 +2268,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 140, y: -30, z: 0}
 --- !u!1 &1372552491
 GameObject:
@@ -2436,6 +2438,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753a7e17cb0964b0aaa7134f2b2b70fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EliminationManager: {fileID: 1615317111}
+  EliminationText: {fileID: 1372552493}
 --- !u!1 &1404217241
 GameObject:
   m_ObjectHideFlags: 0
@@ -2512,7 +2516,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 45, y: -30, z: 0}
 --- !u!114 &1404217245
 MonoBehaviour:
@@ -2525,8 +2529,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f7528d94b67441eb42e4e75073f33b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Target: {fileID: 0}
   Offset: {x: 5, y: 15, z: -10}
-  MoveSpeed: 10
+  MovementSpeed: 5
+  EliminationManager: {fileID: 1615317111}
+  PlayerManager: {fileID: 1615317108}
 --- !u!1 &1412265452
 GameObject:
   m_ObjectHideFlags: 0
@@ -2850,6 +2857,7 @@ GameObject:
   - component: {fileID: 1615317106}
   - component: {fileID: 1615317109}
   - component: {fileID: 1615317110}
+  - component: {fileID: 1615317112}
   m_Layer: 0
   m_Name: Minigame Manager
   m_TagString: Untagged
@@ -2868,7 +2876,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1615317106
 MonoBehaviour:
@@ -2904,8 +2912,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdfeda33a54a1434d9a582b12390fac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RLGLPlayerPrefab: {fileID: 114724344323340534, guid: 79403c3dea78e49899577e2605b6477c,
+  RLGLPlayerPrefab: {fileID: 114597841602555906, guid: edde896f093794257b558b84b798a37c,
     type: 2}
+  LocalPlayerId: 
+  CameraController: {fileID: 1404217245}
 --- !u!114 &1615317109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2928,6 +2938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea314c7566f34e0f9b19aeda616fc53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoveReleased: 0
 --- !u!114 &1615317111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2940,6 +2951,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerToEliminate: 
+--- !u!114 &1615317112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1615317104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9846bb93e07c4b4a8b549220175d6db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1737148146
 GameObject:
   m_ObjectHideFlags: 0

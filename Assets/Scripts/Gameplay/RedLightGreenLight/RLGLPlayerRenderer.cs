@@ -5,24 +5,18 @@ using DG.Tweening;
 using TMPro;
 
 public class RLGLPlayerRenderer : MonoBehaviour {
-	RLGLPlayer player;
+	public RLGLPlayer Player;
 	bool isMoving;
 	bool isEliminated;
-	Tweener positionTweener;
-	Tweener scaleTweener;
-
-	void Awake() {
-		player = GetComponent<RLGLPlayer>();
-	}
 
 	void Update() {
-		if((transform.position.x != player.positionX || transform.position.z != player.positionZ) && !isMoving) {
+		if((transform.position.x != Player.Position.x || transform.position.z != Player.Position.z) && !isMoving) {
 			isMoving = true;
-			Vector3 position = new Vector3(player.positionX, 0, player.positionZ);
+			Vector3 position = new Vector3(Player.Position.x, 0, Player.Position.z);
 			transform.DOJump(position, 1f, 1, 0.1f).OnComplete(() => isMoving = false);
 		}
 
-		if(!isEliminated && !player.active) {
+		if(!isEliminated && !Player.Active) {
 			isEliminated = true;
 			transform.DOScale(Vector3.zero, 3.0f);
 			transform.DORotate(new Vector3(0.0f, 1080.0f, 0.0f), 3.0f, RotateMode.FastBeyond360);

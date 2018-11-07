@@ -3,19 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RLGLPlaneRenderer : MonoBehaviour {
-	RLGLGreenLightManager greenLightManager;
-	MeshRenderer planeMeshRenderer;
-	[SerializeField]
-	Material greenMaterial;
-	[SerializeField]
-	Material redMaterial;
-
-	void Awake() {
-		greenLightManager = GameObject.Find("Minigame Manager").GetComponent<RLGLGreenLightManager>();
-		planeMeshRenderer = GetComponent<MeshRenderer>();
-	}
+	public RLGLGreenLightManager GreenLightManager;
+	public MeshRenderer PlaneMeshRenderer;
+	public Material GreenMaterial;
+	public Material RedMaterial;
 
 	void Update() {
-		planeMeshRenderer.material = greenLightManager.GreenLight ? greenMaterial : redMaterial;
+		PlaneMeshRenderer.material = GreenLightManager.GreenLight ? GreenMaterial : RedMaterial;
 	}
 }

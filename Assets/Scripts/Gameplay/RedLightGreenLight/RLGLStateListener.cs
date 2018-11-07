@@ -12,6 +12,7 @@ public class RLGLStateListener : MonoBehaviour {
 		greenLightManager = GetComponent<RLGLGreenLightManager>();
 		eliminationManager = GetComponent<RLGLEliminationManager>();
 		playerManager = GetComponent<RLGLPlayerManager>();
+
 	}
 
 	void Start() {
@@ -32,12 +33,26 @@ public class RLGLStateListener : MonoBehaviour {
 		
 		foreach(object playerObject in players.Values) {
 			Dictionary<string, object> playerDictionary = (Dictionary<string, object>)playerObject;
-			string id = playerDictionary["id"].ToString();
+			string playerId = playerDictionary["id"].ToString();
 			bool active = bool.Parse(playerDictionary["active"].ToString());
 			int positionX = int.Parse(playerDictionary["positionX"].ToString());
 			int positionZ = int.Parse(playerDictionary["positionZ"].ToString());
 			bool moving = (bool)playerDictionary["moving"];
-			playerManager.SetPlayer(id, active, positionX, positionZ, moving);
+
+			if(!playerManager.Players.ContainsKey(playerId)) {
+				bool isLocalPlayer = false;
+				if(AuthenticationManager.Instance.CurrentUser != null && playerId == AuthenticationManager.Instance.CurrentUser.UserId) {
+					isLocalPlayer = true;
+				}
+
+				playerManager.SpawnPlayer(playerId, isLocalPlayer);
+				playerManager.UpdatePlayer(playerId, active, positionX, positionZ, moving);
+			}
+			else {
+				if(playerId != playerManager.LocalPlayerId) {
+					playerManager.UpdatePlayer(playerId, active, positionX, positionZ, moving);
+				}
+			}
 		}
 
 		greenLightManager.SetGreenLight((bool)state["greenLight"]);
@@ -48,6 +63,6 @@ public class RLGLStateListener : MonoBehaviour {
 
 	void OnEliminatePlayerReceived(Socket socket, Packet packet, params object[] args) {
 		string playerId = (string)args[0];
-		playerManager.Players[playerId].active = false;
+		playerManager.Players[playerId].Active = false;
 	}
 }
