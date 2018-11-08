@@ -3,6 +3,8 @@ using UnityEngine;
 public class BoardGravity : MonoBehaviour {
     public BlockManager BlockManager;
     public MatchDetector MatchDetector;
+    public AudioSource AudioSource;
+    public AudioClip LandClip;
 
     void Update() {
         for(int column = 0; column < BlockManager.Columns; column++) {
@@ -25,6 +27,8 @@ public class BoardGravity : MonoBehaviour {
                     else {
                         BlockManager.Blocks[column, row].State = BlockState.Idle;
                         MatchDetector.RequestMatchDetection(BlockManager.Blocks[column, row]);
+                        AudioSource.clip = LandClip;
+                        AudioSource.Play();
                     }
 
                     BlockManager.Blocks[column, row].Faller.JustFell = false;

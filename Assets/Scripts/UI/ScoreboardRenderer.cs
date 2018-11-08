@@ -10,10 +10,15 @@ public class ScoreboardRenderer : MonoBehaviour {
 	public GameObject ScoreboardEntryPrefab;
 
 	void Awake() {
+		GameManager.Instance.Initialize();
+		PlayerManager.Instance.Initialize();
+
 		firstPlaceName = GameObject.Find("First Place Name Text").GetComponent<TMP_Text>();
 		firstPlaceScore = GameObject.Find("First Place Score Text").GetComponent<TMP_Text>();
 		scoreboardContent = GameObject.Find("Scoreboard Content");
+	}
 
+	void Start() {
 		if(GameManager.Instance.Scoreboard.Count > 0) {
 			List<KeyValuePair<string, long>> sortedScoreboard = new List<KeyValuePair<string, long>>(GameManager.Instance.Scoreboard);
 			sortedScoreboard.Sort(delegate(KeyValuePair<string, long> firstPair, KeyValuePair<string, long> secondPair) {

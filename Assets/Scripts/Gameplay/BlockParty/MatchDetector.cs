@@ -13,6 +13,8 @@ public class MatchDetector : MonoBehaviour {
     List<MatchDetection> matchDetections;
     public BlockManager BlockManager;
     public Score Score;
+    public PanelManager PanelManager;
+    public ChainDetector ChainDetector;
     const int minimumMatchLength = 3;
 
     void Awake() {
@@ -35,6 +37,7 @@ public class MatchDetector : MonoBehaviour {
     }
 
     void DetectMatch(Block block) {
+        bool incrementChain = false;
         int left = block.Column;
         while(left > 0 && BlockManager.Blocks[left - 1, block.Row].State == BlockState.Idle && BlockManager.Blocks[left - 1, block.Row].Type == block.Type) {
             left--;
@@ -84,17 +87,33 @@ public class MatchDetector : MonoBehaviour {
         if(horizontalMatch) {
             for(int matchColumn = left; matchColumn < right; matchColumn++) {
                 BlockManager.Blocks[matchColumn, block.Row].Matcher.Match(matchedBlockCount, delayCounter--);
+                if(BlockManager.Blocks[matchColumn, block.Row].Chainer.ChainEligible) {
+                    incrementChain = true;
+                }
             }
         }
 
         if(verticalMatch) {
             for(int matchRow = top - 1; matchRow >= bottom; matchRow--) {
                 BlockManager.Blocks[block.Column, matchRow].Matcher.Match(matchedBlockCount, delayCounter--);
+                if(BlockManager.Blocks[block.Column, matchRow].Chainer.ChainEligible) {
+                    incrementChain = true;
+                }
             }
         }
 
         if(matchedBlockCount > 0) {
             Score.SubmitMatch(matchedBlockCount);
+        }
+
+        if(matchedBlockCount > 3) {
+            Score.ScoreCombo(matchedBlockCount);
+            PanelManager.Panels[block.Column, block.Row].Play(PanelType.Combo, matchedBlockCount);
+        }
+
+        if(incrementChain) {
+            ChainDetector.IncrementChain();
+            PanelManager.Panels[block.Column, matchedBlockCount > 3 ? block.Row + 1 : block.Row].Play(PanelType.Chain, ChainDetector.ChainLength);
         }
     }
 }

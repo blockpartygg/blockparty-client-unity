@@ -39,12 +39,13 @@ public class Block : MonoBehaviour {
             }
         }
     }
-    public const int TypeCount = 6;
+    public const int TypeCount = 5;
     public BlockSlider Slider;
     public BlockFaller Faller;
     public BlockMatcher Matcher;
     public BlockClearer Clearer;
     public BlockEmptier Emptier;
+    public BlockChainer Chainer;
     public event EventHandler StateChanged;
     public event EventHandler TypeChanged;
 }

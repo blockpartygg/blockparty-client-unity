@@ -4,6 +4,7 @@ public class BlockClearer : MonoBehaviour {
     public Block Block;
     public BlockEmptier Emptier;
     public Score Score;
+    public AudioSource AudioSource;
     float delayElapsed;
     public const float DelayInterval = 0.25f;
     public float DelayDuration;
@@ -28,6 +29,8 @@ public class BlockClearer : MonoBehaviour {
                 Elapsed = 0f;
 
                 Score.ScoreMatch();
+
+                AudioSource.Play();
             }
         }
 

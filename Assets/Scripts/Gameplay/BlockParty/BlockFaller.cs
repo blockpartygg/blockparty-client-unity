@@ -39,9 +39,11 @@ public class BlockFaller : MonoBehaviour {
                 Target.Type = Block.Type;
                 Target.State = BlockState.Falling;
                 Target.Faller.JustFell = true;
+                Target.Chainer.ChainEligible = Block.Chainer.ChainEligible;
 
                 Block.State = BlockState.Empty;
                 Block.Type = -1;
+                // Block.Chainer.ChainEligible = false;
             }
         }
     }

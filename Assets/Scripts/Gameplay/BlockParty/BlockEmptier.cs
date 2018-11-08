@@ -18,6 +18,7 @@ public class BlockEmptier : MonoBehaviour {
             if(delayElapsed >= DelayDuration) {
                 Block.State = BlockState.Empty;
                 Block.Type = -1;
+                Block.Chainer.JustEmptied = true;
             }
         }
     }

@@ -4,6 +4,8 @@ public class BoardController : MonoBehaviour {
 	public BlockManager BlockManager;
 	public Block SelectedBlock;
 	public Camera Camera;
+	public AudioSource AudioSource;
+	public AudioClip SlideClip;
 
 	void Update() {
 		if(Input.GetMouseButtonDown(0)) {
@@ -58,6 +60,9 @@ public class BoardController : MonoBehaviour {
 
 				leftBlock.Slider.Slide(SlideDirection.Right);
 				rightBlock.Slider.Slide(SlideDirection.Left);
+
+				AudioSource.clip = SlideClip;
+				AudioSource.Play();
 			}
 		}
 	}
