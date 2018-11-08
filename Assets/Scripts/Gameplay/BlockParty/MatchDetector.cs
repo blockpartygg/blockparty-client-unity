@@ -12,7 +12,8 @@ public class MatchDetection {
 public class MatchDetector : MonoBehaviour {
     List<MatchDetection> matchDetections;
     public BlockManager BlockManager;
-    public const int MinimumMatchLength = 3;
+    public Score Score;
+    const int minimumMatchLength = 3;
 
     void Awake() {
         matchDetections = new List<MatchDetection>();
@@ -60,12 +61,12 @@ public class MatchDetector : MonoBehaviour {
         bool horizontalMatch = false;
         bool verticalMatch = false;
 
-        if(width >= MinimumMatchLength) {
+        if(width >= minimumMatchLength) {
             horizontalMatch = true;
             matchedBlockCount += width;
         }
 
-        if(height >= MinimumMatchLength) {
+        if(height >= minimumMatchLength) {
             verticalMatch = true;
             matchedBlockCount += height;
         }
@@ -90,6 +91,10 @@ public class MatchDetector : MonoBehaviour {
             for(int matchRow = top - 1; matchRow >= bottom; matchRow--) {
                 BlockManager.Blocks[block.Column, matchRow].Matcher.Match(matchedBlockCount, delayCounter--);
             }
+        }
+
+        if(matchedBlockCount > 0) {
+            Score.SubmitMatch(matchedBlockCount);
         }
     }
 }

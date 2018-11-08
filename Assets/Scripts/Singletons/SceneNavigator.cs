@@ -46,6 +46,9 @@ public class SceneNavigator : Singleton<SceneNavigator> {
 						case "blockChase":
 							sceneToLoad = "BlockChaseScene";
 							break;
+						case "blockParty":
+							sceneToLoad = "BlockPartyScene";
+							break;
 					}
 					break;
 				case GameManager.GameState.RoundResultsScoreboard:
