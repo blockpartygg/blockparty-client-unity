@@ -15,6 +15,8 @@ public class MatchDetector : MonoBehaviour {
     public Score Score;
     public PanelManager PanelManager;
     public ChainDetector ChainDetector;
+    public AudioSource AudioSource;
+    public AudioClip BonusClip;
     const int minimumMatchLength = 3;
 
     void Awake() {
@@ -106,14 +108,23 @@ public class MatchDetector : MonoBehaviour {
             Score.SubmitMatch(matchedBlockCount);
         }
 
+        bool playSound = false;
+
         if(matchedBlockCount > 3) {
             Score.ScoreCombo(matchedBlockCount);
             PanelManager.Panels[block.Column, block.Row].Play(PanelType.Combo, matchedBlockCount);
+            playSound = true;
         }
 
         if(incrementChain) {
             ChainDetector.IncrementChain();
             PanelManager.Panels[block.Column, matchedBlockCount > 3 ? block.Row + 1 : block.Row].Play(PanelType.Chain, ChainDetector.ChainLength);
+            playSound = true;
+        }
+
+        if(playSound) {
+            AudioSource.clip = BonusClip;
+            AudioSource.Play();
         }
     }
 }

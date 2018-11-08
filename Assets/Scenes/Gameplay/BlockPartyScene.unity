@@ -1274,6 +1274,7 @@ MonoBehaviour:
   SelectedBlock: {fileID: 0}
   Camera: {fileID: 1088363487}
   AudioSource: {fileID: 101747723}
+  SlideClip: {fileID: 8300000, guid: a3355b88cda4f4a12befaf89d73b22ff, type: 3}
 --- !u!114 &2105252091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1289,6 +1290,8 @@ MonoBehaviour:
   Score: {fileID: 2105252093}
   PanelManager: {fileID: 2105252095}
   ChainDetector: {fileID: 2105252096}
+  AudioSource: {fileID: 101747723}
+  BonusClip: {fileID: 8300000, guid: 77968b0c91b3c4751980cf20a691cad1, type: 3}
 --- !u!114 &2105252092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1302,6 +1305,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BlockManager: {fileID: 2105252089}
   MatchDetector: {fileID: 2105252091}
+  AudioSource: {fileID: 101747723}
+  LandClip: {fileID: 8300000, guid: 525e9473488db433899a915df5a5fa35, type: 3}
 --- !u!114 &2105252093
 MonoBehaviour:
   m_ObjectHideFlags: 0
