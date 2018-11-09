@@ -118,7 +118,10 @@ public class MatchDetector : MonoBehaviour {
 
         if(incrementChain) {
             ChainDetector.IncrementChain();
-            PanelManager.Panels[block.Column, matchedBlockCount > 3 ? block.Row + 1 : block.Row].Play(PanelType.Chain, ChainDetector.ChainLength);
+            int row = matchedBlockCount > 3 ? block.Row + 1 : block.Row;
+            if(row <= PanelManager.Rows - 1) {
+                PanelManager.Panels[block.Column, row].Play(PanelType.Chain, ChainDetector.ChainLength);
+            }
             playSound = true;
         }
 

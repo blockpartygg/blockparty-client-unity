@@ -4,9 +4,12 @@ public class BlockManager : MonoBehaviour {
 	public Block[,] Blocks;
 	public Block BlockPrefab;
 	public GameObject BlockParent;
-	public const int Columns = 6, Rows = 13;
+	public BlockPartyMinigameManager MinigameManager;
+	public const int Columns = 6, Rows = 13; // 12 visible and 1 for new blocks
+	const int survivalModeStartingRows = 6;
 
 	void Awake() {
+		Application.targetFrameRate = 60;
 		Blocks = new Block[Columns, Rows];
 		for(int row = 0; row < Rows; row++) {
 			for(int column = 0; column < Columns; column++) {
@@ -20,10 +23,20 @@ public class BlockManager : MonoBehaviour {
 	}
 
 	void Start() {
-		for(int row = 0; row < Rows; row++) {
-			for(int column = 0; column < Columns; column++) {
-				Blocks[column, row].State = BlockState.Idle;
-				Blocks[column, row].Type = GetRandomBlockType(column, row);
+		if(MinigameManager.Mode == BlockPartyModes.TimeAttack) {
+			for(int row = 0; row < Rows; row++) {
+				for(int column = 0; column < Columns; column++) {
+					Blocks[column, row].State = BlockState.Idle;
+					Blocks[column, row].Type = GetRandomBlockType(column, row);
+				}
+			}
+		}
+		else if(MinigameManager.Mode == BlockPartyModes.Survival) {
+			for(int row = 0; row < survivalModeStartingRows; row++) {
+				for(int column = 0; column < Columns; column++) {
+					Blocks[column, row].State = BlockState.Idle;
+					Blocks[column, row].Type = GetRandomBlockType(column, row);
+				}
 			}
 		}
 	}

@@ -513,7 +513,7 @@ Camera:
   m_GameObject: {fileID: 1088363485}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 4
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
@@ -624,12 +624,12 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 375, y: 812}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1213,6 +1213,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2105252088}
+  - component: {fileID: 2105252097}
   - component: {fileID: 2105252089}
   - component: {fileID: 2105252090}
   - component: {fileID: 2105252091}
@@ -1259,6 +1260,7 @@ MonoBehaviour:
   BlockPrefab: {fileID: 114399192409936268, guid: cb9f25ac66a9b463db559a9a0353fe12,
     type: 2}
   BlockParent: {fileID: 1662282232}
+  MinigameManager: {fileID: 0}
 --- !u!114 &2105252090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1360,3 +1362,15 @@ MonoBehaviour:
   BlockManager: {fileID: 2105252089}
   Score: {fileID: 2105252093}
   ChainLength: 0
+--- !u!114 &2105252097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2105252087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da5ddc2d3617f46ceb74c9f573943901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mode: 1

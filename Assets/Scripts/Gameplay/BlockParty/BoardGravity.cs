@@ -3,6 +3,7 @@ using UnityEngine;
 public class BoardGravity : MonoBehaviour {
     public BlockManager BlockManager;
     public MatchDetector MatchDetector;
+    public BlockPartyMinigameManager MinigameManager;
     public AudioSource AudioSource;
     public AudioClip LandClip;
 
@@ -36,17 +37,19 @@ public class BoardGravity : MonoBehaviour {
             }
         }
 
-        for(int column = 0; column < BlockManager.Columns; column++) {
-            if(BlockManager.Blocks[column, BlockManager.Rows - 1].State == BlockState.Empty) {
-                BlockManager.Blocks[column, BlockManager.Rows - 1].Type = BlockManager.GetRandomBlockType(column, BlockManager.Rows - 1);
+        if(MinigameManager.Mode == BlockPartyModes.TimeAttack) {
+            for(int column = 0; column < BlockManager.Columns; column++) {
+                if(BlockManager.Blocks[column, BlockManager.Rows - 1].State == BlockState.Empty) {
+                    BlockManager.Blocks[column, BlockManager.Rows - 1].Type = BlockManager.GetRandomBlockType(column, BlockManager.Rows - 1);
 
-                if(BlockManager.Blocks[column, BlockManager.Rows - 2].State == BlockState.Idle) {
-                    BlockManager.Blocks[column, BlockManager.Rows - 1].State = BlockState.Idle;
-                }
+                    if(BlockManager.Blocks[column, BlockManager.Rows - 2].State == BlockState.Idle) {
+                        BlockManager.Blocks[column, BlockManager.Rows - 1].State = BlockState.Idle;
+                    }
 
-                if(BlockManager.Blocks[column, BlockManager.Rows - 2].State == BlockState.Empty || BlockManager.Blocks[column, BlockManager.Rows - 2].State == BlockState.Falling) {
-                    BlockManager.Blocks[column, BlockManager.Rows - 1].Faller.Target = BlockManager.Blocks[column, BlockManager.Rows - 2];
-                    BlockManager.Blocks[column, BlockManager.Rows - 1].Faller.ContinueFalling();
+                    if(BlockManager.Blocks[column, BlockManager.Rows - 2].State == BlockState.Empty || BlockManager.Blocks[column, BlockManager.Rows - 2].State == BlockState.Falling) {
+                        BlockManager.Blocks[column, BlockManager.Rows - 1].Faller.Target = BlockManager.Blocks[column, BlockManager.Rows - 2];
+                        BlockManager.Blocks[column, BlockManager.Rows - 1].Faller.ContinueFalling();
+                    }
                 }
             }
         }

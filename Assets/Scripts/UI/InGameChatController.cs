@@ -45,7 +45,9 @@ public class InGameChatController : MonoBehaviour {
 				}
 			}
 		}
+	}
 
+	void Update() {
 		if(Object != null) {
 			Object.SetActive(ChatManager.Instance.IsShowing);
 		}

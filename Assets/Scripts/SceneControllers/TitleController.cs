@@ -12,6 +12,7 @@ public class TitleController : MonoBehaviour {
 		playButton = GameObject.Find("Play Button").GetComponent<Button>();
 
 		AnalyticsManager.Instance.LogAppOpenEvent();
+		
 		if(!SocketManager.Instance.IsConnected) {
 			SocketManager.Instance.Connected += HandleSocketConnected;
 			SocketManager.Instance.Connect();
@@ -31,6 +32,11 @@ public class TitleController : MonoBehaviour {
 		}
 	}
 
+	void HandleSocketConnected(object sender, EventArgs args)
+	{
+		playButton.interactable = SocketManager.Instance.Socket.IsOpen;
+	}
+
 	public void SignUp() {
 		SceneNavigator.Instance.Navigate("SignUpScene");
 	}
@@ -39,8 +45,5 @@ public class TitleController : MonoBehaviour {
 		Application.OpenURL("https://blockparty.gg/privacy-policy");
 	}
 
-	void HandleSocketConnected(object sender, EventArgs args)
-	{
-		playButton.interactable = SocketManager.Instance.Socket.IsOpen;
-	}
+	
 }
