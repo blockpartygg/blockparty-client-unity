@@ -10,21 +10,23 @@ public class BlockClearer : MonoBehaviour {
     public float DelayDuration;
     public float Elapsed;
     public const float Duration = 0.25f;
+    bool isEndingGame;
 
     void Awake() {
         Score = GameObject.Find("Minigame").GetComponent<Score>();
     }
 
-    public void Clear() {
+    public void Clear(bool isEndingGame = false) {
         Block.State = BlockState.WaitingToClear;
         delayElapsed = 0f;
+        this.isEndingGame = isEndingGame;
     }
 
     void Update() {
         if(Block.State == BlockState.WaitingToClear) {
             delayElapsed += Time.deltaTime;
             
-            if(delayElapsed >= DelayDuration) {
+            if(delayElapsed >= DelayDuration && !isEndingGame) {
                 Block.State = BlockState.Clearing;
                 Elapsed = 0f;
 

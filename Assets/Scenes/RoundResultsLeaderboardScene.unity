@@ -562,7 +562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75906b55dfd8e42bca2d277c010bcac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeaderboardEntryPrefab: {fileID: 1509041119773878, guid: dfd31f3fffb81484a96868f9221f3ebd,
+  LeaderboardEntryPrefab: {fileID: 1728016401297488, guid: 4e13bae7ce9eb4fcd847d7cd23ef9dfe,
     type: 2}
 --- !u!114 &267847653
 MonoBehaviour:
@@ -2934,7 +2934,7 @@ GameObject:
   - component: {fileID: 1649424973}
   - component: {fileID: 1649424972}
   m_Layer: 5
-  m_Name: Scoreboard Scroll View
+  m_Name: Leaderboard Scroll View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

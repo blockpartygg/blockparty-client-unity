@@ -963,8 +963,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: The player in last place is eliminated every few seconds. Stay ahead of
-    them.
+  m_text: 'You can continue sliding blocks while others are clearing. Keep moving!
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5722337c0daba41d38107746394207c7, type: 2}
   m_sharedMaterial: {fileID: 21691540553491296, guid: 5722337c0daba41d38107746394207c7,
@@ -1033,10 +1034,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 675337891}
-    characterCount: 77
+    characterCount: 72
     spriteCount: 0
-    spaceCount: 13
-    wordCount: 14
+    spaceCount: 11
+    wordCount: 11
     linkCount: 0
     lineCount: 2
     pageCount: 1
@@ -1083,7 +1084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &698466105
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1635,7 +1636,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2807,9 +2808,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -5, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1797386631
 MonoBehaviour:

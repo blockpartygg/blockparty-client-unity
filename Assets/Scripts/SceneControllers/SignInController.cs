@@ -1,19 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class SignInController : MonoBehaviour {
-	TMP_InputField emailInputField;
-	TMP_InputField passwordInputField;
+	public TMP_InputField emailInputField;
+	public TMP_InputField passwordInputField;
 	public TMP_Text ErrorText;
+	public Button SignInButton;
 
-	void Awake() {
-		emailInputField = GameObject.Find("Email Input Field").GetComponent<TMP_InputField>();
-		passwordInputField = GameObject.Find("Password Input Field").GetComponent<TMP_InputField>();
+	void Start() {
+		UpdateSignInButtonState();
 	}
+
 	public void GoBack() {
 		SceneNavigator.Instance.Navigate("TitleScene");
+	}
+
+	public void UpdateSignInButtonState() {
+		SignInButton.interactable = !string.IsNullOrEmpty(emailInputField.text) && !string.IsNullOrEmpty(passwordInputField.text);
 	}
 
 	public void SignIn() {

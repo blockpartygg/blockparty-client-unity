@@ -9,7 +9,7 @@ public class InGameChatController : MonoBehaviour {
 	public GameObject Content;
 	public ScrollRect ScrollRect;
 	public Scrollbar Scrollbar;
-	public GameObject Object;
+	public GameObject ChatObject;
 	public TMP_InputField InputField;
 
 	public GameObject ChatMessagePrefab;
@@ -18,19 +18,15 @@ public class InGameChatController : MonoBehaviour {
 		ChatManager.Instance.MessagesChanged += HandleMessagesChanged;
 	}
 
-	public void SendChatMessage() {
-		if(InputField.text != "") {
-			ChatManager.Instance.AddMessage(AuthenticationManager.Instance.CurrentUser.UserId, InputField.text);
-			InputField.text = "";
-			AnalyticsManager.Instance.LogChatMessageSent();
-		}
-	}
-
-	public void ToggleChat() {
-		ChatManager.Instance.IsShowing = !ChatManager.Instance.IsShowing;
-	}
-
 	void HandleMessagesChanged(object sender, EventArgs args) {
+		UpdateChatView();
+	}
+
+	void Start() {
+		UpdateChatView();
+	}
+
+	void UpdateChatView() {
 		foreach(KeyValuePair<string, ChatMessage> message in ChatManager.Instance.Messages) {
 			if(Content.transform.Find(message.Key) == null) {
 				if(PlayerManager.Instance.Players.ContainsKey(message.Value.playerId)) {
@@ -47,9 +43,17 @@ public class InGameChatController : MonoBehaviour {
 		}
 	}
 
-	void Update() {
-		if(Object != null) {
-			Object.SetActive(ChatManager.Instance.IsShowing);
+	public void SendChatMessage() {
+		if(InputField.text != "") {
+			ChatManager.Instance.AddMessage(AuthenticationManager.Instance.CurrentUser.UserId, InputField.text);
+			InputField.text = "";
+			AnalyticsManager.Instance.LogChatMessageSent();
 		}
+	}
+
+	public void ToggleChat() {
+		ChatManager.Instance.IsShowing = !ChatManager.Instance.IsShowing;
+
+		ChatObject.SetActive(ChatManager.Instance.IsShowing);
 	}
 }

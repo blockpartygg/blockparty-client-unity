@@ -23,7 +23,7 @@ public class LeaderboardRenderer : MonoBehaviour {
 
 			KeyValuePair<string, long> firstPlaceEntry = sortedLeaderboard[0];
 			firstPlaceName.text = PlayerManager.Instance.Players[firstPlaceEntry.Key].name;
-			firstPlaceScore.text = firstPlaceEntry.Value + " <size=24>POINTS</size>";
+			firstPlaceScore.text = firstPlaceEntry.Value + " <size=24>STAR" + (firstPlaceEntry.Value == 1 ? "" : "S") + "</size>";
 
 			sortedLeaderboard.RemoveAt(0);
 
@@ -33,7 +33,7 @@ public class LeaderboardRenderer : MonoBehaviour {
 				GameObject entryObject = Instantiate(LeaderboardEntryPrefab, Vector3.zero, Quaternion.identity);
 				entryObject.transform.Find("Rank Text").GetComponent<TMP_Text>().text = (rank++).ToString();
 				entryObject.transform.Find("Name Text").GetComponent<TMP_Text>().text = PlayerManager.Instance.Players[entry.Key].name;
-				entryObject.transform.Find("Score Text").GetComponent<TMP_Text>().text = entry.Value + " <size=24>POINTS</size>";
+				entryObject.transform.Find("Score Text").GetComponent<TMP_Text>().text = entry.Value + " <size=24>STAR" + (entry.Value == 1 ? "" : "S") + "</size>";
 				entryObject.transform.SetParent(leaderboardContent.transform);
 				entryObject.transform.localScale = Vector3.one;
 			}

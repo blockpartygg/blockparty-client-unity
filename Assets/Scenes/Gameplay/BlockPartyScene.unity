@@ -311,6 +311,7 @@ Transform:
   m_Children:
   - {fileID: 1859608195}
   - {fileID: 1662282233}
+  - {fileID: 1028029200}
   - {fileID: 1627924175}
   - {fileID: 944798077}
   m_Father: {fileID: 2105252088}
@@ -404,7 +405,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 599363479}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1002837928
 GameObject:
@@ -481,6 +482,81 @@ Transform:
   m_Father: {fileID: 2105252088}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1028029199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1028029200}
+  - component: {fileID: 1028029201}
+  m_Layer: 0
+  m_Name: Next Row Darkener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1028029200
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1028029199}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -6.5, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 599363479}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1028029201
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1028029199}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5019608}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 1
+  m_Size: {x: 6, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 1
+  m_SpriteSortPoint: 0
 --- !u!1 &1088363485
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,7 +924,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 599363479}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1662282232
 GameObject:
@@ -1219,6 +1295,7 @@ GameObject:
   - component: {fileID: 2105252091}
   - component: {fileID: 2105252096}
   - component: {fileID: 2105252092}
+  - component: {fileID: 2105252098}
   - component: {fileID: 2105252093}
   - component: {fileID: 2105252094}
   - component: {fileID: 2105252095}
@@ -1257,10 +1334,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d1d98374cfe4ff9b36e012779d87c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NewRowBlocks: []
   BlockPrefab: {fileID: 114399192409936268, guid: cb9f25ac66a9b463db559a9a0353fe12,
     type: 2}
   BlockParent: {fileID: 1662282232}
-  MinigameManager: {fileID: 0}
+  MinigameManager: {fileID: 2105252097}
 --- !u!114 &2105252090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1307,6 +1385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BlockManager: {fileID: 2105252089}
   MatchDetector: {fileID: 2105252091}
+  MinigameManager: {fileID: 2105252097}
   AudioSource: {fileID: 101747723}
   LandClip: {fileID: 8300000, guid: 525e9473488db433899a915df5a5fa35, type: 3}
 --- !u!114 &2105252093
@@ -1373,4 +1452,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5ddc2d3617f46ceb74c9f573943901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mode: 1
+  Mode: 0
+--- !u!114 &2105252098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2105252087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e643544391a9b4e0ba32b0f3b68bac42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinigameManager: {fileID: 2105252097}
+  BlockManager: {fileID: 2105252089}
+  Elapsed: 0
+  MatchDetector: {fileID: 2105252091}

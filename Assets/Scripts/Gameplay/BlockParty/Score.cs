@@ -27,7 +27,7 @@ public class Score : MonoBehaviour {
         int points = comboValue[Math.Min(matchedBlockCount - 1, comboValue.Length - 1)];
         Points += points;
         if(AuthenticationManager.Instance.CurrentUser != null && SocketManager.Instance.IsConnected) {
-            SocketManager.Instance.Socket.Emit("blockParty/scoreMatch", AuthenticationManager.Instance.CurrentUser.UserId, points);
+            SocketManager.Instance.Socket.Emit("blockParty/scorePoints", AuthenticationManager.Instance.CurrentUser.UserId, points);
         }
     }
 
@@ -35,13 +35,14 @@ public class Score : MonoBehaviour {
         int points = chainValue[Math.Min(chainLength - 1, chainValue.Length - 1)];
         Points += points;
         if(AuthenticationManager.Instance.CurrentUser != null && SocketManager.Instance.IsConnected) {
-            SocketManager.Instance.Socket.Emit("blockParty/scoreMatch", AuthenticationManager.Instance.CurrentUser.UserId, points);
+            SocketManager.Instance.Socket.Emit("blockParty/scorePoints", AuthenticationManager.Instance.CurrentUser.UserId, points);
         }
     }
 
     public void SubmitMatch(int matchedBlockCount) {
+        int points = matchedBlockCount * matchValue;
         if(AuthenticationManager.Instance.CurrentUser != null && SocketManager.Instance.IsConnected) {
-            SocketManager.Instance.Socket.Emit("blockParty/scoreMatch", AuthenticationManager.Instance.CurrentUser.UserId, matchedBlockCount);
+            SocketManager.Instance.Socket.Emit("blockParty/scorePoints", AuthenticationManager.Instance.CurrentUser.UserId, points);
         }
     }
 }

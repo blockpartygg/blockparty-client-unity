@@ -14,6 +14,7 @@ public enum BlockState {
 }
 
 public class Block : MonoBehaviour {
+    [SerializeField]
     BlockState state;
     public BlockState State {
         get { return state; }
@@ -27,6 +28,7 @@ public class Block : MonoBehaviour {
         }
     }
     public int Column, Row;
+    [SerializeField]
     int type;
     public int Type {
         get { return type; }
