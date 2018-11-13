@@ -1296,6 +1296,7 @@ GameObject:
   - component: {fileID: 2105252096}
   - component: {fileID: 2105252092}
   - component: {fileID: 2105252098}
+  - component: {fileID: 2105252099}
   - component: {fileID: 2105252093}
   - component: {fileID: 2105252094}
   - component: {fileID: 2105252095}
@@ -1452,7 +1453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5ddc2d3617f46ceb74c9f573943901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mode: 0
+  Mode: 1
 --- !u!114 &2105252098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1468,3 +1469,15 @@ MonoBehaviour:
   BlockManager: {fileID: 2105252089}
   Elapsed: 0
   MatchDetector: {fileID: 2105252091}
+--- !u!114 &2105252099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2105252087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2570f4181c5b4fbf9fe9770bd4b2b3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlockManager: {fileID: 2105252089}

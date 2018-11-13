@@ -304,18 +304,21 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 406f57e16a84743e6ad7d8c743899d06, type: 3}
   - {fileID: 21300000, guid: c500c7ff7405246e6ae100f999615c0a, type: 3}
   - {fileID: 21300000, guid: c2654b218a06f45ba902760093966aee, type: 3}
+  - {fileID: 21300000, guid: 415d861cbb4f740e6bcfc966654e96e8, type: 3}
   MatchedSprites:
   - {fileID: 21300000, guid: e9a03cc7651a449f38efeb2276d04326, type: 3}
   - {fileID: 21300000, guid: 4b8c66da02ca64d0c8f4c31299a03623, type: 3}
   - {fileID: 21300000, guid: 5dd9b3b87cfad4f8994f24fb345cb444, type: 3}
   - {fileID: 21300000, guid: 2a1bde1bcb3394b2db1f4ef7fa000b87, type: 3}
   - {fileID: 21300000, guid: 9890e70208fc84a9bb21060276cb3d64, type: 3}
+  - {fileID: 21300000, guid: a7ab83e76fbbc453783bc795d3399826, type: 3}
   ClearingSprites:
   - {fileID: 21300000, guid: a7ab83e76fbbc453783bc795d3399826, type: 3}
   - {fileID: 21300000, guid: 37fb18223035547e398d6e8275b33576, type: 3}
   - {fileID: 21300000, guid: 8102a008de20e494fb697387606b9c91, type: 3}
   - {fileID: 21300000, guid: 27e4e5308d3ea4184b299cb6a0d5f695, type: 3}
   - {fileID: 21300000, guid: 1a6bd759fd1214cb2b88db335b6d6729, type: 3}
+  - {fileID: 21300000, guid: 2b195ed7cbb2a46a382abe4b799e2d1f, type: 3}
 --- !u!212 &212676418022825910
 SpriteRenderer:
   m_ObjectHideFlags: 1

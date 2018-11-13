@@ -41,7 +41,7 @@ public class Block : MonoBehaviour {
             }
         }
     }
-    public const int TypeCount = 5;
+    public const int TypeCount = 5; // Garbage = 6
     public BlockSlider Slider;
     public BlockFaller Faller;
     public BlockMatcher Matcher;
