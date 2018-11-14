@@ -39,7 +39,6 @@ public class GarbageManager : MonoBehaviour {
 		if(elapsed >= 5f && !sentGarbage) {
 			sentGarbage = true;
 			SocketManager.Instance.Socket.Emit("blockParty/receiveChain", null, null);
-			Debug.Log("Sent receive chain");
 		}
 	}
 }
