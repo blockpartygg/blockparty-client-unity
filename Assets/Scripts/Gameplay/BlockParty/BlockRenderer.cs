@@ -9,13 +9,14 @@ public class BlockRenderer: MonoBehaviour {
     public BlockMatcher Matcher;
     public BlockClearer Clearer;
     public SpriteRenderer SpriteRenderer;
-    public ParticleManager ParticleManager;
     public List<Sprite> Sprites;
     public List<Sprite> MatchedSprites;
     public List<Sprite> ClearingSprites;
 
+    ParticleManager particleManager;
+
     void Awake() {
-        ParticleManager = GameObject.Find("Minigame").GetComponent<ParticleManager>();
+        particleManager = GameObject.Find("Minigame").GetComponent<ParticleManager>();
     }
 
     void Start() {
@@ -48,7 +49,7 @@ public class BlockRenderer: MonoBehaviour {
                 SpriteRenderer.sprite = ClearingSprites[Block.Type];
                 break;
             case BlockState.Clearing:
-                ParticleManager.Particles[Block.Column, Block.Row].GetComponent<ParticleSystem>().Play();
+                particleManager.Particles[Block.Column, Block.Row].GetComponent<ParticleSystem>().Play();
                 break;
             case BlockState.WaitingToEmpty:
             case BlockState.Empty:
