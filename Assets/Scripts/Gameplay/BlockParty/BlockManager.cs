@@ -21,6 +21,8 @@ public class BlockManager : MonoBehaviour {
 				Blocks[column, row].transform.SetParent(BlockParent.transform, false);
 				Blocks[column, row].Column = column;
 				Blocks[column, row].Row = row;
+                Blocks[column, row].State = BlockState.Empty;
+                Blocks[column, row].Type = -1;
 			}
 		}
 

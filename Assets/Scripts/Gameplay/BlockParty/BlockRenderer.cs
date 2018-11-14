@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class BlockRenderer: MonoBehaviour {
     public Block Block;
+    public BlockGarbage Garbage;
     public BlockSlider Slider;
     public BlockFaller Faller;
     public BlockMatcher Matcher;
@@ -14,49 +15,53 @@ public class BlockRenderer: MonoBehaviour {
     public List<Sprite> ClearingSprites;
 
     ParticleManager particleManager;
+    Vector3 garbageTranslation = Vector3.zero;
 
     void Awake() {
         particleManager = GameObject.Find("Minigame").GetComponent<ParticleManager>();
     }
 
     void Start() {
-        UpdatePosition();
         UpdateSpriteState();
         UpdateSpriteType();
+        UpdatePosition();
         Block.StateChanged += HandleStateChanged;
         Block.TypeChanged += HandleTypeChanged;
     }
 
     void HandleStateChanged(object sender, EventArgs args) {
-        UpdatePosition();
         UpdateSpriteState();
+        UpdatePosition();
     }
 
     void HandleTypeChanged(object sender, EventArgs args) {
         UpdateSpriteType();
+        UpdatePosition();
     }
 
     void UpdatePosition() {
-        transform.position = transform.parent.position + new Vector3(Block.Column, Block.Row, 0f);
+        transform.position = transform.parent.position + garbageTranslation + new Vector3(Block.Column, Block.Row, 0f);
     }
 
     void UpdateSpriteState() {
         switch(Block.State) {    
             case BlockState.Matched:
-                SpriteRenderer.sprite = MatchedSprites[Block.Type];
+                if(Block.Type != -1) {
+                    SpriteRenderer.sprite = MatchedSprites[Block.Type];
+                }
                 break;
             case BlockState.WaitingToClear:
-                SpriteRenderer.sprite = ClearingSprites[Block.Type];
+                if(Block.Type != -1) {
+                    SpriteRenderer.sprite = ClearingSprites[Block.Type];
+                }
                 break;
             case BlockState.Clearing:
                 particleManager.Particles[Block.Column, Block.Row].GetComponent<ParticleSystem>().Play();
                 break;
             case BlockState.WaitingToEmpty:
             case BlockState.Empty:
-                SpriteRenderer.enabled = false;
                 break;
             default:
-                SpriteRenderer.enabled = true;
                 SpriteRenderer.transform.localScale = Vector3.one;
                 SpriteRenderer.color = Color.white;
                 break;
@@ -64,8 +69,20 @@ public class BlockRenderer: MonoBehaviour {
     }
 
     void UpdateSpriteType() {
-        if(Block.Type != -1) {
+        if(Block.Type == -1 || (Block.Type == 5 && Block.Garbage.IsNeighbor)) {
+            SpriteRenderer.sprite = null;
+        }
+        else {
             SpriteRenderer.sprite = Sprites[Block.Type];
+        }
+
+        if(Block.Type == 5) {
+            SpriteRenderer.size = new Vector2((float)Garbage.Width, (float)Garbage.Height);
+            garbageTranslation = new Vector3((Garbage.Width - 1) * 0.5f, (Garbage.Height - 1) * 0.5f, 0f);
+        }
+        else {
+            SpriteRenderer.size = Vector2.one;
+            garbageTranslation = Vector3.zero;
         }
     }
 
@@ -80,7 +97,7 @@ public class BlockRenderer: MonoBehaviour {
                 break;
             case BlockState.Falling:
                 timePercentage = Faller.Elapsed / BlockFaller.Duration;
-                transform.position = transform.parent.position + Vector3.Lerp(new Vector3(Block.Column, Block.Row, 0f), new Vector3(Block.Column, Block.Row - transform.localScale.y, 0f), timePercentage);
+                transform.position = transform.parent.position + garbageTranslation + Vector3.Lerp(new Vector3(Block.Column, Block.Row, 0f), new Vector3(Block.Column, Block.Row - transform.localScale.y, 0f), timePercentage);
                 break;
             case BlockState.Matched:
                 SpriteRenderer.sprite = Matcher.Elapsed % 0.1f < 0.05f ? MatchedSprites[Block.Type] : Sprites[Block.Type];

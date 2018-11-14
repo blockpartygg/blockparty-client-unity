@@ -17,7 +17,10 @@ public class BoardRaiser : MonoBehaviour {
 
 				for(int column = 0; column < BlockManager.Columns; column++) {
 					for(int row = BlockManager.Rows - 2; row >= 1; row--) {
-						BlockManager.Blocks[column, row].State = BlockManager.Blocks[column, row - 1].State;
+                        BlockManager.Blocks[column, row].Garbage.Width = BlockManager.Blocks[column, row - 1].Garbage.Width;
+                        BlockManager.Blocks[column, row].Garbage.Height = BlockManager.Blocks[column, row - 1].Garbage.Height;
+                        BlockManager.Blocks[column, row].Garbage.IsNeighbor = BlockManager.Blocks[column, row - 1].Garbage.IsNeighbor;
+                        BlockManager.Blocks[column, row].State = BlockManager.Blocks[column, row - 1].State;
 						BlockManager.Blocks[column, row].Type = BlockManager.Blocks[column, row - 1].Type;
 					}
 

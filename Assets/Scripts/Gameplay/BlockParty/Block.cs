@@ -10,7 +10,7 @@ public enum BlockState {
     Matched,
     WaitingToClear,
     Clearing,
-    WaitingToEmpty
+    WaitingToEmpty,
 }
 
 public class Block : MonoBehaviour {
@@ -41,7 +41,8 @@ public class Block : MonoBehaviour {
             }
         }
     }
-    public const int TypeCount = 5; // Garbage = 6
+    public const int TypeCount = 5; // Empty = -1, Garbage = 5
+    public BlockGarbage Garbage;
     public BlockSlider Slider;
     public BlockFaller Faller;
     public BlockMatcher Matcher;
