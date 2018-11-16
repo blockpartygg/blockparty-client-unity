@@ -6,6 +6,7 @@
 [Bb]uild/
 [Bb]uilds/
 Assets/AssetStoreTools*
+Recordings/
 
 # Visual Studio cache directory
 .vs/
@@ -36,4 +37,6 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# Visual Studio Code debug settings
 .vscode/launch.json
