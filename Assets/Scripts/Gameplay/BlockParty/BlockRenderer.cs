@@ -92,7 +92,7 @@ public class BlockRenderer: MonoBehaviour {
         }
     }
 
-    void Update() {
+    void FixedUpdate() {
         Vector3 raiseTranslation = new Vector3(0, boardRaiser.Elapsed / BoardRaiser.Duration);
         float timePercentage;
 
