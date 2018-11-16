@@ -16,8 +16,11 @@ public class BoardGravity : MonoBehaviour {
                 }
 
                 if(BlockManager.Blocks[column, row].State == BlockState.Idle && emptyBlockDetected) {
-                    BlockManager.Blocks[column, row].Faller.Target = BlockManager.Blocks[column, row - 1];
-                    BlockManager.Blocks[column, row].Faller.Fall();
+                    // Only make normal blocks fall for now, then go back afterwards and make garbage blocks fall together with its neighbors
+                    if (BlockManager.Blocks[column, row].Type != 5) {
+                        BlockManager.Blocks[column, row].Faller.Target = BlockManager.Blocks[column, row - 1];
+                        BlockManager.Blocks[column, row].Faller.Fall();
+                    }
                 }
 
                 if(BlockManager.Blocks[column, row].Faller.JustFell) {
