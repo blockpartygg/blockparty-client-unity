@@ -13,15 +13,29 @@ public class BlockRenderer: MonoBehaviour {
     public List<Sprite> Sprites;
     public List<Sprite> MatchedSprites;
     public List<Sprite> ClearingSprites;
+    public List<Sprite> HoppingSprites0;
+    public List<Sprite> HoppingSprites1;
+    public List<Sprite> HoppingSprites2;
+    public List<Sprite> HoppingSprites3;
+    public List<Sprite> HoppingSprites4;
+    List<List<Sprite>> hoppingSprites;
 
+    BlockManager blockManager;
     ParticleManager particleManager;
     BoardRaiser boardRaiser;
     Vector3 garbageTranslation = Vector3.zero;
     Vector3 blockTranslation;
 
     void Awake() {
+        blockManager = GameObject.Find("Minigame").GetComponent<BlockManager>();
         particleManager = GameObject.Find("Minigame").GetComponent<ParticleManager>();
         boardRaiser = GameObject.Find("Minigame").GetComponent<BoardRaiser>();
+        hoppingSprites = new List<List<Sprite>>();
+        hoppingSprites.Add(HoppingSprites0);
+        hoppingSprites.Add(HoppingSprites1);
+        hoppingSprites.Add(HoppingSprites2);
+        hoppingSprites.Add(HoppingSprites3);
+        hoppingSprites.Add(HoppingSprites4);
     }
 
     void Start() {
@@ -99,6 +113,14 @@ public class BlockRenderer: MonoBehaviour {
         switch(Block.State) {
             case BlockState.Idle:
                 transform.position = transform.parent.position + blockTranslation + raiseTranslation + garbageTranslation;
+                if(blockManager.Blocks[Block.Column, BlockManager.Rows - 2].State != BlockState.Empty || 
+                    blockManager.Blocks[Block.Column, BlockManager.Rows - 3].State != BlockState.Empty) {
+                        SpriteRenderer.sprite = hoppingSprites[Block.Type][(int)(Time.time * 10) % 4];
+                }
+                else {
+                    SpriteRenderer.sprite = Sprites[Block.Type];
+                }
+                
                 break;
             case BlockState.Sliding:
                 float direction = Slider.Direction == SlideDirection.Left ? -1 : 1;
