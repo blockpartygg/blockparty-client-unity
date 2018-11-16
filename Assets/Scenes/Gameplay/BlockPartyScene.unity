@@ -1393,6 +1393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d321fe0c3589e4cdbad5a6c6faf75e7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MinigameManager: {fileID: 2105252097}
   BlockManager: {fileID: 2105252089}
   BoardRaiser: {fileID: 2105252098}
   SelectedBlock: {fileID: 0}
