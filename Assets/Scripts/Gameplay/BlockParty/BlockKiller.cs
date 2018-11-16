@@ -5,7 +5,7 @@ public class BlockKiller : MonoBehaviour {
 	float delayElapsed;
 	float delayDuration;
 	float velocity = 0;
-	const float gravityAcceleration = -0.001f;
+	const float gravityAcceleration = -0.005f;
 
 	public void Kill() {
 		dying = true;
