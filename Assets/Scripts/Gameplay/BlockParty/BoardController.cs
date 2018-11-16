@@ -1,11 +1,16 @@
 ﻿using UnityEngine;
 
 public class BoardController : MonoBehaviour {
+	public BlockPartyMinigameManager MinigameManager;
 	public BlockManager BlockManager;
+	public BoardRaiser BoardRaiser;
 	public Block SelectedBlock;
 	public Camera Camera;
 	public AudioSource AudioSource;
 	public AudioClip SlideClip;
+
+	float previousTapTime;
+	const float doubleTapDuration = 0.5f;
 
 	void Update() {
 		if(GameManager.Instance.State == GameManager.GameState.MinigamePlay) {
@@ -16,6 +21,14 @@ public class BoardController : MonoBehaviour {
 					if(block.State == BlockState.Idle && block.Row >= 0 && block.Row < BlockManager.Rows - 1) {
 						SelectedBlock = block;
 					}
+				}
+
+				if(MinigameManager.Mode == BlockPartyModes.Survival) {
+					if(Time.time - previousTapTime <= doubleTapDuration) {
+						BoardRaiser.ForceRaise();
+					}
+
+					previousTapTime = Time.time;
 				}
 			}
 

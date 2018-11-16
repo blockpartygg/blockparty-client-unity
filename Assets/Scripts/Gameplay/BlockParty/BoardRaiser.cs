@@ -3,17 +3,31 @@
 public class BoardRaiser : MonoBehaviour {
 	public BlockPartyMinigameManager MinigameManager;
 	public BlockManager BlockManager;
+	public Score Score;
 	public float Elapsed;
 	public float LossElapsed;
-	public const float Duration = 1f;
+	public const float Duration = 10f;
 	public const float LossDuration = 3f;
 	public MatchDetector MatchDetector;
 
+	bool isForcingRaise;
+	const float defaultRaiseRate = 1f;
+	const float forcedRaiseRate = 20f;
 	bool isLossIncoming;
+
+	public void ForceRaise() {
+		isForcingRaise = true;
+	}
 
 	void Update() {
 		if(MinigameManager.Mode == BlockPartyModes.Survival) {
-			float raiseRate = 1f;
+			float raiseRate;
+			if(isForcingRaise) {
+				raiseRate = forcedRaiseRate;
+			}
+			else {
+				raiseRate = defaultRaiseRate;	
+			}
 
 			for(int column = 0; column < BlockManager.Columns; column++) {
 				for(int row = 0; row < BlockManager.Rows; row++) {
@@ -60,7 +74,15 @@ public class BoardRaiser : MonoBehaviour {
 					}
 
 					BlockManager.CreateNewRowBlocks();
+
+					if(isForcingRaise) {
+						Score.ScoreRaise();
+
+						isForcingRaise = false;
+					}
 				}
+
+				LossElapsed = 0;
 			}
 
 			isLossIncoming = false;	
