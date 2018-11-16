@@ -491,6 +491,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1028029200}
   - component: {fileID: 1028029201}
+  - component: {fileID: 1028029202}
   m_Layer: 0
   m_Name: Next Row Darkener
   m_TagString: Untagged
@@ -505,7 +506,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1028029199}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -6.5, z: -1}
+  m_LocalPosition: {x: 0, y: -6.5, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 599363479}
@@ -557,6 +558,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1028029202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1028029199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f6d4eab18af3044b5c243c30d26c52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BoardRaiser: {fileID: 2105252098}
 --- !u!1 &1088363485
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,7 +641,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1088363485}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2105252088}
@@ -1414,6 +1427,7 @@ MonoBehaviour:
   ParticlePrefab: {fileID: 1573910170379816, guid: d72d9fced51f14e63a3e57821be18564,
     type: 2}
   ParticleParent: {fileID: 1627924174}
+  BoardRaiser: {fileID: 2105252098}
 --- !u!114 &2105252095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1428,6 +1442,7 @@ MonoBehaviour:
   PanelPrefab: {fileID: 114800145506720890, guid: c10eb9734455541199a9f8c47df49c4c,
     type: 2}
   PanelParent: {fileID: 944798076}
+  BoardRaiser: {fileID: 2105252098}
 --- !u!114 &2105252096
 MonoBehaviour:
   m_ObjectHideFlags: 0
