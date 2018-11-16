@@ -4,58 +4,70 @@ using System.Collections.Generic;
 
 public class BlockRenderer: MonoBehaviour {
     public Block Block;
+    public BlockGarbage Garbage;
     public BlockSlider Slider;
     public BlockFaller Faller;
     public BlockMatcher Matcher;
     public BlockClearer Clearer;
     public SpriteRenderer SpriteRenderer;
-    public ParticleManager ParticleManager;
     public List<Sprite> Sprites;
     public List<Sprite> MatchedSprites;
     public List<Sprite> ClearingSprites;
 
+    ParticleManager particleManager;
+    BoardRaiser boardRaiser;
+    Vector3 garbageTranslation = Vector3.zero;
+    Vector3 blockTranslation;
+
     void Awake() {
-        ParticleManager = GameObject.Find("Minigame").GetComponent<ParticleManager>();
+        particleManager = GameObject.Find("Minigame").GetComponent<ParticleManager>();
+        boardRaiser = GameObject.Find("Minigame").GetComponent<BoardRaiser>();
     }
 
     void Start() {
-        UpdatePosition();
+        blockTranslation = new Vector3(Block.Column, Block.Row);
+
         UpdateSpriteState();
         UpdateSpriteType();
+        UpdatePosition();
         Block.StateChanged += HandleStateChanged;
         Block.TypeChanged += HandleTypeChanged;
     }
 
     void HandleStateChanged(object sender, EventArgs args) {
-        UpdatePosition();
         UpdateSpriteState();
+        UpdatePosition();
     }
 
     void HandleTypeChanged(object sender, EventArgs args) {
         UpdateSpriteType();
+        UpdatePosition();
     }
 
     void UpdatePosition() {
-        transform.position = transform.parent.position + new Vector3(Block.Column, Block.Row, 0f);
+        Vector3 raiseTranslation = new Vector3(0, boardRaiser.Elapsed / BoardRaiser.Duration);
+        transform.position = transform.parent.position + blockTranslation + raiseTranslation + garbageTranslation;
     }
 
     void UpdateSpriteState() {
         switch(Block.State) {    
             case BlockState.Matched:
-                SpriteRenderer.sprite = MatchedSprites[Block.Type];
+                if(Block.Type != -1) {
+                    SpriteRenderer.sprite = MatchedSprites[Block.Type];
+                }
                 break;
             case BlockState.WaitingToClear:
-                SpriteRenderer.sprite = ClearingSprites[Block.Type];
+                if(Block.Type != -1) {
+                    SpriteRenderer.sprite = ClearingSprites[Block.Type];
+                }
                 break;
             case BlockState.Clearing:
-                ParticleManager.Particles[Block.Column, Block.Row].GetComponent<ParticleSystem>().Play();
+                particleManager.Particles[Block.Column, Block.Row].GetComponent<ParticleSystem>().Play();
                 break;
             case BlockState.WaitingToEmpty:
             case BlockState.Empty:
-                SpriteRenderer.enabled = false;
                 break;
             default:
-                SpriteRenderer.enabled = true;
                 SpriteRenderer.transform.localScale = Vector3.one;
                 SpriteRenderer.color = Color.white;
                 break;
@@ -63,23 +75,41 @@ public class BlockRenderer: MonoBehaviour {
     }
 
     void UpdateSpriteType() {
-        if(Block.Type != -1) {
+        if(Block.Type == -1 || (Block.Type == 5 && Block.Garbage.IsNeighbor)) {
+            SpriteRenderer.sprite = null;
+        }
+        else {
             SpriteRenderer.sprite = Sprites[Block.Type];
+        }
+
+        if(Block.Type == 5) {
+            SpriteRenderer.size = new Vector3((float)Garbage.Width, (float)Garbage.Height);
+            garbageTranslation = new Vector3((Garbage.Width - 1) * 0.5f, (Garbage.Height - 1) * 0.5f);
+        }
+        else {
+            SpriteRenderer.size = Vector2.one;
+            garbageTranslation = Vector2.zero;
         }
     }
 
-    void Update() {
-        float timePercentage = 0f;
+    void FixedUpdate() {
+        Vector3 raiseTranslation = new Vector3(0, boardRaiser.Elapsed / BoardRaiser.Duration);
+        float timePercentage;
+
         switch(Block.State) {
+            case BlockState.Idle:
+                transform.position = transform.parent.position + blockTranslation + raiseTranslation + garbageTranslation;
+                break;
             case BlockState.Sliding:
-                float distance = 0f;
-                distance = Slider.Direction == SlideDirection.Left ? -transform.localScale.x : transform.localScale.x;
+                float direction = Slider.Direction == SlideDirection.Left ? -1 : 1;
                 timePercentage = Slider.Elapsed / BlockSlider.Duration;
-                transform.position = transform.parent.position + Vector3.Lerp(new Vector3(Block.Column, Block.Row, 0f), new Vector3(Block.Column + distance, Block.Row, 0f), timePercentage);
+                Vector3 slideTranslation = new Vector3(direction * timePercentage, 0);
+                transform.position = transform.parent.position + blockTranslation + raiseTranslation + slideTranslation;
                 break;
             case BlockState.Falling:
                 timePercentage = Faller.Elapsed / BlockFaller.Duration;
-                transform.position = transform.parent.position + Vector3.Lerp(new Vector3(Block.Column, Block.Row, 0f), new Vector3(Block.Column, Block.Row - transform.localScale.y, 0f), timePercentage);
+                Vector3 fallTranslation = new Vector3(0, -1 * timePercentage);
+                transform.position = transform.parent.position + blockTranslation + garbageTranslation + raiseTranslation + fallTranslation;
                 break;
             case BlockState.Matched:
                 SpriteRenderer.sprite = Matcher.Elapsed % 0.1f < 0.05f ? MatchedSprites[Block.Type] : Sprites[Block.Type];

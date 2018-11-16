@@ -11,24 +11,30 @@ public class GarbageManager : MonoBehaviour {
 	}
 
 	void HandleSendGarbage(Socket socket, Packet packet, params object[] args) {
-		Debug.Log("Received send garbage");
 		int payload = Convert.ToInt32((double)args[0]);
 		SpawnGarbage(payload);
 	}
 
 	void SpawnGarbage(int payload) {
+        BlockManager.Blocks[0, BlockManager.Rows - 1].Garbage.Width = 6;
+        BlockManager.Blocks[0, BlockManager.Rows - 1].Garbage.Height = 1;
+
+        bool isNeighbor = false;
 		for(int column = 0; column < BlockManager.Columns; column++) {
-			if(BlockManager.Blocks[column, BlockManager.Rows - 1].State == BlockState.Empty) {
-				BlockManager.Blocks[column, BlockManager.Rows - 1].Type = 5;
+			BlockManager.Blocks[column, BlockManager.Rows - 1].Type = 5;
+            BlockManager.Blocks[column, BlockManager.Rows - 1].Garbage.IsNeighbor = isNeighbor;
+            if(!isNeighbor)
+            {
+                isNeighbor = true;
+            }
 
-				if(BlockManager.Blocks[column, BlockManager.Rows - 2].State == BlockState.Idle) {
-					BlockManager.Blocks[column, BlockManager.Rows - 1].State = BlockState.Idle;
-				}
+			if(BlockManager.Blocks[column, BlockManager.Rows - 2].State == BlockState.Idle) {
+				BlockManager.Blocks[column, BlockManager.Rows - 1].State = BlockState.Idle;
+			}
 
-				if(BlockManager.Blocks[column, BlockManager.Rows - 2].State == BlockState.Empty || BlockManager.Blocks[column, BlockManager.Rows - 2].State == BlockState.Falling) {
-					BlockManager.Blocks[column, BlockManager.Rows - 1].Faller.Target = BlockManager.Blocks[column, BlockManager.Rows - 2];
-					BlockManager.Blocks[column, BlockManager.Rows - 1].Faller.ContinueFalling();
-				}
+			if(BlockManager.Blocks[column, BlockManager.Rows - 2].State == BlockState.Empty || BlockManager.Blocks[column, BlockManager.Rows - 2].State == BlockState.Falling) {
+				BlockManager.Blocks[column, BlockManager.Rows - 1].Faller.Target = BlockManager.Blocks[column, BlockManager.Rows - 2];
+				BlockManager.Blocks[column, BlockManager.Rows - 1].Faller.ContinueFalling();
 			}
 		}
 	}
@@ -39,6 +45,10 @@ public class GarbageManager : MonoBehaviour {
 		if(elapsed >= 5f && !sentGarbage) {
 			sentGarbage = true;
 			SocketManager.Instance.Socket.Emit("blockParty/receiveChain", null, null);
+		}
+
+		if(Input.GetKeyDown("space")) {
+			SpawnGarbage(0);
 		}
 	}
 }

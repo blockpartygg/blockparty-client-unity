@@ -39,6 +39,11 @@ public class MatchDetector : MonoBehaviour {
     }
 
     void DetectMatch(Block block) {
+        if(block.Type == 5)
+        {
+            return;
+        }
+
         bool incrementChain = false;
         int left = block.Column;
         while(left > 0 && BlockManager.Blocks[left - 1, block.Row].State == BlockState.Idle && BlockManager.Blocks[left - 1, block.Row].Type == block.Type) {

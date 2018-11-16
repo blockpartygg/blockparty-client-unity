@@ -1,11 +1,16 @@
 ﻿using UnityEngine;
 
 public class BoardController : MonoBehaviour {
+	public BlockPartyMinigameManager MinigameManager;
 	public BlockManager BlockManager;
+	public BoardRaiser BoardRaiser;
 	public Block SelectedBlock;
 	public Camera Camera;
 	public AudioSource AudioSource;
 	public AudioClip SlideClip;
+
+	float previousTapTime;
+	const float doubleTapDuration = 0.5f;
 
 	void Update() {
 		if(GameManager.Instance.State == GameManager.GameState.MinigamePlay) {
@@ -13,9 +18,17 @@ public class BoardController : MonoBehaviour {
 				RaycastHit2D hit = Physics2D.Raycast(Camera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 				if(hit.collider != null && hit.collider.name.Contains("Block")) {
 					Block block = hit.collider.gameObject.GetComponent<Block>();
-					if(block.State == BlockState.Idle && block.Row < BlockManager.Rows - 1) {
+					if(block.State == BlockState.Idle && block.Row >= 0 && block.Row < BlockManager.Rows - 1) {
 						SelectedBlock = block;
 					}
+				}
+
+				if(MinigameManager.Mode == BlockPartyModes.Survival) {
+					if(Time.time - previousTapTime <= doubleTapDuration) {
+						BoardRaiser.ForceRaise();
+					}
+
+					previousTapTime = Time.time;
 				}
 			}
 
@@ -70,13 +83,7 @@ public class BoardController : MonoBehaviour {
 	}
 
 	void SetupSlide(Block block, SlideDirection direction) {
-		Block target = null;
-		if(direction == SlideDirection.Left) {
-			target = BlockManager.Blocks[block.Column - 1, block.Row];
-		}
-		if(direction == SlideDirection.Right) {
-			target = BlockManager.Blocks[block.Column + 1, block.Row];
-		}
+		Block target = direction == SlideDirection.Left ? BlockManager.Blocks[block.Column - 1, block.Row] : BlockManager.Blocks[block.Column + 1, block.Row];
 		block.Slider.TargetState = target.State;
 		block.Slider.TargetType = target.Type;
 	}

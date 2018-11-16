@@ -21,6 +21,8 @@ public class BlockManager : MonoBehaviour {
 				Blocks[column, row].transform.SetParent(BlockParent.transform, false);
 				Blocks[column, row].Column = column;
 				Blocks[column, row].Row = row;
+                Blocks[column, row].State = BlockState.Empty;
+                Blocks[column, row].Type = -1;
 			}
 		}
 
@@ -36,16 +38,6 @@ public class BlockManager : MonoBehaviour {
 		}
 
 		GameManager.Instance.StateChanged += HandleStateChanged;
-	}
-
-	void HandleStateChanged(object sender, EventArgs args) {
-		if(GameManager.Instance.State == GameManager.GameState.MinigameEnd) {
-			for(int column = 0; column < Columns; column++) {
-				for(int row = 0; row < Rows; row++) {
-					Blocks[column, row].Clearer.Clear(true);
-				}
-			}
-		}
 	}
 
 	void Start() {
@@ -82,5 +74,20 @@ public class BlockManager : MonoBehaviour {
 			NewRowBlocks[column].State = BlockState.Idle;
 			NewRowBlocks[column].Type = GetRandomBlockType(column, 0);
 		}
+	}
+
+	void HandleStateChanged(object sender, EventArgs args) {
+		if(GameManager.Instance.State == GameManager.GameState.MinigameEnd) {
+			KillBlocks();
+		}
+	}
+
+	public void KillBlocks() {
+		for(int column = 0; column < Columns; column++) {
+				for(int row = 0; row < Rows; row++) {
+					Blocks[column, row].Clearer.Clear(true);
+					Blocks[column, row].Killer.Kill();
+				}
+			}
 	}
 }

@@ -18,9 +18,17 @@ public class Score : MonoBehaviour {
     const int matchValue = 10;
     readonly int[] comboValue = new int[] { 0, 0, 0, 20, 30, 50, 60, 70, 80, 100, 140, 170, 210, 250, 290, 340, 390, 440, 490, 550, 610, 680, 750, 820, 900, 980, 1060, 1150, 1240, 1330 };
     readonly int[] chainValue = new int[] { 0, 50, 80, 150, 300, 400, 500, 700, 900, 1100, 1300, 1500, 1800 };
+    const int raiseValue = 1;
 
     public void ScoreMatch() {
         Points += matchValue;
+    }
+
+    public void SubmitMatch(int matchedBlockCount) {
+        int points = matchedBlockCount * matchValue;
+        if(AuthenticationManager.Instance.CurrentUser != null && SocketManager.Instance.IsConnected) {
+            SocketManager.Instance.Socket.Emit("blockParty/scorePoints", AuthenticationManager.Instance.CurrentUser.UserId, points);
+        }
     }
 
     public void ScoreCombo(int matchedBlockCount) {
@@ -39,8 +47,9 @@ public class Score : MonoBehaviour {
         }
     }
 
-    public void SubmitMatch(int matchedBlockCount) {
-        int points = matchedBlockCount * matchValue;
+    public void ScoreRaise() {
+        int points = raiseValue;
+        Points += points;
         if(AuthenticationManager.Instance.CurrentUser != null && SocketManager.Instance.IsConnected) {
             SocketManager.Instance.Socket.Emit("blockParty/scorePoints", AuthenticationManager.Instance.CurrentUser.UserId, points);
         }
