@@ -31,6 +31,7 @@ GameObject:
   - component: {fileID: 114912819045152550}
   - component: {fileID: 114594032841248618}
   - component: {fileID: 114849488625548794}
+  - component: {fileID: 114950007346035830}
   m_Layer: 0
   m_Name: Block Party Block
   m_TagString: Untagged
@@ -184,6 +185,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Width: 1
   Height: 1
+  IsNeighbor: 0
+  CanFall: 0
+  CanContinueFalling: 0
 --- !u!114 &114120161592381932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -237,6 +241,7 @@ MonoBehaviour:
   Clearer: {fileID: 114912819045152550}
   Emptier: {fileID: 114594032841248618}
   Chainer: {fileID: 114849488625548794}
+  Killer: {fileID: 114950007346035830}
 --- !u!114 &114594032841248618
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -295,6 +300,17 @@ MonoBehaviour:
   AudioSource: {fileID: 82418126400379170}
   DelayDuration: 0
   Elapsed: 0
+--- !u!114 &114950007346035830
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1303911780134700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9019e771603e1b40a45b27021cbd0af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114968351464237388
 MonoBehaviour:
   m_ObjectHideFlags: 1
