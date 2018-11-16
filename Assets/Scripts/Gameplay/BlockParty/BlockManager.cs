@@ -84,10 +84,10 @@ public class BlockManager : MonoBehaviour {
 
 	public void KillBlocks() {
 		for(int column = 0; column < Columns; column++) {
-				for(int row = 0; row < Rows; row++) {
-					Blocks[column, row].Clearer.Clear(true);
-					Blocks[column, row].Killer.Kill();
-				}
+			for(int row = 0; row < Rows; row++) {
+				Blocks[column, row].Clearer.Clear(true);
+				Blocks[column, row].Killer.Kill();
 			}
+		}
 	}
 }
