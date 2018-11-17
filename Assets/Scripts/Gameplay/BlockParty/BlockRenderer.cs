@@ -20,6 +20,7 @@ public class BlockRenderer: MonoBehaviour {
     public List<Sprite> HoppingSprites4;
     List<List<Sprite>> hoppingSprites;
 
+    BlockPartyMinigameManager minigameManager;
     BlockManager blockManager;
     ParticleManager particleManager;
     BoardRaiser boardRaiser;
@@ -27,6 +28,7 @@ public class BlockRenderer: MonoBehaviour {
     Vector3 blockTranslation;
 
     void Awake() {
+        minigameManager = GameObject.Find("Minigame").GetComponent<BlockPartyMinigameManager>();
         blockManager = GameObject.Find("Minigame").GetComponent<BlockManager>();
         particleManager = GameObject.Find("Minigame").GetComponent<ParticleManager>();
         boardRaiser = GameObject.Find("Minigame").GetComponent<BoardRaiser>();
@@ -113,14 +115,15 @@ public class BlockRenderer: MonoBehaviour {
         switch(Block.State) {
             case BlockState.Idle:
                 transform.position = transform.parent.position + blockTranslation + raiseTranslation + garbageTranslation;
-                if(blockManager.Blocks[Block.Column, BlockManager.Rows - 2].State != BlockState.Empty || 
-                    blockManager.Blocks[Block.Column, BlockManager.Rows - 3].State != BlockState.Empty) {
+                if(minigameManager.Mode == BlockPartyModes.Survival) {
+                    if(blockManager.Blocks[Block.Column, BlockManager.Rows - 2].State != BlockState.Empty || 
+                        blockManager.Blocks[Block.Column, BlockManager.Rows - 3].State != BlockState.Empty) {
                         SpriteRenderer.sprite = hoppingSprites[Block.Type][(int)(Time.time * 10) % 4];
+                    }
+                    else {
+                        SpriteRenderer.sprite = Sprites[Block.Type];
+                    }
                 }
-                else {
-                    SpriteRenderer.sprite = Sprites[Block.Type];
-                }
-                
                 break;
             case BlockState.Sliding:
                 float direction = Slider.Direction == SlideDirection.Left ? -1 : 1;
