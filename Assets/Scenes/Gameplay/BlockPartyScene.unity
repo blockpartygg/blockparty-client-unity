@@ -1700,7 +1700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5ddc2d3617f46ceb74c9f573943901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mode: 1
+  Mode: 0
   BoardController: {fileID: 2105252090}
   BlockManager: {fileID: 2105252089}
   EliminatedText: {fileID: 1727433444}

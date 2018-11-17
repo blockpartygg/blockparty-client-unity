@@ -13,6 +13,17 @@ public class BlockPartyMinigameManager : MonoBehaviour {
 	public BlockManager BlockManager;
 	public TMP_Text EliminatedText;
 
+	void Awake() {
+		Application.targetFrameRate = 60;
+
+		if(GameManager.Instance.Minigame.Id == "blockPartyTimeAttack") {
+			Mode = BlockPartyModes.TimeAttack;
+		}
+		if(GameManager.Instance.Minigame.Id == "blockPartySurvival") {
+			Mode = BlockPartyModes.Survival;
+		}
+	}
+
 	public void EndGame() {
 		BoardController.enabled = false;
 		BlockManager.KillBlocks();

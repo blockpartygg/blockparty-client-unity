@@ -11,8 +11,6 @@ public class BlockManager : MonoBehaviour {
 	const int survivalModeStartingRows = 6;
 
 	void Awake() {
-		Application.targetFrameRate = 60;
-
 		Blocks = new Block[Columns, Rows];
 		for(int row = 0; row < Rows; row++) {
 			for(int column = 0; column < Columns; column++) {
