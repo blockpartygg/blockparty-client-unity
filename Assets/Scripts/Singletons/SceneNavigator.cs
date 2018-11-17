@@ -47,6 +47,8 @@ public class SceneNavigator : Singleton<SceneNavigator> {
 							sceneToLoad = "BlockChaseScene";
 							break;
 						case "blockParty":
+						case "blockPartyTimeAttack":
+						case "blockPartySurvival":
 							sceneToLoad = "BlockPartyScene";
 							break;
 					}
