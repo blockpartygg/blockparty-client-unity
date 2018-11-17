@@ -23,11 +23,11 @@ public class SocketManager : Singleton<SocketManager> {
     public void Connect() {
         if(!IsConnected) {
             string uri = "";
-            #if UNITY_EDITOR
-                uri = "http://localhost:1337/socket.io/";
-            #else
+            // #if UNITY_EDITOR
+            //     uri = "http://localhost:1337/socket.io/";
+            // #else
                 uri = "http://blockparty-server.herokuapp.com/socket.io/";
-            #endif
+            // #endif
             BestHTTP.SocketIO.SocketOptions options = new BestHTTP.SocketIO.SocketOptions();
             options.ConnectWith = BestHTTP.SocketIO.Transports.TransportTypes.WebSocket;
             manager = new BestHTTP.SocketIO.SocketManager(new Uri(uri), options);
