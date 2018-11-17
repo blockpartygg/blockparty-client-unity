@@ -109,10 +109,6 @@ public class MatchDetector : MonoBehaviour {
             }
         }
 
-        if(matchedBlockCount > 0) {
-            Score.SubmitMatch(matchedBlockCount);
-        }
-
         bool playSound = false;
 
         if(matchedBlockCount > 3) {

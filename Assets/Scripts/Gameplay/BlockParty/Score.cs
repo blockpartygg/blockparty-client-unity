@@ -21,11 +21,8 @@ public class Score : MonoBehaviour {
     const int raiseValue = 1;
 
     public void ScoreMatch() {
-        Points += matchValue;
-    }
-
-    public void SubmitMatch(int matchedBlockCount) {
-        int points = matchedBlockCount * matchValue;
+        int points = matchValue;
+        Points += points;
         if(AuthenticationManager.Instance.CurrentUser != null && SocketManager.Instance.IsConnected) {
             SocketManager.Instance.Socket.Emit("blockParty/scorePoints", AuthenticationManager.Instance.CurrentUser.UserId, points);
         }
