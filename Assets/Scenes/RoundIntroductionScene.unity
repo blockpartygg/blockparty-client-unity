@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37312013, g: 0.3807403, b: 0.35872707, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2632,7 +2632,7 @@ MonoBehaviour:
   Content: {fileID: 1694622782}
   ScrollRect: {fileID: 363937020}
   Scrollbar: {fileID: 797079005}
-  Object: {fileID: 698466104}
+  ChatObject: {fileID: 698466104}
   InputField: {fileID: 1378032970}
   ChatMessagePrefab: {fileID: 1568717054430772, guid: e6bb35c0dff55424dbca4fc946238f6b,
     type: 2}
