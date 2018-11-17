@@ -14,18 +14,14 @@ public class TitleController : MonoBehaviour {
 		AnalyticsManager.Instance.LogAppOpenEvent();
 		
 		SocketManager.Instance.Connected += HandleSocketConnected;
+	}
 
-		if(!SocketManager.Instance.IsConnected) {
-			SocketManager.Instance.Connect();
-		}
+	void Start() {
+		UpdatePlayButton();
 	}
 
 	void HandleSocketConnected(object sender, EventArgs args)
 	{
-		UpdatePlayButton();
-	}
-
-	void Start() {
 		UpdatePlayButton();
 	}
 
@@ -38,10 +34,6 @@ public class TitleController : MonoBehaviour {
 			playButton.interactable = false;
 			playButtonText.text = "Connecting...";
 		}
-	}
-
-	void OnDestroy() {
-		SocketManager.Instance.Connected -= HandleSocketConnected;
 	}
 
 	public void Play() {
