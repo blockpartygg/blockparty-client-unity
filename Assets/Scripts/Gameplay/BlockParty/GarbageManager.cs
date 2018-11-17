@@ -4,10 +4,9 @@ using BestHTTP.SocketIO;
 
 public class GarbageManager : MonoBehaviour {
 	public BlockManager BlockManager;
-	float elapsed;
-	bool sentGarbage;
+
 	void Start() {
-		SocketManager.Instance.Socket.On("blockParty/sendGarbage", HandleSendGarbage);
+		//SocketManager.Instance.Socket.On("blockParty/sendGarbage", HandleSendGarbage);
 	}
 
 	void HandleSendGarbage(Socket socket, Packet packet, params object[] args) {
@@ -40,12 +39,7 @@ public class GarbageManager : MonoBehaviour {
 	}
 
 	void Update() {
-		elapsed += Time.deltaTime;
-
-		if(elapsed >= 5f && !sentGarbage) {
-			sentGarbage = true;
-			SocketManager.Instance.Socket.Emit("blockParty/receiveChain", null, null);
-		}
+		//SocketManager.Instance.Socket.Emit("blockParty/receiveChain", null, null);
 
 		if(Input.GetKeyDown("space")) {
 			SpawnGarbage(0);
